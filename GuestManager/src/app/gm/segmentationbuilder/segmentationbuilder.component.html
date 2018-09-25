@@ -1,0 +1,44 @@
+<div id="sma" class="segment-section">
+	<div class="cockpit theme-grm" style="height:100%; width:100%">
+		<div class="shifter" id="" style="height:100%; width:100%"> 
+			<div class="clearfix ov segment-lists">
+				<h1 class="x-title ov wbg title-ov">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 npl nopad">
+						<div class="text-center float-l set-text-color">{{smaScreenTitle}}
+							<strong *ngIf="$scope.selectedDashboard !== ''" class="sub-title">{{selectedDashboard}}</strong>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ov nopad">
+						<div class="text-center float-r">
+							<button type="submit" class="btn btn-primary" (click)="displayDialog();"><span class="btn-new-segment"><i class="fa fa-plus" aria-hidden="true"></i></span> &nbsp;&nbsp;&nbsp;New Segment</button>
+						</div>
+					</div>
+				</h1>
+			</div>   
+			
+			<div class="page-content-wrap segments-page r-pad">
+				<div class="container-fluid">
+		
+					<div class="row">
+						<div class="col-lg-12 col-sm-12 segment-lists">
+							
+								<form name="searchMember" method="post" class="form-in-line input-search" ng-submit="searchQuery(searchQueryObject, null, $event)" autocomplete="off" novalidate>
+								
+									<div class="form-group">
+										<div class="input-group">
+											<input type="text" class="form-control" ng-model="searchQueryObject.searchKey" autofocus="autofocus" placeholder="Enter segment name" autocomplete="off" elem-ready />
+											<button type="submit" class="input-group-addon" ng-disabled="!searchQueryObject.searchKey"></button>
+											<span class="loading-svg" *ngIf="isSearchStarted"></span>
+										</div>
+									</div>
+								</form>
+						</div>
+						<div class="segment-list-container">
+						
+						</div>
+					</div><!-- /search bar wrapper -->
+				</div> <!-- container -->
+			</div>
+		</div>
+	</div>
+</div>
