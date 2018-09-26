@@ -5,7 +5,7 @@
 				<h1 class="x-title ov wbg title-ov">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 npl nopad">
 						<div class="text-center float-l set-text-color">{{smaScreenTitle}}
-							<strong *ngIf="$scope.selectedDashboard !== ''" class="sub-title">{{selectedDashboard}}</strong>
+							<strong *ngIf="selectedDashboard !== ''" class="sub-title">{{selectedDashboard}}</strong>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ov nopad">
@@ -33,7 +33,31 @@
 									</div>
 								</form>
 						</div>
-						<div class="segment-list-container">
+						<div>show dialog {{smaScreenTitle}}</div>
+						<div *ngFor="let data of segments" class="segment-list-container" >
+							<ul class="segment-lists" (click) = "editSegment(data.segmentId)">
+								<li class="segment-list-item">
+										<div class="segment-section-container section-1">
+											<a class="segment-text-container">
+												<span class="main-text">{{data.segmentName}}</span>
+												<span>Updated: <b class="segment-values">{{data.updated}}</b></span>
+											</a>
+										</div>
+										<div class="segment-section-container section-2">
+											<div class="secondary-section">
+												<a class="segment-text-container">
+							       <span>Count: <b class="segment-values">{{data.count}}</b></span>
+							
+													<!-- <span>Channel: <b class="segment-values">{{channel}}</b></span> -->
+													<span>Created: <b class="segment-values">{{data.created}}</b></span>
+												</a>
+											</div>
+										</div>
+										<div class="segment-section-container section-3">
+											<div class="img-container" (click)="editSegment(id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+										</div>
+									</li>
+							</ul>
 						
 						</div>
 					</div><!-- /search bar wrapper -->
