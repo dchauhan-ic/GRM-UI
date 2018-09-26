@@ -2,23 +2,22 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
-import { FilterCustomPipe } from 'src/app/shared/pipes/filter.custom.pipe';
-import { GmComponent } from 'src/app/gm/gm.component';
-import { GmHeaderComponent } from 'src/app/gm/gm-header/gm-header.component';
-import { MemberprofilerComponent } from 'src/app/gm/memberprofiler/memberprofiler.component';
-import { SegmentationbuilderComponent } from 'src/app/gm/segmentationbuilder/segmentationbuilder.component';
-import { GmRoutingModule } from 'src/app/gm/gm.routing.module';
-import { GmService } from 'src/app/gm/gm.service';
-import { AppRoutingModule } from 'src/app/app.routing.module';
-import { MemberprofilerDetailComponent } from 'src/app/gm/memberprofiler/memberprofiler-detail/memberprofiler-detail.component';
-import { SegmentationbuilderSearchComponent } from 'src/app/gm/segmentationbuilder/segmentationbuilder-search/segmentationbuilder-search.component';
-import { SegmentationbuilderCreateComponent } from 'src/app/gm/segmentationbuilder/segmentationbuilder-create/segmentationbuilder-create.component';
-import { MemberprofilerSearchComponent } from 'src/app/gm/memberprofiler/memberprofiler-search/memberprofiler-search.component';
+
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from 'src/app/shared/interceptors/auth.interceptor';
-import { LoggingInterceptor } from 'src/app/shared/interceptors/logging.interceptor';
+import { AuthInterceptor } from '../shared/interceptors/auth.interceptor';
+import { LoggingInterceptor } from '../shared/interceptors/logging.interceptor';
+import { DataStorageService } from '../shared/data-storage.service';
+import { GmComponent } from './gm.component';
+import { MemberprofilerComponent } from './memberprofiler/memberprofiler.component';
+import { SegmentationbuilderComponent } from './segmentationbuilder/segmentationbuilder.component';
+import { GmService } from './gm.service';
+import { GmRoutingModule } from './gm.routing.module';
+import { SegmentationbuilderCreateComponent } from './segmentationbuilder/segmentationbuilder-create/segmentationbuilder-create.component';
+import { SegmentationbuilderSearchComponent } from './segmentationbuilder/segmentationbuilder-search/segmentationbuilder-search.component';
+import { MemberprofilerDetailComponent } from './memberprofiler/memberprofiler-detail/memberprofiler-detail.component';
+import { MemberprofilerSearchComponent } from './memberprofiler/memberprofiler-search/memberprofiler-search.component';
+
 
 
 

@@ -5,14 +5,16 @@ import { AppComponent } from './app.component';
 import { GmComponent } from './gm/gm.component';
 import { MemberprofilerComponent } from './gm/memberprofiler/memberprofiler.component';
 import { SegmentationbuilderComponent } from './gm/segmentationbuilder/segmentationbuilder.component';
-import { GmModule } from 'src/app/gm/gm.module';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { GmHeaderComponent } from 'src/app/gm/gm-header/gm-header.component';
+
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AppRoutingModule } from 'src/app/app.routing.module';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app.routing.module';
+import { GmHeaderComponent } from './gm/gm-header/gm-header.component';
+import { SharedModule } from './shared/shared.module';
+import { GmModule } from './gm/gm.module';
 @NgModule({
   declarations: [
     AppComponent,

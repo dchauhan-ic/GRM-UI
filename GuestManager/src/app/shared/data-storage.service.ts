@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';;
 import 'rxjs/Rx';
-import { AppTemplate } from 'src/app/shared/apptemplate-model';
-import { GmService } from 'src/app/gm/gm.service';
-import {  searchQueryObject, memberSearchList, countMap } from 'src/app/gm/gm.model';
+
+import { searchQueryObject, memberSearchList, countMap } from '../gm/gm.model';
+import { GmService } from '../gm/gm.service';
+import { AppTemplate } from './apptemplate-model';
+
 
 
 @Injectable()

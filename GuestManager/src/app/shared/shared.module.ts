@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DropdownDirective } from './dropdown.directive';
-import { ShortenPipe } from 'src/app/shared/pipes/shorten.pipe';
-import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+
 
 @NgModule({
   declarations: [

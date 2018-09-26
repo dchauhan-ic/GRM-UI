@@ -3,8 +3,9 @@ import { Http, Headers, Response } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { AppTemplate, CompareData } from 'src/app/shared/apptemplate-model';
+
 import { HttpClient,HttpHeaders } from '@angular/common/http';import { memberSearchList, searchQueryObject, memberProfiler } from 'src/app/gm/gm.model';
+import { AppTemplate, CompareData } from '../shared/apptemplate-model';
 ;
 
 
