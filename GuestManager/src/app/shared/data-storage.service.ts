@@ -76,7 +76,7 @@ getMemberProfilerList(data: searchQueryObject) {
 
 
  getMemberProfilerListtest(data: searchQueryObject):any {
-  this.httpClient.post('http://localhost:9080/GRM/member/search',data, {
+  this.httpClient.post('/GRM/member/search',data, {
      observe: 'body',
      responseType: 'json',
    }).map(
@@ -89,6 +89,23 @@ getMemberProfilerList(data: searchQueryObject) {
    );
  }
 
+//  getMemberProfilerListtest(username: string, password: string){
+//   return this.httpClient.post<any>('/api/oauth2/token',"grant_type=password&username="+username+"&password="+password,{
+//   headers: {
+//   Authorization: 'Basic MjAxOTY5RTFCRkQyNDJFMTg5RkU3QjYyOTdCMUI1QTQ6QzY1QTBEQzBGMjhDNDY5RkI3Mzc2Rjk3MkRFRkJDQjk='
+//   }
+//   }).pipe(map(resp => {
+//   if(resp && resp.UserName){
+//   localStorage.setItem('currentUser', JSON.stringify(resp));
+//   localStorage.setItem('TenantId', resp.TenantId);
+//   localStorage.setItem('access_token', resp.access_token);
+//   this.cookieService.set( 'authorizedUser', resp.UserName );
+//   this.cookieService.set( 'userRoles', 'ServerAdmin' );
+//   }
+  
+//   return resp;
+//   }));
+//   }
 
 getMemberProfiler(memberId) {
   this.httpClient.get('https://qa-jamba.fishbowlcloud.com/GRM/member/memberInfo/id/'+ memberId, {

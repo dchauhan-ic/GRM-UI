@@ -9,6 +9,7 @@ import { SegmentationbuilderCreateComponent } from './segmentationbuilder/segmen
 import { SegmentationbuilderSearchComponent } from './segmentationbuilder/segmentationbuilder-search/segmentationbuilder-search.component';
 import { MemberprofilerDetailComponent } from './memberprofiler/memberprofiler-detail/memberprofiler-detail.component';
 import { MemberprofilerSearchComponent } from './memberprofiler/memberprofiler-search/memberprofiler-search.component';
+import { SegmentationbuilderComponent } from 'src/app/gm/segmentationbuilder/segmentationbuilder.component';
 
 
 const gmRoutes: Routes = [
@@ -16,8 +17,9 @@ const gmRoutes: Routes = [
    
     { path: 'memberprofiler/search', component: MemberprofilerSearchComponent },
     { path: 'memberprofiler/detail', component: MemberprofilerDetailComponent },
-    { path: 'segmentationbuilder/search', component: SegmentationbuilderSearchComponent },
+    { path: 'segmentationbuilder', component: SegmentationbuilderComponent },
     { path: 'segmentationbuilder/create', component: SegmentationbuilderCreateComponent },
+    { path: 'create', component: SegmentationbuilderCreateComponent },
   ] },
 ];
 @NgModule({
