@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { GmService } from 'src/app/gm/gm.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { first, map } from 'rxjs/operators'
 @Component({
   selector: 'app-segmentationbuilder',
   templateUrl: './segmentationbuilder.component.html',
@@ -10,9 +12,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SegmentationbuilderComponent implements OnInit {
 
-  constructor(private dataStorageService: DataStorageService,private GmService: GmService,private router: Router,private route: ActivatedRoute) 
+  constructor(private dataStorageService: DataStorageService,private GmService: GmService,private router: Router,private route: ActivatedRoute,private http: HttpClient) 
   {
    // this.onFetchData();
+   //this.getRestItems();
   }
   smaScreenTitle = "Segments";
 	selectedDashboard = "";
@@ -20,7 +23,28 @@ export class SegmentationbuilderComponent implements OnInit {
 	showDialog = false;
   editSegmentId = undefined;
   newSegment="New Segment";
+  // segments: any;
+  // restItemsUrl = 'GRM/segment/segmentInfo/list';//'https://public-api.wordpress.com/rest/v1.1/sites/vocon-it.com/posts';
+
+  //   // Read all REST Items
+  //   getRestItems(): void {
+  //     this.restItemsServiceGetRestItems()
+  //       .subscribe(
+  //         restItems => {
+  //           this.segments = restItems;
+          
+  //         }
+  //       )
+  //   }
+
+  //  // Rest Items Service: Read all REST Items
+  //  restItemsServiceGetRestItems() {
+  //   return this.http
+  //     .get<any[]>(this.restItemsUrl)
+  //     .pipe(map(data => data));
   
+  //  }
+
   segments = [{
     "count": 5,
     "created": "09/08/2018",
@@ -71,3 +95,4 @@ export class SegmentationbuilderComponent implements OnInit {
   }
 
 }
+

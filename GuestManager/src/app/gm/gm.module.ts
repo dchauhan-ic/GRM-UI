@@ -17,6 +17,11 @@ import { SegmentationbuilderCreateComponent } from './segmentationbuilder/segmen
 import { SegmentationbuilderSearchComponent } from './segmentationbuilder/segmentationbuilder-search/segmentationbuilder-search.component';
 import { MemberprofilerDetailComponent } from './memberprofiler/memberprofiler-detail/memberprofiler-detail.component';
 import { MemberprofilerSearchComponent } from './memberprofiler/memberprofiler-search/memberprofiler-search.component';
+import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
+import { FilterCustomPipe } from 'src/app/shared/pipes/filter.custom.pipe';
+import { KeysPipe } from 'src/app/shared/pipes/key.pipe';
+import { KeysValuesPipe } from 'src/app/shared/pipes/key-value.pipe';
+
 
 
 
@@ -29,13 +34,20 @@ import { MemberprofilerSearchComponent } from './memberprofiler/memberprofiler-s
     MemberprofilerDetailComponent,
     SegmentationbuilderComponent,
     SegmentationbuilderSearchComponent,
-    SegmentationbuilderCreateComponent
+    SegmentationbuilderCreateComponent,
+    FilterPipe,
+    FilterCustomPipe,
+    KeysPipe,
+    KeysValuesPipe
+    
    
     
   ],
   imports: [
     CommonModule,
     GmRoutingModule,
+    
+
    ]
   ,
   providers: [ 
