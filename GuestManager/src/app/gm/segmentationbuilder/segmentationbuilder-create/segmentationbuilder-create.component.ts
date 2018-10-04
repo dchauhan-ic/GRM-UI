@@ -8,14 +8,8 @@ import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
 })
 
 export class SegmentationbuilderCreateComponent implements OnInit {
-
-  transform(value:any, args:string[]) : any {
-    debugger;
-    return // transform map to a list of keys and values
-  }
-
   items = [];
-  
+
   segmentName = "Test segment";
   noneSelected = true;
   editMode = false;
@@ -28,8 +22,9 @@ export class SegmentationbuilderCreateComponent implements OnInit {
           "items" : [{
               "key" : "attribute",
               "default" : "Email",
-              "type" : "textfield",
-              "display" : true
+              "type" : "textbox",
+              "display" : true,
+              "required": true
           },{
               "key" : "operator",
               "type" : "dropdown",
@@ -51,17 +46,11 @@ export class SegmentationbuilderCreateComponent implements OnInit {
               "display" : true
           },{
               "key" : "value",
-              "type" : "textfield",
+              "type" : "textbox",
               "display" : true
           }]
-  },/*{
-    "key" : "email",
-    "value" :"Email"
-  },*/
+  },
   {
-    "key" : "inputSource",
-    "value" :"Input Source"
-  },{
     "key" : "mobilePhone",
     "value" :"Phone Number"
   },{
@@ -75,55 +64,113 @@ export class SegmentationbuilderCreateComponent implements OnInit {
 
   segmentNavPills = [{
 		"Profile": [{
-			"Registration": [/*{
-					"key" : "email",
-					"value" : "Email",                    
-                    "required" : true,
-                    
-                "options" : [{
-                    "key" : "attribute",
-                    "default" : "Email",
-                    "type" : "textfield",
-                    "display" : true
-                },{
-                    "key" : "operator",
-                    "type" : "dropdown",
-                    "options" : [
-                        {
-                            "key" : "Is",
-                            "value" : "Is"
+			"Registration": [{
+                "key" : "email",
+                "value" : "Email",                    
+                "required" : true,
+                        
+                    "items" : [{
+                        "key" : "attribute",
+                        "default" : "Email",
+                        "type" : "textbox",
+                        "display" : true,
+                        "required": true
+                    },{
+                        "key" : "operator",
+                        "type" : "dropdown",
+                        "options" : [
+                            {
+                                "key" : "Is",
+                                "value" : "Is"
+                            },{
+                                 "key" : "Contains",
+                                "value" : "Contains"
+                            },{
+                                 "key" : "Starts With",
+                                "value" : "Starts With"
+                            },{
+                                 "key" : "Ends With",
+                                "value" : "Ends With"
+                            }
+                        ],
+                        "display" : true
+                    },{
+                        "key" : "value",
+                        "type" : "textbox",
+                        "display" : true
+                    }]},
+                    {
+                        "key" : "inputSource",
+                        "value" :"Input Source",
+                        "items" : [{
+                            "key" : "attribute",
+                            "default" : "Input Source",
+                            "type" : "textbox",
+                            "display" : true,
+                            "required": true
                         },{
-                             "key" : "Contains",
-                            "value" : "Contains"
+                            "key" : "operator",
+                            "type" : "textbox",
+                            "default" : "Is",
+                            "display" : true
                         },{
-                             "key" : "Starts With",
-                            "value" : "Starts With"
-                        },{
-                             "key" : "Ends With",
-                            "value" : "Ends With"
-                        }
-                    ],
-                    "display" : true
-                },{
-                    "key" : "value",
-                    "type" : "textfield",
-                    "display" : true
-                }]
-        },*/
-        {
-					"key" : "email",
-					"value" :"Email"
-				},
-        {
-					"key" : "inputSource",
-					"value" :"Input Source"
-				},{
+                            "key" : "value",
+                            "type" : "dropdown",
+                            "options" : [
+                                {
+                                    "key" : "Web",
+                                    "value" : "Web"
+                                },{
+                                     "key" : "Fish",
+                                    "value" : "Fish"
+                                }
+                            ],
+                            "display" : true
+                        }]
+                      },
+                {
 					"key" : "mobilePhone",
 					"value" :"Phone Number"
 				},{
-					"key" : "joinDate",
-					"value" :"Join Date"
-				},{
+                    "key" : "joinDate",
+                    "value" : "Join Date",                    
+                    "required" : true,
+                            
+                        "items" : [{
+                            "key" : "attribute",
+                            "default" : "Join Date",
+                            "type" : "textbox",
+                            "display" : true,
+                            "required": true
+                        },{
+                            "key" : "operator",
+                            "type" : "dropdown",
+                            "options" : [
+                                {
+                                    "key" : "Is",
+                                    "value" : "Is"
+                                },{
+                                     "key" : "Before",
+                                    "value" : "Before"
+                                },{
+                                     "key" : "After",
+                                    "value" : "After"
+                                },{
+                                     "key" : "Between",
+                                    "value" : "Between"
+                                }
+                            ],
+                            "display" : true
+                        },{
+                            "key" : "startValue",
+                            "type" : "datefield",
+                            "display" : true
+                        },{
+                            "key" : "endValue",
+                            "type" : "datefield",
+                            "display" : true
+                        }]
+                    },{
 					"key" : "birthDay",
 					"value" : "Birthday"
 				}
@@ -184,14 +231,17 @@ export class SegmentationbuilderCreateComponent implements OnInit {
 
   buttonclick = function( data ){
     this.noneSelected = false;
-    debugger;
-  }
+    this.items.push(data.items);
+    }
   exportSegment = function(){
 
   }
 
   saveSegment = function(){
-
+debugger;
+  }
+  onSubmit = function( data ){
+      alert('clcik');
   }
 
   ngOnInit() {
