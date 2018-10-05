@@ -981,17 +981,10 @@ h1.x-title div{
 }
 
 
-ol.list-group li fieldset sf-decorator .form-group { position: relative; }
-/*ol.list-group li fieldset legend + div + sf-decorator .form-group:after { content:""; display: block; position: absolute; right:0; top:0; bottom: 8px; margin:auto 0; border-bottom: 1px solid #ccc; width:15px; height:1px; }*/
-/*ol.list-group li fieldset legend + div + sf-decorator + sf-decorator > .form-group:after { content:""; display: block; position: absolute; right:0; top:0; bottom: 8px; margin:auto 0; border-bottom: 1px solid #ccc; width:15px; height:1px; }*/
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator > .form-group:before,
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator + sf-decorator > .form-group:before { content:""; display: block; position: absolute; left:-15px; top:0; bottom: 8px; margin:auto 0; border-bottom: 1px solid #ccc; width:30px; height:1px; }
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator > .form-group:before { content:""; display: block; position: absolute; left:-15px; top:0; bottom: 8px; margin:auto 0; border-bottom: 1px solid #ccc; width:30px; height:1px; }
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator > .form-group .row { margin-left: 0 !important; margin-right: 0 !important; }
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator > .form-group.multi-select-container:before { /*width:25px;*/ bottom: 12px; }
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator + sf-decorator > .form-group:before { width:25px; bottom: 12px; }
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator + sf-decorator > .form-group:before { width:25px; bottom: 12px; left: -15px; }
-ol.list-group li fieldset legend + div + sf-decorator + sf-decorator + sf-decorator > .form-group .form-group .btn.btn-default { margin-left: 0 !important }
+ol.list-group > li { margin-bottom: 50px; }
+ol.list-group .list-parent-div { position: relative; }
+ol.list-group .list-parent-div:after { content: ""; display: block; position: absolute; left: -15px; top: 0; bottom: 6px; margin: auto 0; border-bottom: 1px solid #ccc; width: 30px; height: 1px; }
+ol.list-group input[type="date"] { height: 42px !important; }
 
 .btn-new-segment { border:2px #fff solid; border-radius: 100%; padding:2px 4px 2px 4px; color: #fff; text-align: center; }
 .btn-new-segment * { color:#fff; font-size: 11px; }
@@ -1005,9 +998,9 @@ h1.x-title .Fixed_popcloseButton { padding: 0; top: 5px; right: 15px; }
 .segment-title-editMode input[type="text"] { width: calc(100% - 80px); }
 .segment-title-editMode button.btn.btn-grm { float: right; padding: 7px 20px 8px 20px; }
 
-.buildSegment-vscroll { min-height:calc(100vh - 127px); max-height:calc(100vh - 127px); overflow-x: hidden; overflow-y: auto; }
+.buildSegment-vscroll { min-height:calc(100vh - 53px); max-height:calc(100vh - 53px); overflow-x: hidden; overflow-y: auto; }
 .buildSegment-vscroll.segment-lists { padding: 0px 5rem; }
 .buildSegment-vscroll2 { padding: 0; }
-.buildSegment-vscroll2 .rectangle { background:#F9F9F9; min-height:calc(100vh - 220px); max-height:calc(100vh - 220px); overflow-x: hidden; overflow-y: auto; }
+.buildSegment-vscroll2 .rectangle { background:#F9F9F9; min-height:calc(100vh - 148px); max-height:calc(100vh - 148px); overflow-x: hidden; overflow-y: auto; }
 
 .text-click-drag { color:#999; text-align: center; padding: 120px 120px; font-size: 4em; }

@@ -450,3 +450,6 @@ h2.x-title div{ font-size:18px}
 .blur.vertical{top:30%;-webkit-transform:translateY(-40%);-ms-transform:translateY(-40%);transform:translateY(-40%)}
 .Fixed_popcloseButton i.fa,.blur.abs i.fa-times, .icon-close .fa.fa-times { cursor:pointer; background:url(../imgs/sprite-3.png) no-repeat -7px -104px;background-size:320px auto !important;width: 17px;height: 17px}
 .Fixed_popcloseButton:hover i.fa, .Fixed_popcloseButton a:hover i.fa, .icon-close:hover .fa.fa-times {background-position:-295px -72px;background-size: 320px auto !important;}
+
+.sfl{ float:left}
+.sfr,.sfl2{ float:right}

@@ -12,7 +12,7 @@
                   <h3>{{segmentName}}</h3>
                   <a href="javascript:void(0);" (click)="changeMode()"><i class="fa fa-pencil-square-o icon-edit-grm-head" aria-hidden="true"></i></a> </div>
                 <div class="form-group segment-title-editMode" *ngIf="editMode">
-                  <input type="text"  maxlength = "100">
+                  <input type="text"  maxlength = "100" class="form-control">
                   <button class="btn btn-grm" (click)="changeMode(segmentName)">OK</button>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt15 pb15 pl0 pr0 targetable-members">
@@ -23,18 +23,18 @@
                 <div class="rectangle grid-model margin-b pl0" style="background: #F0F0F0;">
                   <div class="form-group no-margin right-margin-10 left-margin-10"> </div>
                 </div>
-                <div id="page"> 
+                <div id="page" class="clearfix"> 
                   <!--<app-segment-dynamic [items]="registration"></app-segment-dynamic>-->
                   <form (ngSubmit)="onSubmit(segmentForm.value)" id="segmentForm">
                     <ol class="list-group">
-                      <li  *ngFor = "let itemArray of items" class="list-group-item">
-                        <div *ngFor = "let item of itemArray" class="form-group">
-                          <div [ngSwitch]="item.type">
-                            <input *ngSwitchCase="'textbox'" class="col-sm-6 col-md-3 textbox-cls" 
+                      <li  *ngFor = "let itemArray of items" class="sfl fw list-group-item pt30">
+                        <div *ngFor = "let item of itemArray" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pb5 form-group pl15 pr15 list-parent-div">
+                          <div [ngSwitch]="item.type" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pl0 pr0">
+                            <input *ngSwitchCase="'textbox'" class="form-control" 
                                     [id]="item.key"  [value] = "item.default ? item.default : ''" [disabled] = "item.default ? true : false">
-                            <input *ngSwitchCase="'datefield'" type="date" [id]="item.key" class="col-sm-6 col-md-3 textbox-cls form-control" 
+                            <input *ngSwitchCase="'datefield'" type="date" [id]="item.key" class="form-control" 
                                       [value] = "item.value ? item.value : undefined " />
-                            <select [id]="item.key" *ngSwitchCase="'dropdown'" class= "col-sm-6 col-md-3 dropdown-cls">
+                            <select [id]="item.key" *ngSwitchCase="'dropdown'" class= "form-control">
                               <option *ngFor="let opt of item.options" [value]="opt.key">{{opt.value}}</option>
                             </select>
                           </div>
