@@ -1,0 +1,146 @@
+<div class="panel-heading" role="tab" id="headingDemographicInformation">
+  <h4 class="panel-title">
+    <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#demographicInformation"
+      aria-expanded="false" aria-controls="demographicInformation">
+      Demographic Information
+      <span class="panel-arrow"></span>
+    </a>
+  </h4>
+</div>
+<div id="demographicInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDemographicInformation">
+  <div class="panel-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="row" *ngIf="demographicInformation.memberId || demographicInformation.memberId == 0">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Persona:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.personaType === '' || demographicInformation.personaType === null">No data</span>
+              {{demographicInformation.personaType}}
+            </dd>
+
+            <dt>Gender:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.gender === '' || demographicInformation.gender === null">No data</span>
+              {{demographicInformation.gender}}
+            </dd>
+
+            <dt>Age Range:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.ageRange === '' || demographicInformation.ageRange === null">No data</span>
+              {{demographicInformation.ageRange}}
+            </dd>
+
+            <dt>Home Ownership:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.homeOwnerShip === '' || demographicInformation.homeOwnerShip === null">No data</span>
+              {{demographicInformation.homeOwnerShip}}
+            </dd>
+          </dl>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Martial Status:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.maritalStatus === '' || demographicInformation.maritalStatus === null">No data</span>
+              {{demographicInformation.maritalStatus}}
+            </dd>
+
+            <dt>Primary Ethnicity:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.primaryEthnicity === '' || demographicInformation.primaryEthnicity === null">No data</span>
+              {{demographicInformation.primaryEthnicity}}
+            </dd>
+
+            <dt>Education:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.education === '' || demographicInformation.education === null">No data</span>
+              {{demographicInformation.education}}
+            </dd>
+
+            <dt>Occupation:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.occupation === '' || demographicInformation.occupation === null">No data</span>
+              {{demographicInformation.occupation}}
+            </dd>
+          </dl>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Children:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.children === '' || demographicInformation.children === null">No data</span>
+              {{demographicInformation.children}}
+            </dd>
+
+            <dt>Household Income:</dt>
+            <dd>
+              <span class="no-data" *ngIf="demographicInformation.houseHoldIncome === '' || demographicInformation.houseHoldIncome === null">No data</span>
+              {{demographicInformation.houseHoldIncome}}
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /panel body -->
+</div>

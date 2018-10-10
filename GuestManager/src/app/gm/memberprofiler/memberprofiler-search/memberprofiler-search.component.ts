@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { searchQueryObject } from 'src/app/gm/gm.model';
-import { GmService } from 'src/app/gm/gm.service';
-
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { memberSearchList, countMap, searchMemberRequest } from 'src/app/gm/gm.model';
+import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.service';
 @Component({
   selector: 'app-memberprofiler-search',
   templateUrl: './memberprofiler-search.component.html',
@@ -11,27 +12,66 @@ import { GmService } from 'src/app/gm/gm.service';
 
 export class MemberprofilerSearchComponent implements OnInit {
 
-  constructor(private dataStorageService: DataStorageService,private GmService: GmService) {this.onFetchData(); }
+  
   smaScreenTitle= "Search Member Profile";
   selectedDashboard = "";
-	searchResults = [];
+  memberProfiler:any;
+  searchResults:any = [];
+  countMap: countMap[];
+  memberSearchList: memberSearchList[]
   totalMembers;
   obj:object;
 	totalUsers;
 	pageSize = 15;
 	isTableLoading = false;
 	isSearchStarted = false;
-	isSearchComplete = false;
-	isFromProfileCompleted;
+  isSearchComplete = false;
+  isFromProfileCompleted;
+  @ViewChild('f') searchForm: NgForm;
+  
+  constructor(private memberProfilerService: MemberProfilerService,private router: Router,private route: ActivatedRoute) 
+  {}
+  
+  
   ngOnInit() {
   }
 
-  onFetchData() {
-    const data: searchQueryObject = {
-    searchKey: "jon",
+  onSearchMember() {
+    const data: searchMemberRequest = {
+    searchKey: this.searchForm.value.searchvalue,
     limit:15,
     offset:0
     };
-   this.obj=this.dataStorageService.getMemberProfilerListtest(data);
+    this.getMember(data);
   }
+
+  getMember(data: searchMemberRequest): void {
+    this.memberProfilerService.getMemberDetail(data)
+      .subscribe(
+        Results => {
+          const memberSearchList: memberSearchList[] = Results["memberSearchList"];
+          const countMap: countMap[] = Results["countMap"];
+            this.searchResults = memberSearchList;
+            this.totalUsers = countMap["matchedMember"];
+            this.totalMembers = countMap["totalMember"];
+            this.isSearchStarted = false;
+            this.isSearchComplete = true;
+            this.isTableLoading = false;
+            if( this.searchResults.length) {
+              if(this.totalUsers > this.pageSize) {
+                var pageNumber = 1;
+                this.isFromProfileCompleted = true;
+                return;
+              }
+            }
+          
+        }
+      )
+  }
+
+  viewProfile = function(){
+     this.router.navigate(['memberprofiler/detail']);
+   }
+
+ 
 }

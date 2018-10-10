@@ -1,94 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { GmService } from 'src/app/gm/gm.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { first, map } from 'rxjs/operators'
+import { Subscription } from 'rxjs/Subscription';
+import { NgForm } from '@angular/forms';
+import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
+import { SegmentBuilderService } from 'src/app/gm/segmentationbuilder/segmentationbuilder.service';
 @Component({
   selector: 'app-segmentationbuilder-search',
   templateUrl: './segmentationbuilder-search.component.html',
   styleUrls: ['./segmentationbuilder-search.component.scss']
 })
 export class SegmentationbuilderSearchComponent implements OnInit {
-
-  constructor(private dataStorageService: DataStorageService,private GmService: GmService,private router: Router,private route: ActivatedRoute,private http: HttpClient) 
-  {
-    this.getRestItems();
-   // this.onFetchData();
-  }
-  restItemsUrl = 'GRM/segment/segmentInfo/list';//'https://public-api.wordpress.com/rest/v1.1/sites/vocon-it.com/posts';
+  segments: segmentMetaDataList[];
+  subscription: Subscription;
   smaScreenTitle = "Segments";
-	selectedDashboard = "";
-	segmentName = undefined;
-	showDialog = false;
+  selectedDashboard = "";
+  segmentName = undefined;
+  showDialog = false;
   editSegmentId = undefined;
-  newSegment="New Segment";
-  segments: any;
+  newSegment = "New Segment";
 
-    // Read all REST Items
-    getRestItems(): void {
-      this.restItemsServiceGetRestItems()
-        .subscribe(
-          restItems => {
-            this.segments = restItems;
-          
-          }
-        )
-    }
+  @ViewChild('f') segmentForm:NgForm;
 
-   // Rest Items Service: Read all REST Items
-   restItemsServiceGetRestItems() {
-    return this.http
-      .get<any[]>(this.restItemsUrl)
-      .pipe(map(data => data));
+  constructor(private segmentBuilderService: SegmentBuilderService, private router: Router, private route: ActivatedRoute) {
   }
-  
-  // segments = [{
-  //   "count": 5,
-  //   "created": "09/08/2018",
-  //   "segmentId": 1,
-  //   "segmentName": "DJJSegment",
-  //   "successFlag": true,
-  //   "updated": "09/18/2018"
-  // },{
-  //   "count": 7,
-  //   "created": "09/17/2018",
-  //   "segmentId": 2,
-  //   "segmentName": "TestSegment",
-  //   "successFlag": true,
-  //   "updated": "09/20/2018"
-  // },{
-  //   "count": 11,
-  //   "created": "09/20/2018",
-  //   "segmentId": 3,
-  //   "segmentName": "test1234",
-  //   "successFlag": true,
-  //   "updated": "09/23/2018"
-  // }];
-
  
-
-  editSegment = function(segmentId){
-   // alert(segmentId+ ' click registered');
-
-    this.router.navigate(['segmentationbuilder/create'], {relativeTo: this.route});
-    //logic to move to next page by making an API call
-  }
-
-  displayDialog = function() {
-		this.showDialog = true;
-	}
-  
-  closeDialog = function(){
-		this.showDialog = false;
-  }
-  
-  createSegment = function(){
-    // Create new segment function
-    alert('submit buton trigerred');
-  }
-
   ngOnInit() {
+    this.subscription = this.segmentBuilderService.segmentsChanged
+      .subscribe(
+      (segmentMetaDataList: segmentMetaDataList[]) => {
+        this.segments = segmentMetaDataList;
+      }
+      );
+    this.segments = this.segmentBuilderService.getSegmentList();
   }
 
+  displayDialog() {
+    this.showDialog = true;
+    this.segmentBuilderService.setDialogFlag(true);
+
+  }
+
+  closeDialog (){
+    this.showDialog = false;
+    this.segmentBuilderService.setDialogFlag(false);
+  }
+
+  onEditSegment(segmentId,segmentMetaDataList) {
+  
+    this.segmentBuilderService.setSegment(segmentMetaDataList);
+    this.segmentBuilderService.getSegmentDetails(segmentId);  
+  }
+
+  onCreateNewSegment(){
+    this.segmentName=this.segmentForm.value.myInput;
+    let segmentMetaData = new segmentMetaDataList(true,199,this.segmentName,"","",0); 
+    this.segmentBuilderService.setSegment(segmentMetaData);
+    this.router.navigate(['SegmentationBuilder/buildSegment']);
+  }
 }

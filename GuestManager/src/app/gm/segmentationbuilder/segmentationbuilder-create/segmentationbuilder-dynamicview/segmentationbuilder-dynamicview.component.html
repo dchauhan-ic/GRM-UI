@@ -1,0 +1,51 @@
+<!-- <div id="page">
+  <form (ngSubmit)="onSubmit(segmentForm.value)" id="segmentForm">
+      <div  *ngFor = "let itemArray of items | keyvalue" class="ind-segment">
+      <div class="segment-close" (click) = "segmentClose(itemArray.key)"> <i class="fa fa-times" aria-hidden="true"></i> </div>
+      <div *ngFor = "let item of itemArray.value" class="form-group">
+        
+      <div [ngSwitch]="item.type">
+
+        <input *ngSwitchCase="'textbox'" class="col-sm-6 col-md-3 textbox-cls" 
+                [id]="item.key"  [value] = "item.default ? item.default : ''" [disabled] = "item.default ? true : false">
+        
+        <input *ngSwitchCase="'datefield'" type="date" [id]="item.key" class="col-sm-6 col-md-3 textbox-cls form-control" 
+                  [value] = "item.value ? item.value : undefined " />
+
+        <select [id]="item.key" *ngSwitchCase="'dropdown'" class= "col-sm-6 col-md-3 dropdown-cls">
+          <option *ngFor="let opt of item.options" [value]="opt.key">{{opt.value}}</option>
+        </select>
+    
+      </div> 
+      </div>
+
+    </div>
+    
+</form>
+</div>
+
+
+<div id="page">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div  *ngFor = "let itemArray of items | keyvalue" class="ind-segment">
+    <div class="segment-close" (click) = "segmentClose(itemArray.key)"> <i class="fa fa-times" aria-hidden="true"></i> </div>
+    <div *ngFor = "let item of itemArray.value" class="form-group" ngModelGroup = "{{itemArray.key}}">
+      
+    <div [ngSwitch]="item.type"> 
+
+      <input *ngSwitchCase="'textbox'" class="col-sm-6 col-md-3 textbox-cls" 
+              name = "{{item.key}}" [(ngModel)] = "item.value" [disabled] = "item.default ? true : false" >
+              
+      <input *ngSwitchCase="'datefield'" type="date"  class="col-sm-6 col-md-3 textbox-cls form-control" *ngIf = ""
+      [value] = "item.value" name = "{{item.key}}"
+      [(ngModel)] = "item.startValue" />
+
+
+      <select  name = "{{item.key}}" *ngSwitchCase="'dropdown'" class= "col-sm-6 col-md-3 dropdown-cls" [ngModel] = "item.value">
+        <option *ngFor="let opt of item.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+    </div> 
+    </div>
+  </div>
+</form>
+</div> -->

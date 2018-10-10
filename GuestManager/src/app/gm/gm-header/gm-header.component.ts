@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-gm-header',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GmHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
+  }
+  
+  onFetchSegmentList() {
+     this.dataStorageService.getSegmentList();
   }
 
 }

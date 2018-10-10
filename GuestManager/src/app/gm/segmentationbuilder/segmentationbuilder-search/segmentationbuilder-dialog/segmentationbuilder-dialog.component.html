@@ -1,0 +1,47 @@
+<div class="dialog-box" *ngIf = "showDialog" >
+	<div class="dialog-mask"></div>
+	<div class="segment-dialog-container">
+<div id="sma">
+	<div class="cockpit theme-grm" style="height:100%; width:100%">
+		<div class="shifter" id="" style="height:100%; width:100%"> 
+			<div class="clearfix ov">
+				<div class="x-title ov wbg title-ov dialog-name">
+					<div class="Fixed_popcloseButton" (click)="closeDialog()"> <i class="fa fa-times"></i></div>					
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 npl nopad mt5 set-text-color">{{newSegment}}</div>					
+				</div>
+			</div>   
+			
+			<div class="page-content-wrap segments-page r-pad">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12 pl20 pr20">
+							<div class="segment-content-wrap">
+								<form name="newSegment" method="post" class="form-in-line input-search" (submit)="createSegment()" autocomplete="off" novalidate>
+									<!-- <button type="submit" class="btn btn-primary advanced">Advanced</button> -->
+									<div class="form-group">
+										<div class="input-group">
+											<input type="text" name = "myInput" class="form-control" ng-model="segmentName" autofocus="autofocus" placeholder="Enter a Segment name..." autocomplete="off" ng-maxLength = "100" elem-ready required/>
+											<span style="color:red" ng-show="newSegment.myInput.$error.maxlength">
+
+												Segment name should not be more then 100 characters</span>
+										</div>
+									</div>
+									<div class="text-center">
+											<button class="btn btn-close" (click)="closeDialog()">Close</button>
+											<button type="submit" class="btn btn-primary" ng-disabled="newSegment.$invalid" >Build Segment</button>
+									</div>
+								</form>
+							</div>
+							
+						</div>
+					</div><!-- /search bar wrapper -->
+					
+					
+
+				</div> <!-- container -->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>

@@ -11,8 +11,5 @@ export class GmComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
-  
+ 
 }

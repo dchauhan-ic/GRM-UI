@@ -1,15 +1,17 @@
 <div id="sma">
 	<div class="cockpit theme-grm" style="height:100%; width:100%">
-		<div class="shifter" id="" style="height:100%; width:100%"> 
+		<div class="shifter" id="" style="height:100%; width:100%">
 			<div class="clearfix ov">
 				<h1 class="x-title ov wbg title-ov">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 npl nopad mt5">{{smaScreenTitle}}<strong *ngIf="selectedDashboard !== ''" class="sub-title">{{selectedDashboard}}</strong></div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 npl nopad mt5">{{smaScreenTitle}}
+						<strong *ngIf="selectedDashboard !== ''" class="sub-title">{{selectedDashboard}}</strong>
+					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ov nopad">
 						&nbsp;
 					</div>
 				</h1>
-			</div>   
-			
+			</div>
+
 			<div class="page-content-wrap r-pad">
 				<div class="container">
 
@@ -24,25 +26,29 @@
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							&nbsp;
 						</div>
-					</div><!-- /page pagination and forward/backward section  -->
-					
+					</div>
+					<!-- /page pagination and forward/backward section  -->
+
 					<!-- search bar wrapper -->
 					<div class="row">
 						<div class="col-lg-12">
-							<form name="searchMember" method="post" class="form-in-line input-search" ng-submit="searchQuery(searchQueryObject, null, $event)" autocomplete="off" novalidate>
+							<form name="searchMember" class="form-in-line input-search" (ngSubmit)="onSearchMember()" #f="ngForm" autocomplete="off" novalidate>
 								<!-- <button type="submit" class="btn btn-primary advanced">Advanced</button> -->
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control" ng-model="searchQueryObject.searchKey" autofocus="autofocus" placeholder="Search for a member (first name, last name, phone, email)" autocomplete="off" elem-ready />
-										<button type="submit" class="input-group-addon" *ngIf="!isSearchStarted"></button><!-- *ngIf="!isSearchStarted && !isSearchComplete" -->
-										<!-- <button type="button" class="input-group-addon clear" *ngIf="isSearchComplete"></button> -->
+										<input type="text" class="form-control" ngModel name="searchvalue" autofocus="autofocus" placeholder="Search for a member (first name, last name, phone, email)"
+										 autocomplete="off" elem-ready />
+										<button type="submit" class="input-group-addon" *ngIf="!isSearchStarted"></button>
+										<!-- *ngIf="!isSearchStarted && !isSearchComplete" -->
+
 										<span class="loading-svg" *ngIf="isSearchStarted"></span>
 									</div>
 								</div>
 							</form>
 						</div>
-					</div><!-- /search bar wrapper -->
-					
+					</div>
+					<!-- /search bar wrapper -->
+
 					<!-- search results wrapper -->
 					<div class="row search-results-wrap results">
 						<div class="col-lg-12">
@@ -55,14 +61,18 @@
 								<div class="table-controls header">
 									<div class="row reset valign">
 										<div class="col-lg-6 col-md-6 col-sm-6">
-											<p>{{totalUsers | number : 0}} member<span *ngIf="totalUsers >1">s</span> found out of {{totalMembers | number : 0}} total member<span *ngIf="totalMembers >1">s</span></p>
+											<p>{{totalUsers | number : 0}} member
+												<span *ngIf="totalUsers >1">s</span> found out of {{totalMembers | number : 0}} total member
+												<span *ngIf="totalMembers >1">s</span>
+											</p>
 										</div>
 										<!-- <div class="col-lg-6 col-md-6 col-sm-6 text-right">
 											<a class="btn btn-primary" href="javascript:void(0);">export</a>
 										</div> -->
 									</div>
-								</div><!-- /table controls wrap -->
-								
+								</div>
+								<!-- /table controls wrap -->
+
 								<div class="table-wrap table-responsive">
 									<div class="loading-svg-table" *ngIf="isTableLoading">
 										<span class="loading-svg"></span>
@@ -78,11 +88,12 @@
 												<!-- <th>Last Visit</th>
 												<th>Program Name</th> -->
 											</tr>
-										</thead> 
+										</thead>
 										<!-- anchor-href="/MemberProfiler/{{result.memberId}}" -->
+										<!-- *ngFor="let data of searchResults"  -->
 										<tbody>
-											<tr dir-paginate="result in searchResults|itemsPerPage:pageSize" total-items="totalUsers" current-page="pagination.current" (click)="viewProfile(result.memberId)">
-												<td class="text-capitalize">{{result.firstName |  uppercase}}</td>
+											<tr *ngFor="let result of searchResults" total-items="totalUsers" current-page="pagination.current" (click)="viewProfile()">
+												<td class="text-capitalize">{{result.firstName | uppercase}}</td>
 												<td class="text-capitalize">{{result.lastName | uppercase}}</td>
 												<td>{{result.email | lowercase}}</td>
 												<td>{{result.mobilePhone}}</td>
@@ -98,19 +109,26 @@
 									<div class="row reset">
 										<div class="col-lg-6 col-md-6 col-sm-4">
 											<span class="paging">
-												View <a class="active" href="javascript:void(0);" (click)="limitChanged($event)">15</a>  |  <a href="javascript:void(0);" (click)="limitChanged($event)">25</a>  |  <a href="javascript:void(0);" ng-click="limitChanged($event)">50</a>  |  <a href="javascript:void(0);" (click)="limitChanged($event)">100</a>  per page
+												View
+												<a class="active" href="javascript:void(0);" (click)="limitChanged($event)">15</a> |
+												<a href="javascript:void(0);" (click)="limitChanged($event)">25</a> |
+												<a href="javascript:void(0);" ng-click="limitChanged($event)">50</a> |
+												<a href="javascript:void(0);" (click)="limitChanged($event)">100</a> per page
 											</span>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-8 text-right">
-											
+
 										</div>
 									</div>
 								</div>
-							</div><!-- /grid table wrapper -->
+							</div>
+							<!-- /grid table wrapper -->
 						</div>
-					</div><!-- /search results wrapper -->
+					</div>
+					<!-- /search results wrapper -->
 
-				</div> <!-- container -->
+				</div>
+				<!-- container -->
 			</div>
 		</div>
 	</div>
