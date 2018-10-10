@@ -22,6 +22,9 @@
                     <span class="icon-info-grm">i</span> Targetable Members</div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 tar pr0">
                     <i class="fa fa-users" aria-hidden="true"></i> {{matchCount}} ({{percentage}}% of total)</div>
+                  <select [(ngModel)]="targetingChannel" required>
+                    <option *ngFor="let chanel of targetingChannels" [ngValue]="chanel.key">{{chanel.value}}</option>
+                  </select>
                 </div>
 
                 <div class="text-click-drag" *ngIf="noneSelected">Click elements from the panel on the right</div>

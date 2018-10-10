@@ -29,7 +29,16 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     restExportItemsUrl = '/GRM/segment/export';
     dropdownList = [];
     dropdownSettings = {};
+    targetingChannels = [{
+        "key" : "email",
+        "value" : "Targeting Chanel Email"
+    },{
+      "key" : "sms",
+      "value" : "Targeting Chanel SMS"
+    }];
+  
     @ViewChild('f') segmentForm = NgForm;
+    targetingChannel: string = "email";
 
     model = {
         "segments": [{
@@ -39,695 +48,747 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     };
 
     segmentItems = 
-    {
-        "email" : [
-          {
-              "key": "attribute",
-              "value": "Email",
-              "type": "textbox",
-              "display": true,
-              "required": true,
-              "disable" : true
-          }, {
-              "key": "operator",
-              "type": "dropdown",
-              "options": [
-                  {
-                      "key": "Is",
-                      "value": "Is"
-                  }, {
-                      "key": "Contains",
-                      "value": "Contains"
-                  }, {
-                      "key": "Starts With",
-                      "value": "Starts With"
-                  }, {
-                      "key": "Ends With",
-                      "value": "Ends With"
-                  }
-              ],
-              "display": true
-          }, {
-              "key": "value",
-              "type": "textbox",
-              "display": true,
-              "value" : ""
-          }],
-  
-  "inputSource" : [{
-      "key": "attribute",
-      "value": "Input Source",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "Web",
-              "value": "Web"
-          }, {
-              "key": "Fish",
-              "value": "Fish"
-          }
-      ],
-      "display": true
-  }],
-  "mobilePhone" : [
       {
-          "key": "attribute",
-          "value": "Mobile Phone",
-          "type": "textbox",
-          "display": true,
-          "required": true,
-          "disable" : true
-      }, {
-          "key": "operator",
-          "type": "dropdown",
-          "options": [
-              {
-                  "key": "Is",
-                  "value": "Is"
-              }, {
-                  "key": "Contains",
-                  "value": "Contains"
-              }, {
-                  "key": "Starts With",
-                  "value": "Starts With"
-              }, {
-                  "key": "Ends With",
-                  "value": "Ends With"
-              }
-          ],
-          "display": true
-      }, {
-          "key": "value",
-          "type": "textbox",
-          "display": true
-      }],
-  "joinDate" :  [{
-      "key": "attribute",
-      "value": "Join Date",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "dropdown",
-      "options": [
-          {
-              "key": "Is",
-              "value": "Is"
-          }, {
-              "key": "Before",
-              "value": "Before"
-          }, {
-              "key": "After",
-              "value": "After"
-          }, {
-              "key": "Between",
-              "value": "Between"
-          }
-      ],
-      "display": true
-  }, {
-      "key": "startValue",
-      "type": "datefield",
-      "display": true,
-      startValue : true
-  }, {
-      "key": "endValue",
-      "type": "datefield",
-      "display": true,
-      startValue : false
-  }],
-  "birthDay" : [{
-      "key": "attribute",
-      "value": "Birthday",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "In",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "January",
-              "value": "January"
-          }, {
-              "key": "February",
-              "value": "February"
-          }
-          , {
-              "key": "March",
-              "value": "March"
-          }
-          , {
-              "key": "April",
-              "value": "April"
-          }
-          , {
-              "key": "May",
-              "value": "May"
-          }
-          , {
-              "key": "June",
-              "value": "June"
-          }
-          , {
-              "key": "July",
-              "value": "July"
-          }
-          , {
-              "key": "August",
-              "value": "August"
-          }
-          , {
-              "key": "September",
-              "value": "September"
-          }
-          , {
-              "key": "October",
-              "value": "October"
-          }, {
-              "key": "November",
-              "value": "November"
-          }, {
-              "key": "December",
-              "value": "December"
-          }
-      ],
-      "display": true
-  }],
-  "age" :  [{
-      "key": "attribute",
-      "value": "Age Range",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "18 to 24 yo",
-              "value": "18 to 24 yo"
-          }, {
-              "key": "25 to 34 yo",
-              "value": "25 to 34 yo"
-          }
-          , {
-              "key": "35 to 44 yo",
-              "value": "35 to 44 yo"
-          }
-          , {
-              "key": "45 to 54 yo",
-              "value": "45 to 54 yo"
-          }
-          , {
-              "key": "55 to 64 yo",
-              "value": "55 to 64 yo"
-          }
-          , {
-              "key": "65 to 74 yo",
-              "value": "65 to 74 yo"
-          }
-          , {
-              "key": "75+ yo",
-              "value": "75+ yo"
-          }
-      ],
-      "display": true
-  }],
-  "maritalStatus" : [{
-      "key": "attribute",
-      "value": "Marital Status",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "dropdown",
-      "options": [
-          {
-              "key": "Single",
-              "value": "Single"
-          }, {
-              "key": "Married",
-              "value": "Married"
-          }
-      ],
-      "display": true
-  }],
-  "presenceOfKids" : [
-      {
-          "key": "operator",
-          "type": "dropdown",
-          "options": [
-              {
-                  "key": "Have",
-                  "value": "Have"
-              }, {
-                  "key": "Doesn't have",
-                  "value": "Doesn't have"
-              }
-          ],
-          "display": true
-      },
-      {
-          "key": "attribute",
-          "value": "Kids",
-          "type": "textbox",
-          "display": true,
-          "required": true,
-          "disable" : true
-      }
+          "email" : [
+            {
+                "key": "attribute",
+                "value": "Email",
+                "type": "textbox",
+                "required": true,
+                "disable" : true
+            }, {
+                "key": "operator",
+                "type": "dropdown",
+                "options": [
+                    {
+                        "key": "Is",
+                        "value": "Is"
+                    }, {
+                        "key": "Contains",
+                        "value": "Contains"
+                    }, {
+                        "key": "Starts With",
+                        "value": "Starts With"
+                    }, {
+                        "key": "Ends With",
+                        "value": "Ends With"
+                    }
+                ],
+                "required": true 
+            }, {
+                "key": "value",
+                "type": "textbox",
+                "required": true ,
+                "value" : ""
+            }],
+    
+    "inputSource" : [{
+        "key": "attribute",
+        "value": "Input Source",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "Web",
+                "value": "Web"
+            }, {
+                "key": "Fish",
+                "value": "Fish"
+            }
+        ],
+        "required": true 
+    }],
+    "mobilePhone" : [
+        {
+            "key": "attribute",
+            "value": "Mobile Phone",
+            "type": "textbox",
+            "required": true ,
+            "disable" : true
+        }, {
+            "key": "operator",
+            "type": "dropdown",
+            "options": [
+                {
+                    "key": "Is",
+                    "value": "Is"
+                }, {
+                    "key": "Contains",
+                    "value": "Contains"
+                }, {
+                    "key": "Starts With",
+                    "value": "Starts With"
+                }, {
+                    "key": "Ends With",
+                    "value": "Ends With"
+                }
+            ],
+            "required": true 
+        }, {
+            "key": "value",
+            "type": "textbox",
+            "required": true 
+        }],
+    "joinDate" :  [{
+        "key": "attribute",
+        "value": "Join Date",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "dropdown",
+        "options": [
+            {
+                "key": "Is",
+                "value": "Is"
+            }, {
+                "key": "Before",
+                "value": "Before"
+            }, {
+                "key": "After",
+                "value": "After"
+            }, {
+                "key": "Between",
+                "value": "Between"
+            }
+        ],
+        "required": true 
+    }, {
+        "key": "startValue",
+        "type": "datefield",
+        "required": true ,
+        startValue : true
+    }, {
+        "key": "endValue",
+        "type": "datefield",
+        "required": true ,
+        startValue : false
+    }],
+    "birthDay" : [{
+        "key": "attribute",
+        "value": "Birthday",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "In",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "January",
+                "value": "January"
+            }, {
+                "key": "February",
+                "value": "February"
+            }
+            , {
+                "key": "March",
+                "value": "March"
+            }
+            , {
+                "key": "April",
+                "value": "April"
+            }
+            , {
+                "key": "May",
+                "value": "May"
+            }
+            , {
+                "key": "June",
+                "value": "June"
+            }
+            , {
+                "key": "July",
+                "value": "July"
+            }
+            , {
+                "key": "August",
+                "value": "August"
+            }
+            , {
+                "key": "September",
+                "value": "September"
+            }
+            , {
+                "key": "October",
+                "value": "October"
+            }, {
+                "key": "November",
+                "value": "November"
+            }, {
+                "key": "December",
+                "value": "December"
+            }
+        ],
+        "required": true 
+    }],
+    "age" :  [{
+        "key": "attribute",
+        "value": "Age Range",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "18 to 24 yo",
+                "value": "18 to 24 yo"
+            }, {
+                "key": "25 to 34 yo",
+                "value": "25 to 34 yo"
+            }
+            , {
+                "key": "35 to 44 yo",
+                "value": "35 to 44 yo"
+            }
+            , {
+                "key": "45 to 54 yo",
+                "value": "45 to 54 yo"
+            }
+            , {
+                "key": "55 to 64 yo",
+                "value": "55 to 64 yo"
+            }
+            , {
+                "key": "65 to 74 yo",
+                "value": "65 to 74 yo"
+            }
+            , {
+                "key": "75+ yo",
+                "value": "75+ yo"
+            }
+        ],
+        "required": true 
+    }],
+    "maritalStatus" : [{
+        "key": "attribute",
+        "value": "Marital Status",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "dropdown",
+        "options": [
+            {
+                "key": "Single",
+                "value": "Single"
+            }, {
+                "key": "Married",
+                "value": "Married"
+            }
+        ],
+        "required": true 
+    }],
+    "presenceOfKids" : [
+        {
+            "key": "operator",
+            "type": "dropdown",
+            "options": [
+                {
+                    "key": "Have",
+                    "value": "Have"
+                }, {
+                    "key": "Doesn't have",
+                    "value": "Doesn't have"
+                }
+            ],
+            "required": true 
+        },
+        {
+            "key": "attribute",
+            "value": "Kids",
+            "type": "textbox",
+            "required": true ,
+            "disable" : true
+        }
 
-  ],
-  "householdSize" : [{
-      "key": "attribute",
-      "value": "Household Size",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "1",
-              "value": "1"
-          }, {
-              "key": "2",
-              "value": "2"
-          }
-          , {
-              "key": "3",
-              "value": "3"
-          }
-          , {
-              "key": "4",
-              "value": "4"
-          }
-          , {
-              "key": "5",
-              "value": "5"
-          }
-          , {
-              "key": "6",
-              "value": "6"
-          }
-          , {
-              "key": "6+",
-              "value": "6+"
-          }
+    ],
+    "householdSize" : [{
+        "key": "attribute",
+        "value": "Household Size",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "1",
+                "value": "1"
+            }, {
+                "key": "2",
+                "value": "2"
+            }
+            , {
+                "key": "3",
+                "value": "3"
+            }
+            , {
+                "key": "4",
+                "value": "4"
+            }
+            , {
+                "key": "5",
+                "value": "5"
+            }
+            , {
+                "key": "6",
+                "value": "6"
+            }
+            , {
+                "key": "6+",
+                "value": "6+"
+            }
 
-      ],
-      "display": true
-  }],
-  "ethnicity" : [{
-      "key": "attribute",
-      "value": "Ethnicity",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "African American",
-              "value": "African American"
-          }, {
-              "key": "Caucasian",
-              "value": "Caucasian"
-          }
-          , {
-              "key": "Hispanic",
-              "value": "Hispanic"
-          }
-          , {
-              "key": "Middle Eastern",
-              "value": "Middle Eastern"
-          }
-          , {
-              "key": "Native American",
-              "value": "Native American"
-          }
+        ],
+        "required": true 
+    }],
+    "ethnicity" : [{
+        "key": "attribute",
+        "value": "Ethnicity",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "African American",
+                "value": "African American"
+            }, {
+                "key": "Caucasian",
+                "value": "Caucasian"
+            }
+            , {
+                "key": "Hispanic",
+                "value": "Hispanic"
+            }
+            , {
+                "key": "Middle Eastern",
+                "value": "Middle Eastern"
+            }
+            , {
+                "key": "Native American",
+                "value": "Native American"
+            }
 
-      ],
-      "display": true
-  }],
-  "gender" : [{
-      "key": "attribute",
-      "value": "Gender",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "dropdown",
-      "options": [
-          {
-              "key": "Male",
-              "value": "Male"
-          }, {
-              "key": "Female",
-              "value": "Female"
-          }
-      ],
-      "display": true
-  }],
-  "persona" : [{
-      "key": "attribute",
-      "value": "Persona",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "Solo Selfies",
-              "value": "Solo Selfies"
-          }, {
-              "key": "Young Pairs",
-              "value": "Young Pairs"
-          }
-          , {
-              "key": "Transtion To Min",
-              "value": "Transtion To Min"
-          }
-          , {
-              "key": "Bursting Bunch",
-              "value": "Bursting Bunch"
-          }
-          , {
-              "key": "Middle Aged Solos",
-              "value": "Middle Aged Solos"
-          }
-          , {
-              "key": "Near Empty Nest",
-              "value": "Near Empty Nest"
-          }
-          , {
-              "key": "Bucket List",
-              "value": "Bucket List"
-          }
-      ],
-      "display": true
-  }],
-  "liveIn" :  [{
-      "key": "attribute",
-      "value": "liveIn",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "textbox",
-      "display": true
-  }],
-  "favoriteLocation" : [{
-      "key": "attribute",
-      "value": "Favorite Location",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "Is",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "Boston",
-              "value": "Boston"
-          }, {
-              "key": "Washington",
-              "value": "Washington"
-          }
-      ],
-      "display": true
-  }],
-  "targettted" : [{
-      "key": "attribute",
-      "value": "Was targeted",
-      "type": "textbox",
-      "display": true,
-      "required": true,
-      "disable" : true
-  }, {
-      "key": "operator",
-      "type": "textbox",
-      "value": "In",
-      "display": true,
-      "disable" : true
-  }, {
-      "key": "value",
-      "type": "multiselect",
-      "options": [
-          {
-              "key": "Pancake Promotion",
-              "value": "Pancake Promotion"
-          }, {
-              "key": "Happy Birthday!",
-              "value": "Happy Birthday!"
-          }
-      ],
-      "display": true
-  }],
-  "open" : [
-      {
-          "key": "attribute",
-          "value": "Open",
-          "type": "textbox",
-          "display": true,
-          "required": true,
-          "disable" : true
-      }, {
-          "key": "operator",
-          "type": "dropdown",
-          "options": [
-              {
-                  "key": "In",
-                  "value": "In"
-              }, {
-                  "key": "Not in",
-                  "value": "Not in"
-              }
-          ],
-          "display": true
-      }, {
-          "key": "value",
-          "type": "multiselect",
-          "options": [
-              {
-                  "key": "Pancake Promotion",
-                  "value": "Pancake Promotion"
-              }, {
-                  "key": "Happy Birthday!",
-                  "value": "Happy Birthday!"
-              }
-          ],
-          "display": true
-      }],
-  "click" : [
-      {
-          "key": "attribute",
-          "value": "Click",
-          "type": "textbox",
-          "display": true,
-          "required": true,
-          "disable" : true
-      }, {
-          "key": "operator",
-          "type": "dropdown",
-          "options": [
-              {
-                  "key": "In",
-                  "value": "In"
-              }, {
-                  "key": "Not in",
-                  "value": "Not in"
-              }
-          ],
-          "display": true
-      }, {
-          "key": "value",
-          "type": "multiselect",
-          "options": [
-              {
-                  "key": "Pancake Promotion",
-                  "value": "Pancake Promotion"
-              }, {
-                  "key": "Happy Birthday!",
-                  "value": "Happy Birthday!"
-              }
-          ],
-          "display": true
-      }]
+        ],
+        "required": true 
+    }],
+    "gender" : [{
+        "key": "attribute",
+        "value": "Gender",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "dropdown",
+        "options": [
+            {
+                "key": "Male",
+                "value": "Male"
+            }, {
+                "key": "Female",
+                "value": "Female"
+            }
+        ],
+        "required": true 
+    }],
+    "persona" : [{
+        "key": "attribute",
+        "value": "Persona",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "Solo Selfies",
+                "value": "Solo Selfies"
+            }, {
+                "key": "Young Pairs",
+                "value": "Young Pairs"
+            }
+            , {
+                "key": "Transtion To Min",
+                "value": "Transtion To Min"
+            }
+            , {
+                "key": "Bursting Bunch",
+                "value": "Bursting Bunch"
+            }
+            , {
+                "key": "Middle Aged Solos",
+                "value": "Middle Aged Solos"
+            }
+            , {
+                "key": "Near Empty Nest",
+                "value": "Near Empty Nest"
+            }
+            , {
+                "key": "Bucket List",
+                "value": "Bucket List"
+            }
+        ],
+        "required": true 
+    }],
+    "liveIn" :  [{
+        "key": "attribute",
+        "value": "liveIn",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "textbox",
+        "required": true 
+    }],
+    "favoriteLocation" : [{
+        "key": "attribute",
+        "value": "Favorite Location",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "Is",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "Boston",
+                "value": "Boston"
+            }, {
+                "key": "Washington",
+                "value": "Washington"
+            }
+        ],
+        "required": true 
+    }],
+    "targettted" : [{
+        "key": "attribute",
+        "value": "Was targeted",
+        "type": "textbox",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "operator",
+        "type": "textbox",
+        "value": "In",
+        "required": true ,
+        "disable" : true
+    }, {
+        "key": "value",
+        "type": "multiselect",
+        "options": [
+            {
+                "key": "Pancake Promotion",
+                "value": "Pancake Promotion"
+            }, {
+                "key": "Happy Birthday!",
+                "value": "Happy Birthday!"
+            }
+        ],
+        "required": true 
+    }],
+    "open" : [
+        {
+            "key": "attribute",
+            "value": "Open",
+            "type": "textbox",
+            "required": true ,
+            "disable" : true
+        }, {
+            "key": "operator",
+            "type": "dropdown",
+            "options": [
+                {
+                    "key": "In",
+                    "value": "In"
+                }, {
+                    "key": "Not in",
+                    "value": "Not in"
+                }
+            ],
+            "required": true 
+        }, {
+            "key": "value",
+            "type": "multiselect",
+            "options": [
+                {
+                    "key": "Pancake Promotion",
+                    "value": "Pancake Promotion"
+                }, {
+                    "key": "Happy Birthday!",
+                    "value": "Happy Birthday!"
+                }
+            ],
+            "required": true 
+        }],
+    "click" : [
+        {
+            "key": "attribute",
+            "value": "Click",
+            "type": "textbox",
+            "required": true ,
+            "disable" : true
+        }, {
+            "key": "operator",
+            "type": "dropdown",
+            "options": [
+                {
+                    "key": "In",
+                    "value": "In"
+                }, {
+                    "key": "Not in",
+                    "value": "Not in"
+                }
+            ],
+            "required": true 
+        }, {
+            "key": "value",
+            "type": "multiselect",
+            "options": [
+                {
+                    "key": "Pancake Promotion",
+                    "value": "Pancake Promotion"
+                }, {
+                    "key": "Happy Birthday!",
+                    "value": "Happy Birthday!"
+                }
+            ],
+            "required": true 
+        }],
+    "promotion" : [
+        {
+            "key": "attribute",
+            "value": "Promotion",
+            "type": "textbox",
+            "required": true ,
+            "disable" : true
+        }, {
+            "key": "operator",
+            "type": "dropdown",
+            "options": [
+                {
+                    "key": "Has",
+                    "value": "Has"
+                }, {
+                    "key": "Does Not Have",
+                    "value": "Does Not Have"
+                }
+            ],
+            "required": true 
+        }, {
+            "key": "value",
+            "type": "multiselect",
+            "options": [
+                {
+                    "key": "Pancake Promotion",
+                    "value": "Pancake Promotion"
+                }, {
+                    "key": "Happy Birthday!",
+                    "value": "Happy Birthday!"
+                }
+            ],
+            "required": true 
+        }],
+
+    "redeem" : [
+        {
+            "key": "attribute",
+            "value": "Redeem",
+            "type": "textbox",
+            "required": true ,
+            "disable" : true
+        }, {
+            "key": "operator",
+            "type": "dropdown",
+            "options": [
+                {
+                    "key": "Has",
+                    "value": "Has"
+                }, {
+                    "key": "Does Not Have",
+                    "value": "Does Not Have"
+                }
+            ],
+            "required": true 
+        }, {
+            "key": "value",
+            "type": "multiselect",
+            "options": [
+                {
+                    "key": "Pancake Promotion",
+                    "value": "Pancake Promotion"
+                }, {
+                    "key": "Happy Birthday!",
+                    "value": "Happy Birthday!"
+                }
+            ],
+            "required": true 
+        }]
 
 } ;
 
- segmentNavPills = [{
-  "Profile": [{
-      "Registration": [
-          {
-              "key": "email",
-              "value": "Email",
-              "required": true
-          },
-           {
-              "key": "inputSource",
-              "value": "Input Source"
-          },
-           {
-              "key": "mobilePhone",
-              "value": "Phone Number",
-              "required": true
+segmentNavPills = [{
+    "Profile": [{
+        "Registration": [
+            {
+                "key": "email",
+                "value": "Email"
+            },
+             {
+                "key": "inputSource",
+                "value": "Input Source"
+                    
+            },
+             {
+                "key": "mobilePhone",
+                "value": "Phone Number"
+                    
 
-          },
-           {
-              "key": "joinDate",
-              "value": "Join Date",
-              "required": true
-          },
-          {
-              "key": "birthDay",
-              "value": "Birthday"
-          }
-      ]
-  }, {
-      "Demography": [{
-          "key": "age",
-          "value": "Age Range"
-      },
-
-      {
-          "key": "maritalStatus",
-          "value": "Marital Status"
-      }, {
-          "key": "presenceOfKids",
-          "value": "[Has, Has No] Kids"
-      }, {
-          "key": "householdSize",
-          "value": "Household Size" 
-      }, {
-          "key": "ethnicity",
-          "value": "Ethnicity"
-      },
-
-      {
-          "key": "gender",
-          "value": "Gender"
-      },
-
-      {
-          "key": "persona",
-          "value": "Persona"
-      },
-      {
-          "key": "liveIn",
-          "value": "Live In"
-      }]
-  }, {
-      "Geography": [{
-          "key": "favoriteLocation",
-          "value": "Favorite Location"
-      }]
-  }]
+            },
+             {
+                "key": "joinDate",
+                "value": "Join Date"
+                    
+            },
+            {
+                "key": "birthDay",
+                "value": "Birthday"
+            }
+        ]
+    }, {
+        "Demography": [{
+            "key": "age",
+            "value": "Age Range"                
+        },
+        {
+            "key": "maritalStatus",
+            "value": "Marital Status"                
+        }, {
+            "key": "presenceOfKids",
+            "value": "[Has, Has No] Kids"                
+        }, {
+            "key": "householdSize",
+            "value": "Household Size"                 
+        }, {
+            "key": "ethnicity",
+            "value": "Ethnicity"                
+        },{
+            "key": "gender",
+            "value": "Gender"                
+        },{
+            "key": "persona",
+            "value": "Persona"                
+        },{
+            "key": "liveIn",
+            "value": "Live In"                
+        }]
+    }, {
+        "Geography": [{
+            "key": "favoriteLocation",
+            "value": "Favorite Location"                
+        }]
+    }]
 },
 {
-  "Actions": [{
-      "Campaign": [
-          {
-              "key": "targettted",
-              "value": "Was targeted in..."
-          },
-          {
-              "key": "open",
-              "value": "[Did, Did Not] open..."
-          }, {
-              "key": "click",
-              "value": "[Did, Did Not] click..."
-          }]
-  }]
+    "Actions": [{
+        "Campaign": [
+            {
+                "key": "targettted",
+                "value": "Was targeted in..."                    
+            },
+            {
+                "key": "open",
+                "value": "[Did, Did Not] open..."                    
+            }, {
+                "key": "click",
+                "value": "[Did, Did Not] click..."                    
+            }],
+         "Promotion" :[
+            {
+                "key" : "promotion",
+                "value" : "[Has, Does Not Have] a promotion..."                    
+            },
+            {
+                "key" : "redeem",
+                "value" : "[Did, Did Not] redeem..."
+            }
+         ] 
+    }]
 }];
-
-
-
 
 segmentData = {   
   "segments":[{
@@ -779,14 +840,19 @@ segmentData = {
         var k:any;
         for(j in keys) {
             let key = keys[j];
-            var items = this.segmentItems[key];
-            for(k in items) {
-                var keyObj = items[k];
-                var modelValue = this.segmentData.segments[0][key][keyObj.key];
-                items[k].value = modelValue;
+            if( key == "targetingChanel"){
+                this.targetingChannel = this.segmentData.segments[0]["targetingChanel"]["value"];
             }
-            this.items[key] = items;
-         }
+            else{
+                var items = this.segmentItems[key];
+                for(k in items) {
+                    var keyObj = items[k];
+                    var modelValue = this.segmentData.segments[0][key][keyObj.key];
+                    items[k].value = modelValue;
+                }
+                this.items[key] = items;
+            }
+        }
     }
 
 
@@ -817,13 +883,42 @@ segmentData = {
         console.log(this.segmentForm);
     }
 
+    checkStatusValid(){
+
+        var keys = Object.keys(this.items);
+        var j:any;
+        var k:any;
+        var formData = this.segmentForm["form"].getRawValue();
+        for(j in keys) {
+            let key = keys[j];
+            var items = this.items[key];
+            for(k in items) {
+                var keyData = formData[key];
+                var fieldData = items[k];
+                if( fieldData.required == true && ( keyData[fieldData.key] === undefined || 
+                  (typeof(keyData[fieldData.key]) == "string" && keyData[fieldData.key].trim() == "") ||
+                  (typeof(keyData[fieldData.key]) == "object" && keyData[fieldData.key].length == 0 )
+              ) ){
+                  return false;
+                }
+                
+            }
+           
+        }
+      return true;
+    }
 
     saveSegment (){
         if(!this.segmentName || this.segmentName == ""){
             alert('Please enter the segment name');
             return;
         }
-        var status = true;
+
+        if(this.items && Object.keys(this.items).length ==0){
+            alert('Please add atleast one segment');
+            return;
+        }
+        var status = this.checkStatusValid();
         if(status === undefined){
             return;
         }
@@ -833,9 +928,10 @@ segmentData = {
             return;
         } 
         else{
-           var data = {};
+            var data = {};
             var segmentModel = [];
-            segmentModel.push(this.segmentForm["value"]);
+            segmentModel.push(this.segmentForm["form"].getRawValue());
+            segmentModel[0]["targetingChanel"] = {"value" : this.targetingChannel};
             data["model"] ={ "segments" :  segmentModel};
             data["SegmentName"] = this.segmentName;
             data["SegmentId"] = this.editSegmentId;

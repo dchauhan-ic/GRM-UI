@@ -18,13 +18,15 @@
 							<div class="row">
 								<div class="col-sm-12 pl20 pr20">
 									<div class="segment-content-wrap">
-										<form name="newSegment" class="form-in-line input-search" (ngSubmit)="onCreateNewSegment()" #f="ngForm" autocomplete="off" novalidate>
+										<form name="newSegment" class="form-in-line input-search" (ngSubmit)="onCreateNewSegment()" #f="ngForm" autocomplete="off"
+										 novalidate>
 											<!-- <button type="submit" class="btn btn-primary advanced">Advanced</button> -->
 											<div class="form-group">
 												<div class="input-group">
-													<input type="text" name="myInput" class="form-control" ngModel autofocus="autofocus" placeholder="Enter a Segment name..."
+													<input type="text" name="myInput" class="form-control" [(ngModel)]="segmentName" autofocus="autofocus" placeholder="Enter a Segment name..."
 													 autocomplete="off" maxlength="100" elem-ready required/>
-													<span style="color:red" ng-show="newSegment.myInput.error.maxlength">
+													<span style="color:red" *ngIf="segmentName?.length > 99">
+
 														Segment name should not be more then 100 characters</span>
 												</div>
 											</div>
