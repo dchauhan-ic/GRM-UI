@@ -80,20 +80,21 @@
 					<div class="row">
 						<div class="col-lg-12 col-sm-12 segment-lists">
 
-							<form name="searchMember" method="post" class="form-in-line input-search" ng-submit="searchQuery(searchQueryObject, null, $event)"
+							<form name="searchMember" method="post" class="form-in-line input-search" (ngSubmit)="searchQuery(searchKey, null, $event)"
 							 autocomplete="off" novalidate>
 
 								<div class="form-group">
 									<div class="input-group">
 
-										<input type="text" class="form-control" ng-model="searchQueryObject.searchKey" autofocus="autofocus" placeholder="Enter segment name"
-										 autocomplete="off" elem-ready />
-										<button type="submit" class="input-group-addon" ng-disabled="!searchQueryObject.searchKey"></button>
+										<input type="text" class="form-control" name="searchKey" [(ngModel)]="searchKey" autofocus="autofocus" placeholder="Enter segment name"
+										 (keyup)="searchQuery(searchKey)" autocomplete="off" elem-ready />
+										<button type="submit" [disabled]="!searchKey" class="input-group-addon"></button>
 										<span class="loading-svg" *ngIf="isSearchStarted"></span>
 									</div>
 								</div>
 							</form>
 						</div>
+						<div class="no-data" *ngIf="segments.length == 0"> No Data Found </div>
 						<div *ngFor="let data of segments" class="segment-list-container">
 							<ul class="segment-lists" (click)="onEditSegment(data.segmentId,data)">
 								<li class="segment-list-item">

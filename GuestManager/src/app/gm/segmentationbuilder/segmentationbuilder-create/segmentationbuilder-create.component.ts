@@ -312,14 +312,14 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     }],
     "presenceOfKids" : [
         {
-            "key": "operator",
+            "key": "value",
             "type": "dropdown",
             "options": [
                 {
-                    "key": "Have",
+                    "key": true,
                     "value": "Have"
                 }, {
-                    "key": "Doesn't have",
+                    "key": false,
                     "value": "Doesn't have"
                 }
             ],
@@ -331,6 +331,13 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "type": "textbox",
             "required": true ,
             "disable" : true
+        },
+        {
+            "key": "operator",
+            "value": "Is",
+            "type": "textbox",
+            "required": false ,
+            "hide" : true
         }
 
     ],
