@@ -14,6 +14,7 @@ import { SegmentBuilderService } from 'src/app/gm/segmentationbuilder/segmentati
   styleUrls: ['./segmentationbuilder-search.component.scss']
 })
 export class SegmentationbuilderSearchComponent implements OnInit {
+  segmentDataList : segmentMetaDataList[];
   segments: segmentMetaDataList[];
   subscription: Subscription;
   smaScreenTitle = "Segments";
@@ -36,6 +37,7 @@ export class SegmentationbuilderSearchComponent implements OnInit {
       }
       );
     this.segments = this.segmentBuilderService.getSegmentList();
+    this.segmentDataList = this.segments;
   }
 
   displayDialog() {
@@ -60,5 +62,9 @@ export class SegmentationbuilderSearchComponent implements OnInit {
     let segmentMetaData = new segmentMetaDataList(true,199,this.segmentName,"","",0); 
     this.segmentBuilderService.setSegment(segmentMetaData);
     this.router.navigate(['SegmentationBuilder/buildSegment']);
+  }
+
+  searchQuery(searchText){
+    this.segments = this.segmentBuilderService.getSerachResults(searchText);
   }
 }

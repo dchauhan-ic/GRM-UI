@@ -144,5 +144,20 @@ export class SegmentBuilderService {
     this.memberSearchList = memberSearchList;
     this.MemberSearchChanged.next(this.memberSearchList.slice());
   }
+
+  getSerachResults( data : string){
+    let dataArr = this.getSegmentList();
+    let outputArr = [];
+    if(data != ""){
+      dataArr.forEach(element => {         
+          if(element.segmentName.toUpperCase().indexOf(data.toUpperCase())>=0){
+            outputArr.push(element);
+          }
+        });
+    }else{
+      outputArr = dataArr;
+    }
+    return outputArr;
+  }
   
 }
