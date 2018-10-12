@@ -104,7 +104,7 @@ body{
 /* page content wrap styling */
 
 /* resetting bootstrap */
-.page-content-wrap * {font-family: 'Roboto', sans-serif;}
+.page-content-wrap * {/*font-family: 'Roboto', sans-serif;*/}
 .page-content-wrap {
 	font-size: 1rem;
 }
@@ -981,10 +981,13 @@ h1.x-title div{
 }
 
 
-ol.list-group > li { margin-bottom: 50px; }
-ol.list-group .list-parent-div { position: relative; }
-ol.list-group .list-parent-div:after { content: ""; display: block; position: absolute; left: -15px; top: 0; bottom: 6px; margin: auto 0; border-bottom: 1px solid #ccc; width: 30px; height: 1px; }
+ol.list-group > li { margin-bottom: 50px; float:left; width:100%; position: relative; padding-top:25px; }
+ol.list-group .list-parent-div { position: relative; padding-left: 15px; padding-right: 15px; }
+ol.list-group .list-parent-div > div:after { content: ""; display: block; position: absolute; left: -15px; top: 0; bottom: 6px; margin: auto 0; border-bottom: 1px solid #ccc; width: 30px; height: 1px; }
+ol.list-group .list-parent-div:nth-of-type(2) > div:after { display: none; }
 ol.list-group input[type="date"] { height: 42px !important; }
+ol.list-group li .segment-close { position: absolute; right:7px; top: 7px; }
+ol.list-group li .segment-close i { cursor: pointer; font-size: 10px; }
 
 .btn-new-segment { border:2px #fff solid; border-radius: 100%; padding:2px 4px 2px 4px; color: #fff; text-align: center; }
 .btn-new-segment * { color:#fff; font-size: 11px; }

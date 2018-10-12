@@ -453,3 +453,14 @@ h2.x-title div{ font-size:18px}
 
 .sfl{ float:left}
 .sfr,.sfl2{ float:right}
+
+.multiselect-dropdown .dropdown-btn { padding: 12px 30px !important; text-transform: uppercase !important; line-height: normal !important; position: relative; }
+.multiselect-dropdown .dropdown-down { display: inline-block !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin-left: 2px !important;
+    vertical-align: middle !important;
+    border-top: 4px dashed !important;
+    border-top: 4px solid \9 !important;
+    border-right: 4px solid transparent !important;
+    border-left: 4px solid transparent !important; position: absolute; right:10px; top: 17px !important; }
