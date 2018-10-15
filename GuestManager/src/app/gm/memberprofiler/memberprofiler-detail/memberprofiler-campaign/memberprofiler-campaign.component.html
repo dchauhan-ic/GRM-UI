@@ -1,14 +1,4 @@
-<div class="panel-heading odd" role="tab" id="headingcampaignSummary">
-  <h4 class="panel-title">
-    <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#campaignSummary"
-      aria-expanded="false" aria-controls="campaignSummary">
-      Campaign Response
-      <span class="panel-arrow"></span>
-    </a>
-  </h4>
-</div>
-<div id="campaignSummary" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingcampaignSummary">
-  <div class="panel-body">
+<div class="panel-body">
     <div class="container-fluid">
       <div class="row" *ngIf="!campaignSummary.subscriptionStatus">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -100,7 +90,7 @@
               <dd>
                 <span class="no-data" *ngIf="campaignSummary.openRate === '' || campaignSummary.openRate === null || campaignSummary.openRate === 'NaN'">No data</span>
                 <span class="data" *ngIf="campaignSummary.openRate === 0">{{campaignSummary.openRate}}%</span>
-                <span class="data" *ngIf="campaignSummary.openRate !== 'NaN' && campaignSummary.openRate !== 0">{{campaignSummary.openRate | number: 2}}%</span>
+                <span class="data" *ngIf="campaignSummary.openRate !== 'NaN' && campaignSummary.openRate !== 0">{{campaignSummary.openRate }}%</span>
               </dd>
 
               <dt>Click:</dt>
@@ -112,7 +102,7 @@
               <dd>
                 <span class="no-data" *ngIf="campaignSummary.clickRate === '' || campaignSummary.clickRate === null || campaignSummary.clickRate === 'NaN'">No data</span>
                 <span class="data" *ngIf="campaignSummary.clickRate === 0">{{campaignSummary.clickRate}}%</span>
-                <span class="data" *ngIf="campaignSummary.clickRate !== 'NaN' && campaignSummary.clickRate !== 0">{{campaignSummary.clickRate | number: 2}}%</span>
+                <span class="data" *ngIf="campaignSummary.clickRate !== 'NaN' && campaignSummary.clickRate !== 0">{{campaignSummary.clickRate }}%</span>
               </dd>
             </dl>
           </div>
@@ -391,7 +381,7 @@
                 <tr *ngIf="campaignSmsDetails.length === 0">
                   <td colspan="3" class="text-center no-data">No records exist</td>
                 </tr>
-                <tr dir-paginate="userDetail in campaignSmsDetails|orderBy:orderByDate|filter:search|itemsPerPage:6" pagination-id="campaignSmsDetails">
+                <tr *ngFor="let userDetail of campaignSmsDetails" >
                   <td>{{userDetail.dateSent}}</td>
                   <td>{{userDetail.campaignName}}</td>
                   <td>{{userDetail.campaignType}}</td>
@@ -409,4 +399,3 @@
     </div>
   </div>
   <!-- /panel body -->
-</div>

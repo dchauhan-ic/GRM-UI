@@ -6,7 +6,7 @@
 
     <div class="collapse navbar-collapse" style="height: 80px; padding:0px">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active">
+        <li (click)="onFetchMemberList()"routerLinkActive="active">
           <a routerLink="/MemberProfiler/search">Member Profiler</a>
         </li>
         <li (click)="onFetchSegmentList()" routerLinkActive="active">

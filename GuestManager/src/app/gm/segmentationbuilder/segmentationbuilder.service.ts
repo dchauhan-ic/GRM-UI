@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; import { memberSearchList, memberProfiler } from 'src/app/gm/gm.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
+import { countMap,memberProfiler, memberSearchList } from 'src/app/gm/memberprofiler/memberprofiler.model';
 import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
 
 @Injectable()

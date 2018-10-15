@@ -18,7 +18,7 @@
           <!-- page pagination and forward/backward section  -->
           <div class="row page-controls">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <a href="javascript:void(0);" class="back-control" go-back>
+              <a href="javascript:void(0);" class="back-control" (click)="onGoBack()">
                 <span class="icon icon-left_arrow"></span> Back to Search Results
               </a>
             </div>
@@ -237,10 +237,58 @@
           <!-- collapsible panel wrap -->
           <div class="row nomar_btm">
             <div class="col-lg-12">
-              <div>
-                <app-memberprofiler-demographic></app-memberprofiler-demographic>
-                <app-memberprofiler-campaign></app-memberprofiler-campaign>
-                <app-memberprofiler-promotion></app-memberprofiler-promotion>
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                <div class="panel panel-default odd">
+
+                  <div class="panel-heading" role="tab" id="headingDemographicInformation">
+                    <h4 class="panel-title">
+                      <a scroll-to-focus class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" [ngClass]="{'collapsed': headerclick=='demographicInformation' ? '' : headerclick!='demographicInformation'}"  (click)="clickAccordion('demographicInformation')"
+                        aria-expanded="false" aria-controls="demographicInformation">
+                        Demographic Information
+                        <span class="panel-arrow"></span>
+                      </a>
+                    </h4>
+                  </div>
+
+                  <app-memberprofiler-demographic [ngClass]="{'in': headerclick=='demographicInformation' ? '' : headerclick!='demographicInformation'}" class="panel-collapse collapse"></app-memberprofiler-demographic>
+
+                </div>
+
+                <div class="panel panel-default odd">
+
+                    <div class="panel-heading odd" role="tab" id="headingcampaignSummary">
+                        <h4 class="panel-title">
+                          <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"  (click)="clickAccordion('campaignSummary')"
+                            aria-expanded="false" aria-controls="campaignSummary">
+                            Campaign Response
+                            <span class="panel-arrow"></span>
+                          </a>
+                        </h4>
+                      </div>
+                      
+
+
+                  <app-memberprofiler-campaign  [ngClass]="{'in': headerclick=='campaignSummary' ? '' : headerclick!='campaignSummary'}" class="panel-collapse collapse"></app-memberprofiler-campaign>
+
+                </div>
+                <div class="panel panel-default odd">
+
+                    <div class="panel-heading" role="tab" id="headingPromotionActivity">
+                        <h4 class="panel-title">
+                          <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" (click)="clickAccordion('collapsePromotionActivity')"
+                            aria-expanded="false" aria-controls="collapsePromotionActivity">
+                            Promotion Activity
+                            <span class="panel-arrow"></span>
+                          </a>
+                        </h4>
+                      </div>
+
+
+                  <app-memberprofiler-promotion [ngClass]="{'in': headerclick=='collapsePromotionActivity' ? '' : headerclick!='collapsePromotionActivity'}" class="panel-collapse collapse"></app-memberprofiler-promotion>
+                  
+                </div>
+                
               </div>
             </div>
           </div>

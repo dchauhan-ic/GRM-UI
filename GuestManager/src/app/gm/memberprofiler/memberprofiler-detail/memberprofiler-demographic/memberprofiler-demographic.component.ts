@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.service';
-
+import { memberDemographicList } from 'src/app/gm/memberprofiler/memberprofiler.model';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-memberprofiler-demographic',
   templateUrl: './memberprofiler-demographic.component.html',
@@ -9,15 +11,17 @@ import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.
 })
 export class MemberprofilerDemographicComponent implements OnInit {
 
-  memberId=27999637881;
-  demographicInformation;
-  constructor(private memberProfilerService: MemberProfilerService,private router: Router,private route: ActivatedRoute) 
+  memberId;
+  subscription: Subscription;
+  demographicInformation:memberDemographicList;
+  constructor(private dataStorageService: DataStorageService,private memberProfilerService: MemberProfilerService,private router: Router,private route: ActivatedRoute) 
   {
-    this.onFetchData(this.memberId);
+    
   }
 
   ngOnInit() {
-   
+    this.memberId = +this.route.snapshot.params['id'];
+    this.onFetchData(this.memberId);
   }
 
   onFetchData(memberId) 
@@ -25,12 +29,28 @@ export class MemberprofilerDemographicComponent implements OnInit {
    this.getDemographicInformation(memberId);
   }
 
-  getDemographicInformation(memberId): void {
-    this.memberProfilerService.getDemographicInformation(memberId)
-      .subscribe(
-        Results => {
-          this.demographicInformation = Results;
-        }
-      )
+  // getDemographicInformation(memberId) {
+  //   this.memberProfilerService.getDemographicInformation(memberId)
+  //     .subscribe(
+  //       Results => {
+  //         this.demographicInformation= Results;
+  //       //  this.memberId=this.demographicInformation.memberId;
+  //       }
+  //     )
+  // }
+
+  getDemographicInformation(memberId) {
+    this.dataStorageService.onFetchDemographicInformationTest(memberId);
+
+    this.subscription = this.memberProfilerService.memberDemographicInformationChanged
+    .subscribe(
+    (memberDemographicList: memberDemographicList) => {
+      this.demographicInformation= memberDemographicList;
+    
+    }
+    );
+  const  memberDemographicList: memberDemographicList = this.memberProfilerService.getMemberDemographicInformation();
+  this.demographicInformation=memberDemographicList;
+
   }
 }

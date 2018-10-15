@@ -4,9 +4,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
-import { memberSearchList, memberProfiler, searchMemberRequest } from 'src/app/gm/gm.model';
+import {  searchMemberRequest } from 'src/app/gm/gm.model';
 import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
 import { first, map } from 'rxjs/operators';
+import { countMap, memberSearchList, memberProfiler } from 'src/app/gm/memberprofiler/memberprofiler.model';
+import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.service';
+
 @Injectable()
 export class GmService {
   segmentsChanged = new Subject<segmentMetaDataList[]>();
@@ -32,7 +35,7 @@ export class GmService {
     "successFlag": true,
     "updated": "09/23/2018"
   }];
-  memberId = 27999637881;
+  memberID:Number=0;
   private memberProfiler: memberProfiler;
   private memberSearchList: memberSearchList[];
   dataEdited = new BehaviorSubject<boolean>(false);
@@ -40,11 +43,11 @@ export class GmService {
   dataLoadFailed = new Subject<boolean>();
   MemberSearchChanged = new Subject<memberSearchList[]>();
   memberProfilerChanged = new Subject<memberProfiler[]>();
-  memberSearchUrl = '/GRM/member/search';
-  memberInfoUrl = 'GRM/member/memberInfo/id/' + this.memberId;
-  CampaignDetailsUrl = 'GRM/member/memberId/' + this.memberId + '/campaignSummary';
-  DemographicUrl = 'GRM/member/memberId/'+ this.memberId + '/demographic';
-  PromotionUrl = 'GRM/member/memberId/'+ this.memberId + '/promotion';
+  memberSearchUrl = 'GRM/member/search';
+  memberInfoUrl = 'GRM/member/memberInfo/id/' + this.memberID;
+  CampaignDetailsUrl = 'GRM/member/memberId/' + this.memberID + '/campaignSummary';
+  DemographicUrl = 'GRM/member/memberId/'+ this.memberID + '/demographic';
+  PromotionUrl = 'GRM/member/memberId/'+ this.memberID + '/promotion';
   constructor(private httpClient: HttpClient) {
   }
 
@@ -75,33 +78,69 @@ export class GmService {
   
    }
 
+  //  onFetchMemberTest(data: searchMemberRequest) {
+  //   this.httpClient.post('GRM/member/search', data, {
+  //     observe: 'body',
+  //     responseType: 'json',
+  //   })
+  //     .subscribe(
+  //     (response: memberProfiler) => {
+  //       this.MemberProfilerService.setMemberProfiler(response);
+  //     },
+  //     (error) => console.log(error)
+  //     );
+  // }
+
   onFetchMemberInfo(memberId) {
     return this.httpClient
-      .get(this.memberInfoUrl, memberId, )
+      .get('GRM/member/memberInfo/id/' + memberId, )
       .pipe(map(Results => Results));
 
   }
 
-  OnFetchCampaignDetails(memberId) {
+  OnFetchCampaignSummary(memberId) { 
     return this.httpClient
-      .get(this.CampaignDetailsUrl,memberId,)
+      .get('GRM/member/memberId/' + memberId + '/campaignSummary',)
+      .pipe(map(Results => Results));
+  
+   }
+
+   OnFetchCampaignDetails(memberId) { 
+    return this.httpClient
+      .get('GRM/member/memberId/' + memberId + '/campaignDetail',)
+      .pipe(map(Results => Results));
+  
+   }
+
+   OnFetchSmsSummary(memberId) { 
+    return this.httpClient
+      .get('GRM/member/memberId/' + memberId + '/smsSummary',)
+      .pipe(map(Results => Results));
+  
+   }
+
+   OnFetchSmsDetail(memberId) { 
+    return this.httpClient
+      .get('GRM/member/memberId/' + memberId + '/smsDetail',)
       .pipe(map(Results => Results));
   
    }
 
    onFetchDemographicInformation(memberId) {
     return this.httpClient
-      .get(this.DemographicUrl,memberId,)
+      .get('GRM/member/memberId/'+ memberId + '/demographic')
       .pipe(map(Results => Results));
   
    }
 
-   onFetchPromotionActivityData(memberId) {
+   onFetchPromotionActivityData(memberId) { 
     return this.httpClient
-      .get(this.PromotionUrl,memberId,)
+      .get('GRM/member/memberId/'+ memberId + '/promotion')
       .pipe(map(Results => Results));
   
    }
+
+   
 
    //SegmentServices 
 

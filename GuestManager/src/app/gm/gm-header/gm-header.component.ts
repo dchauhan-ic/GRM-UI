@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { searchMemberRequest } from 'src/app/gm/gm.model';
 
 @Component({
   selector: 'app-gm-header',
@@ -17,4 +18,12 @@ export class GmHeaderComponent implements OnInit {
      this.dataStorageService.getSegmentList();
   }
 
+  onFetchMemberList() {
+    const data: searchMemberRequest = {
+      searchKey: "jon",
+      limit: 15,
+      offset: 0
+    };
+    this.dataStorageService.onFetchMemberTest(data);
+ }
 }

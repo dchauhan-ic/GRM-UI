@@ -32,6 +32,7 @@ import { MemberprofilerListComponent } from 'src/app/gm/memberprofiler/memberpro
 import { SegmentBuilderResolver } from 'src/app/gm/segmentationbuilder/segmentationbuilder-resolver.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.service';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -60,9 +61,10 @@ import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.
     CommonModule,
     GmRoutingModule,
     FormsModule,
-    NgMultiSelectDropDownModule.forRoot()
-
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxPaginationModule,
   ]
+  
   ,
   providers: [
     DataStorageService,

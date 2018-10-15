@@ -1,16 +1,8 @@
-<div class="panel-heading" role="tab" id="headingDemographicInformation">
-  <h4 class="panel-title">
-    <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#demographicInformation"
-      aria-expanded="false" aria-controls="demographicInformation">
-      Demographic Information
-      <span class="panel-arrow"></span>
-    </a>
-  </h4>
-</div>
-<div id="demographicInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDemographicInformation">
-  <div class="panel-body">
+
+
+  <div class="panel-body" role="tabpanel" aria-labelledby="headingDemographicInformation" >
     <div class="container-fluid">
-      <div class="row">
+      <div class="row"  *ngIf="!memberId || memberId == 0" >
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <dl class="dl-horizontal">
             <dt>
@@ -143,4 +135,3 @@
     </div>
   </div>
   <!-- /panel body -->
-</div>

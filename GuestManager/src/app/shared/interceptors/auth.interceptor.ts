@@ -9,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
     console.log('Intercepted!', req);
     const copiedReq = req.clone({
       headers: req.headers.set('Content-Type', 'application/json;charset=UTF-8')
-        .set('X-XSRF-TOKEN', 'Auth_1fec94aef78d4ac984db55ea37779802')
+        .set('X-XSRF-TOKEN', 'Auth_1ab17fd015a84c5f880a0920e860de60')
         .set('Accept', 'application/json')
     });
     return next.handle(copiedReq);

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.service';
+import { memberPromotionList } from 'src/app/gm/memberprofiler/memberprofiler.model';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-memberprofiler-promotion',
@@ -9,27 +12,46 @@ import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.
   styleUrls: ['./memberprofiler-promotion.component.scss']
 })
 export class MemberprofilerPromotionComponent implements OnInit {
-  memberId=27999701694;
-  promotionActivityData; 
-  constructor(private memberProfilerService: MemberProfilerService,private router: Router,private route: ActivatedRoute) 
+  memberId;
+  subscription: Subscription;
+  promotionActivityData:memberPromotionList; 
+  constructor(private dataStorageService: DataStorageService,private memberProfilerService: MemberProfilerService,private router: Router,private route: ActivatedRoute) 
   {
-    this.onFetchData(this.memberId); 
+   
   }
 
   ngOnInit() {
+    this.memberId = +this.route.snapshot.params['id'];
+    this.onFetchData(this.memberId);
   }
 
   onFetchData(memberId) {
     this.getPromotionActivityData(memberId);
   }
 
-  getPromotionActivityData(memberId): void {
-    this.memberProfilerService.getPromotionActivityData(memberId)
-      .subscribe(
-        Results => {
-          this.promotionActivityData = Results;
-        }
-      )
-  }
+  // getPromotionActivityData(memberId): void {
+  //   this.memberProfilerService.getPromotionActivityData(memberId)
+  //     .subscribe(
+  //       Results => {
+  //         this.promotionActivityData = Results;
+  //         this.promotionActivityData = Results;
+  //         this.promotionActivityData = Results;
+  //       }
+  //     )
+  // }
 
+
+  getPromotionActivityData(memberId): void {
+    this.dataStorageService.onFetchPromotionActivityDataTest(memberId);
+
+    this.subscription = this.memberProfilerService.memberPromotionActivityChanged
+    .subscribe(
+    (memberPromotionList: memberPromotionList) => {
+      this.promotionActivityData= memberPromotionList;
+    
+    }
+    );
+  const  memberPromotionList: memberPromotionList = this.memberProfilerService.getMemberPromotionActivity();
+  this.promotionActivityData=memberPromotionList;
+  }
 }
