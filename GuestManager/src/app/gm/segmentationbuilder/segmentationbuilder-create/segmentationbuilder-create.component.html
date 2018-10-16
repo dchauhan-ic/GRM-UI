@@ -42,7 +42,11 @@
                           <div class="segment-close" (click)="segmentClose(itemArray.key)">
                           <i class="fa fa-times" aria-hidden="true"></i>
                           </div>
-                          <div *ngFor="let item of itemArray.value" ng-class="" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4 list-parent-div" ngModelGroup="{{itemArray.key}}">
+                          <div *ngFor="let item of itemArray.value" class="form-group list-parent-div" ngModelGroup="{{itemArray.key}}"
+                            [ngClass]="{
+                              'col-lg-4 col-md-4 col-sm-4 col-xs-4': itemArray.key != 'joinDate',
+                              'col-lg-3 col-md-3 col-sm-3 col-xs-3': itemArray.key === 'joinDate'
+                            }" >
   
                           <div [ngSwitch]="item.type">
   
@@ -54,7 +58,7 @@
                             />
   
                             <select *ngSwitchCase="'dropdown'" name="{{item.key}}" class="form-control dropdown-cls" [(ngModel)]="item.value">
-                            <option *ngFor="let opt of item.options"> {{opt.value}} </option>
+                            <option *ngFor="let opt of item.options" value={{opt.value}}> {{opt.value}} </option>
                             </select>
   
                             <ng-multiselect-dropdown *ngSwitchCase="'multiselect'" name="{{item.key}}" [placeholder]="'Select'" [data]="item.options"

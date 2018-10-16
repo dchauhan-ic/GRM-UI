@@ -29,6 +29,182 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     restExportItemsUrl = '/GRM/segment/export';
     dropdownList = [];
     dropdownSettings = {};
+    staticData = [{
+        "key": "birthDay",
+        "titleMap": [{
+            "value": "01",
+            "name": "January"
+        }, {
+            "value": "02",
+            "name": "February"
+        }, {
+            "value": "03",
+            "name": "March"
+        }, {
+            "value": "04",
+            "name": "April"
+        }, {
+            "value": "05",
+            "name": "May"
+        }, {
+            "value": "06",
+            "name": "June"
+        }, {
+            "value": "07",
+            "name": "July"
+        }, {
+            "value": "08",
+            "name": "August"
+        }, {
+            "value": "09",
+            "name": "September"
+        }, {
+            "value": "10",
+            "name": "October"
+        }, {
+            "value": "11",
+            "name": "November"
+        }, {
+            "value": "12",
+            "name": "December"
+        }]
+    }, {
+        "key": "persona",
+        "titleMap": [{
+            "value": "Solo Selfies",
+            "name": "Solo Selfies"
+        }, {
+            "value": "Young Pairs",
+            "name": "Young Pairs"
+        }, {
+            "value": "Transition To Min",
+            "name": "Transition To Min"
+        }, {
+            "value": "Bursting Bunch",
+            "name": "Bursting Bunch"
+        }, {
+            "value": "Middle Aged Solos",
+            "name": "Middle Aged Solos"
+        }, {
+            "value": "Near Empty Nest",
+            "name": "Near Empty Nest"
+        }, {
+            "value": "Bucket List",
+            "name": "Bucket List"
+        }]
+    }, {
+        "key": "ethnicity",
+        "titleMap": [{
+            "value": "African American",
+            "name": "African American"
+        }, {
+            "value": "Caucasian",
+            "name": "Caucasian"
+        }, {
+            "value": "Hispanic",
+            "name": "Hispanic"
+        }, {
+            "value": "Middle Eastern",
+            "name": "Middle Eastern"
+        }, {
+            "value": "Native American",
+            "name": "Native American"
+        }]
+    }, {
+        "key": "householdSize",
+        "titleMap": [{
+            "value": "1",
+            "name": "1"
+        }, {
+            "value": "2",
+            "name": "2"
+        }, {
+            "value": "3",
+            "name": "3"
+        }, {
+            "value": "4",
+            "name": "4"
+        }, {
+            "value": "5",
+            "name": "5"
+        }, {
+            "value": "6",
+            "name": "6"
+        }, {
+            "value": "6+",
+            "name": "6+"
+        }]
+    }, {
+        "key": "favoriteLocation",
+        "titleMap": [{
+            "value": "023",
+            "name": "Boston"
+        }, {
+            "value": "134",
+            "name": "Washington"
+        }]
+    }, {
+        "key": "inputSource",
+        "titleMap": [{
+            "value": "w",
+            "name": "web"
+        }, {
+            "value": "k",
+            "name": "FISH"
+        }]
+    }, {
+        "key": "click",
+        "titleMap": [{
+            "value": "1231435134",
+            "name": "Pancake promotion"
+        }, {
+            "value": "4192381294",
+            "name": "Happy Birthday!"
+        }]
+    }, {
+        "key": "age",
+        "titleMap": [{
+            "value": "18 to 24 yo",
+            "name": "18 to 24 yo"
+        }, {
+            "value": "25 to 34 yo",
+            "name": "25 to 34 yo"
+        }, {
+            "value": "35 to 44 yo",
+            "name": "35 to 44 yo"
+        }, {
+            "value": "45 to 54 yo",
+            "name": "45 to 54 yo"
+        }, {
+            "value": "55 to 64 yo",
+            "name": "55 to 64 yo"
+        }, {
+            "value": "65 to 74 yo",
+            "name": "65 to 74 yo"
+        }, {
+            "value": "75+ yo",
+            "name": "75+ yo"
+        }]
+    }, {
+        "key": "open",
+        "titleMap": [{
+            "value": "1231435134",
+            "name": "Pancake promotion"
+        }, {
+            "value": "4192381294",
+            "name": "Happy Birthday!"
+        }]
+    }, {
+        "key": "targettted",
+        "titleMap": [{
+            "value": "1231435134",
+            "name": "Pancake promotion"
+        }, {
+            "value": "4192381294",
+            "name": "Happy Birthday!"
+        }]
+    }];
+
     targetingChannels = [{
         "key" : "email",
         "value" : "Targeting Chanel Email"
@@ -97,15 +273,6 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     }, {
         "key": "value",
         "type": "multiselect",
-        "options": [
-            {
-                "key": "Web",
-                "value": "Web"
-            }, {
-                "key": "Fish",
-                "value": "Fish"
-            }
-        ],
         "required": true 
     }],
     "mobilePhone" : [
@@ -316,11 +483,11 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "type": "dropdown",
             "options": [
                 {
-                    "key": true,
-                    "value": "Have"
+                    "key": "Have",
+                    "value": true
                 }, {
-                    "key": false,
-                    "value": "Doesn't have"
+                    "value": false,
+                    "key": "Doesn't have"
                 }
             ],
             "required": true 
@@ -807,7 +974,8 @@ segmentData = {
       "inputSource":{
           "attribute": "Input Source",
           "operator": "Is",
-          "value": ["web","Fish"]
+         "value" : [{value: "w", name: "web"}, {value: "k", name: "FISH"}]
+         
       },
       "joinDate" : {
           "attribute": "Join Date",
@@ -825,16 +993,32 @@ segmentData = {
 
     ngOnInit() {
        this.data = this.segmentbuilderService.getSegment();
-        this.segmentName = this.data.segmentName;
+        this.segmentName = "Test segment";//this.data.segmentName;
+
+        for(let i=0, dataLen = this.staticData.length;i<dataLen;i++){
+            this.getItemTitleMap(this.staticData[i]);
+        }
+        
           this.dropdownSettings = {
             singleSelection: false,
-            idField: 'key',
-            textField: 'value',
+            idField: 'value',
+            textField: 'name',
             selectAllText: 'Select All',
             unSelectAllText: 'UnSelect All',
             allowSearchFilter: true
           };
     }
+
+    getItemTitleMap = function(response){
+
+		if(this.segmentItems[response.key]){
+			this.segmentItems[response.key].filter(obj => {
+					if(obj.type === "multiselect"){
+						obj.options =response.titleMap;
+					}
+			});
+		}
+	}
 
 
     retriveUi()
