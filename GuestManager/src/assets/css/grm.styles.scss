@@ -353,40 +353,45 @@ body{
 }
 
 /* pagination styling */
-.tablegrid-wrap .pagination {
+.tablegrid-wrap .ngx-pagination {
 	margin: 20px 0 0 0;
 }
-.tablegrid-wrap .table-footer .pagination {
+.tablegrid-wrap .table-footer .ngx-pagination {
 	margin-top: 0;
 }
-.tablegrid-wrap .pagination > li > a {
+.tablegrid-wrap .ngx-pagination > li > a,
+.tablegrid-wrap .ngx-pagination > li.current > span + span {
 	padding: 10px 12px;
 	text-transform: uppercase;
-	font-size: 13px;
+	font-size: 12px;
 	color: #196494;
-	line-height: 1;
+	line-height: normal;
+	display:block;
+	height: 36px;
 }
-.tablegrid-wrap .pagination > li:first-child > a, .pagination > li:first-child > span {
+.tablegrid-wrap .ngx-pagination > li:first-child > a, .ngx-pagination > li:first-child > span {
 	border-radius: 4px;
 	margin-right: 5px
 }
-.tablegrid-wrap .pagination > li:last-child > a, .pagination > li:last-child > span {
+.tablegrid-wrap .ngx-pagination > li:last-child > a, .ngx-pagination > li:last-child > span {
 	border-radius: 4px;
 	margin-left: 5px
 }
-.tablegrid-wrap .pagination > li:nth-of-type(2) > a {
+.tablegrid-wrap .ngx-pagination > li:nth-of-type(3) > a,
+.tablegrid-wrap .ngx-pagination > li:nth-of-type(3) > span {
 	border-radius: 4px 0 0 4px;
 }
-.tablegrid-wrap .pagination > li:nth-last-child(2) > a {
+.tablegrid-wrap .ngx-pagination > li:nth-last-child(2) > a {
 	border-radius: 0 4px 4px 0;
 }
-.tablegrid-wrap .pagination > .active > a, .tablegrid-wrap .pagination > .active > span, .tablegrid-wrap .pagination > .active > a:hover, .tablegrid-wrap .pagination > .active > span:hover, .tablegrid-wrap .pagination > .active > a:focus, .tablegrid-wrap .pagination > .active > span:focus {
+.tablegrid-wrap .ngx-pagination > .current > span, .tablegrid-wrap .ngx-pagination > .active > a, .tablegrid-wrap .ngx-pagination > .active > span, .tablegrid-wrap .ngx-pagination > .active > a:hover, .tablegrid-wrap .ngx-pagination > .active > span:hover, .tablegrid-wrap .ngx-pagination > .active > a:focus, .tablegrid-wrap .ngx-pagination > .active > span:focus {
 	background-color: #EFEFEF;
 	border-color: #BBBBBB;
 	color: #196494;
 	font-weight: 600;
 }
-.tablegrid-wrap .pagination > li.disabled > a {
+.tablegrid-wrap .ngx-pagination > li.disabled > a,
+.tablegrid-wrap .ngx-pagination > li.disabled > span {
 	opacity: .65;
 }
 
@@ -414,7 +419,10 @@ body{
 	height: 36px;
 	background: transparent url(../imgs/loader.svg) no-repeat top 0 right 0;
 }
-
+.tablegrid-wrap .ngx-pagination li.pagination-previous.disabled:before { display:none !important; }
+.ngx-pagination li.current,
+.ngx-pagination li.disabled { padding: 0; }
+.ngx-pagination .small-screen { padding: 11px 12px; display: inline-block !important; }
 
 /************************/
 /* search page styling */
@@ -988,6 +996,7 @@ ol.list-group .list-parent-div:nth-of-type(2) > div:after { display: none; }
 ol.list-group input[type="date"] { height: 42px !important; }
 ol.list-group li .segment-close { position: absolute; right:7px; top: 7px; }
 ol.list-group li .segment-close i { cursor: pointer; font-size: 10px; }
+ol.list-group .list-parent-div[ng-reflect-name="joinDate"] { width:25%; }
 
 .btn-new-segment { border:2px #fff solid; border-radius: 100%; padding:2px 4px 2px 4px; color: #fff; text-align: center; }
 .btn-new-segment * { color:#fff; font-size: 11px; }
@@ -1007,3 +1016,6 @@ h1.x-title .Fixed_popcloseButton { padding: 0; top: 5px; right: 15px; }
 .buildSegment-vscroll2 .rectangle { background:#F9F9F9; min-height:calc(100vh - 148px); max-height:calc(100vh - 148px); overflow-x: hidden; overflow-y: auto; }
 
 .text-click-drag { color:#999; text-align: center; padding: 120px 120px; font-size: 4em; }
+
+.targetable-members select { padding-bottom: 12px !important; padding-top: 12px !important; height:40px; }
+

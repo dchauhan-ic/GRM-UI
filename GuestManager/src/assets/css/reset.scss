@@ -464,3 +464,136 @@ h2.x-title div{ font-size:18px}
     border-top: 4px solid \9 !important;
     border-right: 4px solid transparent !important;
     border-left: 4px solid transparent !important; position: absolute; right:10px; top: 17px !important; }
+
+.ngx-pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 20px 0;
+	border-radius: 4px
+}
+.ngx-pagination > li {
+	display: inline !important;
+}
+.ngx-pagination > li > a, .ngx-pagination > li > span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #337ab7;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ccc
+}
+.ngx-pagination > li:first-child > a, .ngx-pagination > li:first-child > span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px
+}
+.ngx-pagination > li:last-child > a, .ngx-pagination > li:last-child > span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px
+}
+.ngx-pagination > li > a:hover, .ngx-pagination > li > span:hover, .ngx-pagination > li > a:focus, .ngx-pagination > li > span:focus {
+	z-index: 2;
+	color: #23527c;
+	background-color: #eee;
+	border-color: #ccc
+}
+.ngx-pagination > .active > a, .ngx-pagination > .active > span, .ngx-pagination > .active > a:hover, .ngx-pagination > .active > span:hover, .ngx-pagination > .active > a:focus, .ngx-pagination > .active > span:focus {
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #337ab7;
+	border-color: #337ab7
+}
+.ngx-pagination > .disabled > span, .ngx-pagination > .disabled > span:hover, .ngx-pagination > .disabled > span:focus, .ngx-pagination > .disabled > a, .ngx-pagination > .disabled > a:hover, .ngx-pagination > .disabled > a:focus {
+	color: #777;
+	cursor: not-allowed;
+	background-color: #fff;
+	border-color: #ccc;
+	line-height: normal;
+	padding: 10px 12px;
+}
+
+/* LOADER : BEGINS */
+.fbimglib-loader{width:120px;height:120px;position:fixed;margin:auto;left:0;top:0;bottom:0;right:0;background:rgba(250,250,250,1);border-radius:6px;text-align:center;border:1px solid #ccc;display:none;z-index:2147483647}
+.fbimglib-loader span{color:transparent;text-align:center}
+.fbimglib-loader-bg{background:rgba(0,0,0,.3);position:fixed;left:0;right:0;top:0;bottom:0;z-index:2147483645;display:none;}
+.fbimglib-cssload-spin-box {position:absolute;margin:auto;left:0;top:0;bottom:0;right:0;width:16px;height:16px;border-radius:100%;box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-o-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-ms-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-webkit-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-moz-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);animation:cssload-spin ease infinite 4.6s;	-o-animation:cssload-spin ease infinite 4.6s;	-ms-animation:cssload-spin ease infinite 4.6s;	-webkit-animation:cssload-spin ease infinite 4.6s;	-moz-animation:cssload-spin ease infinite 4.6s}
+/* .fbimglib-loaderL3{width:120px;height:120px;position:fixed;margin:auto;left:0;top:0;bottom:0;right:0;background:rgba(250,250,250,1);border-radius:6px;text-align:center;border:1px solid #ccc;display:none;z-index:2147483647}
+ */.fbimglib-loaderL3 span{color:black;text-align:center}
+.fbimglib-loaderL3 {    width: 100px;   height: 100px;   position: fixed;   margin: auto;   left: 0;   top: 0;   bottom: 0;   right: 0;   background: rgba(255, 255, 255, 0.6);   border-radius: 6px;   text-align: center;   display: none;border:1px solid #ccc;z-index:999999999}
+.fbimglib-cssload-spin-boxL3 {    position: absolute;   margin: auto;   left: 0;   top: 0;   bottom: 0;   right: 0;   width: 10px;   height: 10px;   border-radius: 100%;   box-shadow: 10px 10px rgba(0, 167, 226, 0.97), -10px 10px rgb(223, 223, 223), -10px -10px rgba(0, 167, 226, 0.98), 10px -10px rgb(223, 223, 223);   -o-box-shadow: 10px 10px rgba(0, 167, 226, 0.97), -10px 10px rgb(223, 223, 223), -10px -10px rgba(0, 167, 226, 0.98), 10px -10px rgb(223, 223, 223);   -ms-box-shadow: 10px 10px rgba(0, 167, 226, 0.97), -10px 10px rgb(223, 223, 223), -10px -10px rgba(0, 167, 226, 0.98), 10px -10px rgb(223, 223, 223);   -webkit-box-shadow: 10px 10px rgba(0, 167, 226, 0.97), -10px 10px rgb(223, 223, 223), -10px -10px rgba(0, 167, 226, 0.98), 10px -10px rgb(223, 223, 223);   -moz-box-shadow: 10px 10px rgba(0, 167, 226, 0.97), -10px 10px rgb(223, 223, 223), -10px -10px rgba(0, 167, 226, 0.98), 10px -10px rgb(223, 223, 223);   animation: cssload-spin ease infinite 4.6s;   -o-animation: cssload-spin ease infinite 4.6s;   -ms-animation: cssload-spin ease infinite 4.6s;   -webkit-animation: cssload-spin ease infinite 4.6s;   -moz-animation: cssload-spin ease infinite 4.6s}
+/* .fbimglib-cssload-spin-boxL3 {position:absolute;margin:auto;left:0;top:0;bottom:0;right:0;width:16px;height:16px;border-radius:100%;box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-o-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-ms-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-webkit-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-moz-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);animation:cssload-spin ease infinite 4.6s;	-o-animation:cssload-spin ease infinite 4.6s;	-ms-animation:cssload-spin ease infinite 4.6s;	-webkit-animation:cssload-spin ease infinite 4.6s;	-moz-animation:cssload-spin ease infinite 4.6s}
+ */.loyalty-fbimglib-loaderL3{width:120px;height:120px;position:fixed;margin:auto;left:0;top:0;bottom:0;right:0;background:rgba(250,250,250,1);border-radius:6px;text-align:center;border:1px solid #ccc;display:none;z-index:2147483647}
+.loyalty-fbimglib-loaderL3 span{color:black;text-align:center}
+.loyalty-fbimglib-cssload-spin-boxL3 {position:absolute;margin:auto;left:0;top:0;bottom:0;right:0;width:16px;height:16px;border-radius:100%;box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-o-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-ms-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-webkit-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);	-moz-box-shadow:16px 16px rgba(0,167,226,0.97),-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgb(210,210,210);animation:cssload-spin ease infinite 4.6s;	-o-animation:cssload-spin ease infinite 4.6s;	-ms-animation:cssload-spin ease infinite 4.6s;	-webkit-animation:cssload-spin ease infinite 4.6s;	-moz-animation:cssload-spin ease infinite 4.6s}
+@keyframes cssload-spin {0%,100% {	box-shadow:16px 16px rgba(0,167,226,0.98),-16px 16px rgb(210,210,210),-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210)}
+25% {	box-shadow:-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgba(210,210,210,0.98),16px 16px rgb(0,167,226)}
+50% {	box-shadow:-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210),16px 16px rgb(0,167,226),-16px 16px rgb(210,210,210)}
+75% {	box-shadow:16px -16px #d2d2d2,16px 16px rgb(0,167,226),-16px 16px #d2d2d2,-16px -16px rgb(0,167,226)}
+}
+@-o-keyframes cssload-spin {0%,100% {	box-shadow:16px 16px rgba(0,167,226,0.98),-16px 16px rgb(210,210,210),-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210)}
+25% {	box-shadow:-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgba(210,210,210,0.98),16px 16px rgb(0,167,226)}
+50% {	box-shadow:-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210),16px 16px rgb(0,167,226),-16px 16px rgb(210,210,210)}
+75% {	box-shadow:16px -16px #d2d2d2,16px 16px rgb(0,167,226),-16px 16px #d2d2d2,-16px -16px rgb(0,167,226)}
+}
+@-ms-keyframes cssload-spin {0%,100% {	box-shadow:16px 16px rgba(0,167,226,0.98),-16px 16px rgb(210,210,210),-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210)}
+25% {	box-shadow:-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgba(210,210,210,0.98),16px 16px rgb(0,167,226)}
+50% {	box-shadow:-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210),16px 16px rgb(0,167,226),-16px 16px rgb(210,210,210)}
+75% {	box-shadow:16px -16px #d2d2d2,16px 16px rgb(0,167,226),-16px 16px #d2d2d2,-16px -16px rgb(0,167,226)}
+}
+@-webkit-keyframes cssload-spin {0%,100% {	box-shadow:16px 16px rgba(0,167,226,0.98),-16px 16px rgb(210,210,210),-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210)}
+25% {	box-shadow:-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgba(210,210,210,0.98),16px 16px rgb(0,167,226)}
+50% {	box-shadow:-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210),16px 16px rgb(0,167,226),-16px 16px rgb(210,210,210)}
+75% {	box-shadow:16px -16px #d2d2d2,16px 16px rgb(0,167,226),-16px 16px #d2d2d2,-16px -16px rgb(0,167,226)}
+}
+@-moz-keyframes cssload-spin {0%,100% {	box-shadow:16px 16px rgba(0,167,226,0.98),-16px 16px rgb(210,210,210),-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210)}
+25% {	box-shadow:-16px 16px rgb(210,210,210),-16px -16px rgba(0,167,226,0.98),16px -16px rgba(210,210,210,0.98),16px 16px rgb(0,167,226)}
+50% {	box-shadow:-16px -16px rgb(0,167,226),16px -16px rgb(210,210,210),16px 16px rgb(0,167,226),-16px 16px rgb(210,210,210)}
+75% {	box-shadow:16px -16px #d2d2d2,16px 16px rgb(0,167,226),-16px 16px #d2d2d2,-16px -16px rgb(0,167,226)}
+}
+
+.fbimglib-loader {
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	margin: auto;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(255,255,255,.6);
+	border-radius: 6px;
+	text-align: center;
+	display: none;
+}
+.fbimglib-loader span {
+	color: #111;
+	text-align: center
+}
+.fbimglib-cssload-spin-box {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	display:none;
+	box-shadow: 10px 10px rgba(0,167,226,.97), -10px 10px #dfdfdf, -10px -10px rgba(0,167,226,.98), 10px -10px #dfdfdf;
+	-o-box-shadow: 10px 10px rgba(0,167,226,.97), -10px 10px #dfdfdf, -10px -10px rgba(0,167,226,.98), 10px -10px #dfdfdf;
+	-ms-box-shadow: 10px 10px rgba(0,167,226,.97), -10px 10px #dfdfdf, -10px -10px rgba(0,167,226,.98), 10px -10px #dfdfdf;
+	-webkit-box-shadow: 10px 10px rgba(0,167,226,.97), -10px 10px #dfdfdf, -10px -10px rgba(0,167,226,.98), 10px -10px #dfdfdf;
+	-moz-box-shadow: 10px 10px rgba(0,167,226,.97), -10px 10px #dfdfdf, -10px -10px rgba(0,167,226,.98), 10px -10px #dfdfdf;
+	animation: cssload-spin ease infinite 4.6s;
+	-o-animation: cssload-spin ease infinite 4.6s;
+	-ms-animation: cssload-spin ease infinite 4.6s;
+	-webkit-animation: cssload-spin ease infinite 4.6s;
+	-moz-animation: cssload-spin ease infinite 4.6s
+}
+/* LOADER : ENDS */
+.navbar { margin-bottom: 0 !important; }

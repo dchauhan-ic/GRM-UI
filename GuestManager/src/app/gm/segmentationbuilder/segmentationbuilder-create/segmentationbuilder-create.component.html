@@ -1,4 +1,5 @@
 <div id="sma" class="segment-section">
+
     <div class="cockpit theme-grm" style="height:100%; width:100%">
       <div class="shifter" id="" style="height:100%; width:100%">
   
@@ -41,7 +42,7 @@
                           <div class="segment-close" (click)="segmentClose(itemArray.key)">
                           <i class="fa fa-times" aria-hidden="true"></i>
                           </div>
-                          <div *ngFor="let item of itemArray.value" class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3 list-parent-div" ngModelGroup="{{itemArray.key}}">
+                          <div *ngFor="let item of itemArray.value" ng-class="" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-4 list-parent-div" ngModelGroup="{{itemArray.key}}">
   
                           <div [ngSwitch]="item.type">
   
@@ -66,6 +67,7 @@
   </ol>
                     </form>
                   </div>
+
                 </div>
               </div>
               <div class="col-sm-4 col-md-4 col-lg-3 left-bar shadow buildSegment-vscroll2">
