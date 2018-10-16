@@ -20,6 +20,9 @@ export class MemberprofilerDetailComponent implements OnInit {
   fullName;
   headerclick;
   subscription: Subscription;
+  isPromotionClicked = false;
+  isDemographicInformationClicked = false;
+  isCampaignClicked = false;
   constructor(private dataStorageService: DataStorageService,private memberProfilerService: MemberProfilerService, private router: Router, private route: ActivatedRoute,private _location: Location) 
   {
     
@@ -82,9 +85,21 @@ export class MemberprofilerDetailComponent implements OnInit {
     this._location.back();
   }
 
+  checkDataAvailability( headername ){
+    
+    if( headername == "PromotionActivity" && !this.isPromotionClicked ){
+      this.isPromotionClicked = true;
+    } else if( headername == "campaignSummary" && !this.isCampaignClicked){
+      this.isCampaignClicked = true;
+    } else if( headername == "demographicInformation" && !this.isDemographicInformationClicked){
+      this.isDemographicInformationClicked = true;
+    }
+  }
+
   clickAccordion(headername)
   {
-    
+    this.checkDataAvailability( headername );
+   
     if(headername==this.headerclick){
       this.headerclick=''
     }else{

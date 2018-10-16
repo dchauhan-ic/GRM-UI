@@ -80,7 +80,8 @@
                     <div *ngFor="let segmentNavObj of segmentNavNestedObj| keyvalue">
                       <h2>{{segmentNavObj.key}}</h2>
                       <div *ngFor="let segmentObj of segmentNavObj.value">
-                        <div class="" *ngFor="let segmentNestedObj of segmentObj| keyvalue">
+                        <div class="" *ngFor="let segmentNestedObj of segmentObj| keyvalue"
+                        [ngClass]="segmentNestedObj.key+'-section'" >
                           <h5>{{segmentNestedObj.key}}</h5>
                           <ul class="nav nav-pills" role="tablist">
                             <li role="presentation" *ngFor="let data of segmentNestedObj.value">

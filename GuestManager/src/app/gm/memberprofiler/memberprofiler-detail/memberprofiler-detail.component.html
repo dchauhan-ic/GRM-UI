@@ -251,7 +251,7 @@
                     </h4>
                   </div>
 
-                  <app-memberprofiler-demographic [ngClass]="{'in': headerclick=='demographicInformation' ? '' : headerclick!='demographicInformation'}" class="panel-collapse collapse"></app-memberprofiler-demographic>
+                  <app-memberprofiler-demographic [ngClass]="{ 'in': headerclick === 'demographicInformation'}" class="panel-collapse collapse" *ngIf = "isDemographicInformationClicked"></app-memberprofiler-demographic>
 
                 </div>
 
@@ -259,7 +259,7 @@
 
                     <div class="panel-heading odd" role="tab" id="headingcampaignSummary">
                         <h4 class="panel-title">
-                          <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"  (click)="clickAccordion('campaignSummary')"
+                          <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"  (click)="clickAccordion('campaignSummary')" [ngClass]="{'collapsed': headerclick=='campaignSummary' ? '' : headerclick!='campaignSummary'}"
                             aria-expanded="false" aria-controls="campaignSummary">
                             Campaign Response
                             <span class="panel-arrow"></span>
@@ -269,15 +269,15 @@
                       
 
 
-                  <app-memberprofiler-campaign  [ngClass]="{'in': headerclick=='campaignSummary' ? '' : headerclick!='campaignSummary'}" class="panel-collapse collapse"></app-memberprofiler-campaign>
+                  <app-memberprofiler-campaign [ngClass]="{ 'in': headerclick === 'campaignSummary'}" class="panel-collapse collapse" *ngIf = "isCampaignClicked"></app-memberprofiler-campaign>
 
                 </div>
                 <div class="panel panel-default odd">
 
                     <div class="panel-heading" role="tab" id="headingPromotionActivity">
                         <h4 class="panel-title">
-                          <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" (click)="clickAccordion('collapsePromotionActivity')"
-                            aria-expanded="false" aria-controls="collapsePromotionActivity">
+                          <a scroll-to-focus class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" (click)="clickAccordion('PromotionActivity')" [ngClass]="{'collapsed': headerclick=='PromotionActivity' ? '' : headerclick!='PromotionActivity'}"
+                            aria-expanded="false" aria-controls="PromotionActivity">
                             Promotion Activity
                             <span class="panel-arrow"></span>
                           </a>
@@ -285,7 +285,7 @@
                       </div>
 
 
-                  <app-memberprofiler-promotion [ngClass]="{'in': headerclick=='collapsePromotionActivity' ? '' : headerclick!='collapsePromotionActivity'}" class="panel-collapse collapse"></app-memberprofiler-promotion>
+                  <app-memberprofiler-promotion [ngClass]="{ 'in': headerclick === 'PromotionActivity'}" class="panel-collapse collapse" *ngIf = "isPromotionClicked"></app-memberprofiler-promotion>
                   
                 </div>
                 
