@@ -1,6 +1,18 @@
 {
   "/GRM/*": {
-    "target": "http://localhost:9080",
+    "target": "https://qa-jamba.fishbowlcloud.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/*": {
+    "target": "https://qa-jamba.fishbowlcloud.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/clpapi/*": {
+    "target": "https://qa-jamba.fishbowlcloud.com",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
