@@ -993,7 +993,7 @@ segmentData = {
 
     ngOnInit() {
        this.data = this.segmentbuilderService.getSegment();
-        this.segmentName = "Test segment";//this.data.segmentName;
+        this.segmentName = this.data.segmentName;//"Test segment";
 
         for(let i=0, dataLen = this.staticData.length;i<dataLen;i++){
             this.getItemTitleMap(this.staticData[i]);
@@ -1126,7 +1126,7 @@ segmentData = {
             data["model"] ={ "segments" :  segmentModel};
             data["SegmentName"] = this.segmentName;
             data["SegmentId"] = this.editSegmentId;
-            this.onStoreSegment(data);
+           // this.onStoreSegment(data);
         }
     }
 

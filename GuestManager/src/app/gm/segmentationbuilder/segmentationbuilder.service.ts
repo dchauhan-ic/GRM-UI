@@ -80,9 +80,9 @@ export class SegmentBuilderService {
      })
        .subscribe(
        (Results) => {
-        this.segmentData=Results["model"];
+       // this.segmentData=Results["model"];
          console.log('Intercepted!', this.segmentData);
-         this.router.navigate(['/SegmentationBuilder', segmentId, 'edit']);
+        // this.router.navigate(['/SegmentationBuilder', segmentId, 'edit']);
       return this.segmentData;
       
        },
