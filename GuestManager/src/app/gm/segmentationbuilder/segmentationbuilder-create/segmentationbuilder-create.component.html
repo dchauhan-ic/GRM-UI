@@ -42,7 +42,7 @@
                 <div id="page" class="clearfix pb20">
                   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                     <ol class="list-group">
-                      <li class="list-group-item" *ngFor="let itemArray of items | keyvalue">
+                      <li class="list-group-item" *ngFor="let itemArray of items | keyvalue" [ngClass]="itemArray.value[0].section">
                         <div  class="ind-segment">
                           <div class="segment-close" (click)="segmentClose(itemArray.key)"> <i class="fa fa-times" aria-hidden="true"></i> </div>
                           <div *ngFor="let item of itemArray.value" class="form-group list-parent-div" ngModelGroup="{{itemArray.key}}"
