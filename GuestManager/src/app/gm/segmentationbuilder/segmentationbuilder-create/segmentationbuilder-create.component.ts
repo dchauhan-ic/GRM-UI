@@ -231,7 +231,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
                 "value": "Email",
                 "type": "textbox",
                 "required": true,
-                "disable" : true
+                "disable" : true,
+                "section" : "registration-section"
             }, {
                 "key": "operator",
                 "type": "dropdown",
@@ -263,7 +264,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Input Source",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "registration-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -281,7 +283,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "value": "Mobile Phone",
             "type": "textbox",
             "required": true ,
-            "disable" : true
+            "disable" : true,
+            "section" : "registration-section"
         }, {
             "key": "operator",
             "type": "dropdown",
@@ -311,7 +314,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Join Date",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "registration-section"
     }, {
         "key": "operator",
         "type": "dropdown",
@@ -347,7 +351,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Birthday",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "registration-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -411,7 +416,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Age Range",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -457,7 +463,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Marital Status",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -490,7 +497,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
                     "key": "Doesn't have"
                 }
             ],
-            "required": true 
+            "required": true ,
+            "section" : "demography-section"
         },
         {
             "key": "attribute",
@@ -513,7 +521,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Household Size",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -560,7 +569,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Ethnicity",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -599,7 +609,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Gender",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -625,7 +636,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Persona",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -671,7 +683,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "liveIn",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "demography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -688,7 +701,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Favorite Location",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "geography-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -714,7 +728,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
         "value": "Was targeted",
         "type": "textbox",
         "required": true ,
-        "disable" : true
+        "disable" : true,
+        "section" : "campaign-section"
     }, {
         "key": "operator",
         "type": "textbox",
@@ -741,7 +756,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "value": "Open",
             "type": "textbox",
             "required": true ,
-            "disable" : true
+            "disable" : true,
+            "section" : "campaign-section"
         }, {
             "key": "operator",
             "type": "dropdown",
@@ -775,7 +791,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "value": "Click",
             "type": "textbox",
             "required": true ,
-            "disable" : true
+            "disable" : true,
+            "section" : "campaign-section"
         }, {
             "key": "operator",
             "type": "dropdown",
@@ -809,7 +826,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "value": "Promotion",
             "type": "textbox",
             "required": true ,
-            "disable" : true
+            "disable" : true,
+            "section" : "promotion-section"
         }, {
             "key": "operator",
             "type": "dropdown",
@@ -844,7 +862,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
             "value": "Redeem",
             "type": "textbox",
             "required": true ,
-            "disable" : true
+            "disable" : true,
+            "section" : "promotion-section"
         }, {
             "key": "operator",
             "type": "dropdown",
@@ -993,7 +1012,7 @@ segmentData = {
 
     ngOnInit() {
        this.data = this.segmentbuilderService.getSegment();
-        this.segmentName = this.data.segmentName;//"Test segment";
+        this.segmentName = "Test segment"; //this.data.segmentName;
 
         for(let i=0, dataLen = this.staticData.length;i<dataLen;i++){
             this.getItemTitleMap(this.staticData[i]);

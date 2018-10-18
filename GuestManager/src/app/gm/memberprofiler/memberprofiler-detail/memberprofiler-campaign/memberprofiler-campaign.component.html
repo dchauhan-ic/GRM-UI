@@ -202,13 +202,13 @@
               <tr *ngIf="campaignDetails.length === 0">
                 <td colspan="5" class="text-center no-data">No records exist</td>
               </tr>
-              <tr dir-paginate="campaignDetail in campaignDetails|orderBy:orderByDate|filter:search|itemsPerPage:6" pagination-id="campaignEmailDetails">
+              <tr *ngIf="campaignDetails.length > 0" dir-paginate="campaignDetail in campaignDetails|orderBy:orderByDate|filter:search|itemsPerPage:6" pagination-id="campaignEmailDetails">
                 <td width="120">{{campaignDetail.dateSent}}</td>
                 <td width="500">{{campaignDetail.mailSubject}}</td>
                 <td>{{campaignDetail.type}}</td>
                 <td>
                   {{campaignDetail.mailOpened}}
-                  <span *ngIf="campaignDetail.mailOpenDate !== null">
+                  <span *ngIf="campaignDetail && campaignDetail.mailOpenDate !== null">
                     - {{campaignDetail.mailOpenDate}}
                   </span>
                 </td>
