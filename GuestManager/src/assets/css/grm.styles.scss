@@ -729,15 +729,19 @@ ul.nav-pills > li > a:hover {
 
 .left-bar.buildSegment-vscroll2 .Demography-section h5 { color: #457ec0; font-weight: bold; margin-top:10px; margin-bottom: 15px; }
 .left-bar.buildSegment-vscroll2 .Demography-section ul.nav-pills > li > a { color: #457ec0; box-shadow: inset 2px 0 0 0 #457ec0, 0 1px 2px 0 rgba(0, 0, 0, 0.15); }
+.list-group li.list-group-item.demography-section { box-shadow: inset 2px 0 0 0 #457ec0, 0 1px 2px 0 rgba(0,0,0,0.15); }
 
 .left-bar.buildSegment-vscroll2 .Geography-section h5 { color: #d77d1e; font-weight: bold; margin-top:10px; margin-bottom: 15px; }
 .left-bar.buildSegment-vscroll2 .Geography-section ul.nav-pills > li > a { color: #d77d1e; box-shadow: inset 2px 0 0 0 #d77d1e, 0 1px 2px 0 rgba(0, 0, 0, 0.15); }
+.list-group li.list-group-item.geography-section { box-shadow: inset 2px 0 0 0 #d77d1e, 0 1px 2px 0 rgba(0,0,0,0.15); }
 
 .left-bar.buildSegment-vscroll2 .Campaign-section h5 { color: #d77d1e; font-weight: bold; margin-top:10px; margin-bottom: 15px; }
 .left-bar.buildSegment-vscroll2 .Campaign-section ul.nav-pills > li > a { color: #d77d1e; box-shadow: inset 2px 0 0 0 #d77d1e, 0 1px 2px 0 rgba(0, 0, 0, 0.15); }
+.list-group li.list-group-item.campaign-section { box-shadow: inset 2px 0 0 0 #d77d1e, 0 1px 2px 0 rgba(0,0,0,0.15); }
 
 .left-bar.buildSegment-vscroll2 .Promotion-section h5 { color: #c81c1c; font-weight: bold; margin-top:10px; margin-bottom: 15px; }
 .left-bar.buildSegment-vscroll2 .Promotion-section ul.nav-pills > li > a { color: #c81c1c; box-shadow: inset 2px 0 0 0 #c81c1c, 0 1px 2px 0 rgba(0, 0, 0, 0.15); }
+.list-group li.list-group-item.promotion-section { box-shadow: inset 2px 0 0 0 #c81c1c, 0 1px 2px 0 rgba(0,0,0,0.15); }
 
 
 /* .segment-parent-3 ul.nav-pills > li {
@@ -1013,3 +1017,4 @@ h1.x-title .Fixed_popcloseButton { padding: 0; top: 5px; right: 15px; }
 .select-dd > div { border:1px solid #ccc; border-radius: 3px; background-color: #fff; padding: 0 0 5px 0 !important; }
 .select-dd > div span { display:block; font-size: 10px; color:#333; padding: 5px 10px; }
 .select-dd > div select { padding:0 4px !important; border:0; height: auto; width:100%; }
+
