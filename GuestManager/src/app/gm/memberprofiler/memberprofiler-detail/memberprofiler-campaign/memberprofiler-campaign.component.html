@@ -1,6 +1,6 @@
 <div class="panel-body">
     <div class="container-fluid">
-      <div class="row" *ngIf="!campaignSummary.subscriptionStatus">
+      <div class="row" *ngIf="campaignSummary && !campaignSummary.subscriptionStatus">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <dl class="dl-horizontal">
             <dt>
@@ -58,7 +58,7 @@
           </dl>
         </div>
       </div>
-      <div *ngIf="campaignSummary.subscriptionStatus">
+      <div *ngIf="campaignSummary && campaignSummary.subscriptionStatus">
         <div class="row">
           <div class="col-lg-12">
             <h6>Email</h6>
@@ -250,7 +250,7 @@
           &nbsp;
         </div>
       </div>
-      <div class="row" *ngIf="!campaignSmsSummary.memberId && campaignSmsSummary.memberId !== 0">
+      <div class="row" *ngIf="campaignSmsSummary && !campaignSmsSummary.memberId">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <dl class="dl-horizontal">
             <dt>
@@ -308,7 +308,7 @@
           </dl>
         </div>
       </div>
-      <div class="" *ngIf="campaignSmsSummary.memberId || campaignSmsSummary.memberId == 0">
+      <div class="" *ngIf="campaignSmsSummary && ( campaignSmsSummary.memberId || campaignSmsSummary.memberId == 0) ">
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <dl class="dl-horizontal">

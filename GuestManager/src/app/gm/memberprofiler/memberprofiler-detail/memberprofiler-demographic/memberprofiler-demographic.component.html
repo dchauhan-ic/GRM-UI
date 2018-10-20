@@ -2,7 +2,7 @@
 
   <div class="panel-body" role="tabpanel" aria-labelledby="headingDemographicInformation" >
     <div class="container-fluid">
-      <div class="row"  *ngIf="!memberId || memberId == 0" >
+      <div class="row"  *ngIf="demographicInformation && ( !demographicInformation.memberId || demographicInformation.memberId == 0)" >
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <dl class="dl-horizontal">
             <dt>
@@ -60,7 +60,7 @@
           </dl>
         </div>
       </div>
-      <div class="row" *ngIf="demographicInformation.memberId || demographicInformation.memberId == 0">
+      <div class="row" *ngIf="demographicInformation &&  demographicInformation.memberId">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
           <dl class="dl-horizontal">
             <dt>Persona:</dt>
