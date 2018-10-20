@@ -28,35 +28,27 @@
                       <div class="clearfix pt10"> <i class="fa fa-users" aria-hidden="true"></i> {{matchCount}} ({{percentage}}% of total)</div>
                     </div>
                   </div>
-                  
-                  <!--<div class="clearfix mt20"> <select [(ngModel)]="targetingChannel" required>
-                      <option *ngFor="let chanel of targetingChannels" [ngValue]="chanel.key">{{chanel.value}}</option>
-                    </select></div>--> 
                 </div>
                 <div class="text-click-drag" *ngIf="noneSelected">Click elements from the panel on the right</div>
-                
-                <!--<div class="rectangle grid-model margin-b pl0" style="background: #F0F0F0;">
-                    <div class="form-group no-margin right-margin-10 left-margin-10">
-                    </div>
-                  </div>-->
                 <div id="page" class="clearfix pb20">
                   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                     <ol class="list-group">
-                      <li class="list-group-item" *ngFor="let itemArray of items | keyvalue" [ngClass]="itemArray.value[0].section">
+                      <li class="list-group-item" *ngFor="let itemArray of segmentKeys" [ngClass]="items[itemArray][0].section">
                         <div  class="ind-segment">
-                          <div class="segment-close" (click)="segmentClose(itemArray.key)"> <i class="fa fa-times" aria-hidden="true"></i> </div>
-                          <div *ngFor="let item of itemArray.value" class="form-group list-parent-div" ngModelGroup="{{itemArray.key}}"
+                          <div class="segment-close" (click)="segmentClose(itemArray)"> <i class="fa fa-times" aria-hidden="true"></i> </div>
+                          <div *ngFor="let item of items[itemArray]" class="form-group list-parent-div" ngModelGroup="{{itemArray}}"
                             [ngClass]="{
-                              'col-lg-4 col-md-4 col-sm-4 col-xs-4': itemArray.key != 'joinDate',
-                              'col-lg-3 col-md-3 col-sm-3 col-xs-3': itemArray.key === 'joinDate'
+                              'col-lg-4 col-md-4 col-sm-4 col-xs-4': itemArray != 'joinDate',
+                              'col-lg-3 col-md-3 col-sm-3 col-xs-3': itemArray === 'joinDate'
                             }" >
                             <div [ngSwitch]="item.type">
                               <input *ngSwitchCase="'textbox'" class="form-control textbox-cls" name="{{item.key}}" [(ngModel)]="item.value" [disabled]="item.disable ? true : false"
-                            [hidden]="item.hide ? true : false">
-                              <input *ngSwitchCase="'datefield'" type="date" class="form-control textbox-cls form-control" name="{{item.key}}" [(ngModel)]="item.value"
-                            />
-                              <select *ngSwitchCase="'dropdown'" name="{{item.key}}" class="form-control dropdown-cls" [(ngModel)]="item.value">
-                                <option *ngFor="let opt of item.options" value={{opt.value}}> {{opt.value}} </option>
+                              [ngClass]="{'no-display hide-link': item.hide }"/>
+                              <input *ngSwitchCase="'datefield'" type="date" class="form-control textbox-cls form-control" name="{{item.key}}"
+                               [(ngModel)]="item.value" [ngClass]="{
+                                'no-display hide-link': ( itemArray == 'joinDate' && item.key == 'endValue' && !showEndDate) }"/>
+                              <select *ngSwitchCase="'dropdown'" name="{{item.key}}" class="form-control dropdown-cls" [(ngModel)]="item.value" (change)="onItemSelect( itemArray, item.value )">
+                                <option *ngFor="let opt of item.options" value={{opt.value}}> {{opt.key}} </option>
                               </select>
                               <ng-multiselect-dropdown *ngSwitchCase="'multiselect'" name="{{item.key}}" [placeholder]="'Select'" [data]="item.options"
                             [(ngModel)]="item.value" [settings]="dropdownSettings"> </ng-multiselect-dropdown>

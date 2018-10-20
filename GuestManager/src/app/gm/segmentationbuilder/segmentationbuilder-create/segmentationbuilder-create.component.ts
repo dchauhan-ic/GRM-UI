@@ -29,6 +29,8 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     restExportItemsUrl = '/GRM/segment/export';
     dropdownList = [];
     dropdownSettings = {};
+    segmentKeys = [];
+    showEndDate = false;
     staticData = [{
         "key": "birthDay",
         "titleMap": [{
@@ -207,10 +209,10 @@ export class SegmentationbuilderCreateComponent implements OnInit {
 
     targetingChannels = [{
         "key" : "email",
-        "value" : "Targeting Chanel Email"
+        "value" : "Email"
     },{
       "key" : "sms",
-      "value" : "Targeting Chanel SMS"
+      "value" : "SMS"
     }];
   
     @ViewChild('f') segmentForm = NgForm;
@@ -343,7 +345,7 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     }, {
         "key": "endValue",
         "type": "datefield",
-        "required": true ,
+        "required": false ,
         startValue : false
     }],
     "birthDay" : [{
@@ -1074,6 +1076,7 @@ segmentData = {
         this.noneSelected = false;
         var items = this.segmentItems[data.key];
         this.items[data.key] = items;
+        this.segmentKeys = Object.keys(this.items);
     }
 
     
@@ -1086,6 +1089,7 @@ segmentData = {
 
     segmentClose = function (key) {
         delete this.items[key];
+        this.segmentKeys = Object.keys(this.items);
     }
 
     onSubmit() {
@@ -1094,7 +1098,6 @@ segmentData = {
     }
 
     checkStatusValid(){
-
         var keys = Object.keys(this.items);
         var j:any;
         var k:any;
@@ -1105,15 +1108,17 @@ segmentData = {
             for(k in items) {
                 var keyData = formData[key];
                 var fieldData = items[k];
+                debugger;
                 if( fieldData.required == true && ( keyData[fieldData.key] === undefined || 
                   (typeof(keyData[fieldData.key]) == "string" && keyData[fieldData.key].trim() == "") ||
                   (typeof(keyData[fieldData.key]) == "object" && keyData[fieldData.key].length == 0 )
               ) ){
                   return false;
                 }
-                
-            }
-           
+                else if( fieldData.key == "endValue" && this.showEndDate && keyData[fieldData.key] == undefined){
+                    return false;
+                }                
+            }           
         }
       return true;
     }
@@ -1202,6 +1207,13 @@ segmentData = {
             .post(this.restExportItemsUrl, data, )
             .pipe(map(Results => Results));
 
+    }
+    onItemSelect( key, value ){
+        if( key == "joinDate" && value =="Between"){
+            this.showEndDate = true;
+        } else{
+            this.showEndDate = false;
+        }
     }
 
 }
