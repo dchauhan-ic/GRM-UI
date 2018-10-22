@@ -92,7 +92,7 @@ export class MemberprofilerCampaignComponent implements OnInit {
   // }
 
   getSmsDetails(memberId): void {
-    this.dataStorageService.OnFetchSmsDetailTest(28001001337);
+    this.dataStorageService.OnFetchSmsDetailTest(memberId);
 
     this.subscription = this.memberProfilerService.memberSmsDetailChanged
     .subscribe(

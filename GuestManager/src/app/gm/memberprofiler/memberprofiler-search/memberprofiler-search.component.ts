@@ -39,30 +39,10 @@ export class MemberprofilerSearchComponent implements OnInit {
 
 
   ngOnInit() {
-    this.subscription = this.memberProfilerService.memberProfilerChanged
-      .subscribe(
-      (memberProfiler: memberProfiler) => {
-        const memberSearchList: memberSearchList[] = memberProfiler.memberSearchList;
-        const countMap: countMap = memberProfiler.countMap;
-        this.searchResults = memberSearchList;
-        this.totalUsers = countMap.matchedMember;
-        this.totalMembers = countMap.totalMember;
-        this.isSearchStarted = false;
-        this.isSearchComplete = true;
-        this.isTableLoading = false;
- 
-      }
-      );
-    const  memberProfiler:memberProfiler = this.memberProfilerService.getMemberProfiler();
-    const memberSearchList: memberSearchList[] = memberProfiler.memberSearchList;
-        const countMap: countMap = memberProfiler.countMap;
-        this.searchResults = memberSearchList;
-        this.totalUsers = countMap.matchedMember;
-        this.totalMembers = countMap.totalMember;
-        this.isSearchStarted = false;
-        this.isSearchComplete = true;
-        this.isTableLoading = false;
- 
+    this.dataStorageService.dataIsLoading.subscribe(
+      (isLoading: boolean) => this.isSearchStarted = isLoading
+    );
+
   }
 
   getPage(newPage: number) {
@@ -117,12 +97,13 @@ export class MemberprofilerSearchComponent implements OnInit {
     this.subscription = this.memberProfilerService.memberProfilerChanged
     .subscribe(
     (memberProfiler: memberProfiler) => {
+      
       const memberSearchList: memberSearchList[] = memberProfiler.memberSearchList;
       const countMap: countMap = memberProfiler.countMap;
       this.searchResults = memberSearchList;
       this.totalUsers = countMap.matchedMember;
       this.totalMembers = countMap.totalMember;
-      this.isSearchStarted = false;
+     // this.isSearchStarted = false;
       this.isSearchComplete = true;
       this.isTableLoading = false;
 
@@ -134,7 +115,7 @@ export class MemberprofilerSearchComponent implements OnInit {
       this.searchResults = memberSearchList;
       this.totalUsers = countMap.matchedMember;
       this.totalMembers = countMap.totalMember;
-      this.isSearchStarted = false;
+      //this.isSearchStarted = false;
       this.isSearchComplete = true;
       this.isTableLoading = false;
       

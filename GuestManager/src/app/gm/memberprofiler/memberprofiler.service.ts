@@ -8,38 +8,15 @@ import {  searchMemberRequest } from 'src/app/gm/gm.model';
 import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
 import { GmService } from 'src/app/gm/gm.service';
 import { memberProfiler, memberSearchList, countMap, memberDemographicList, memberPromotionList, memberCampaignSummary, memberSmsDetail, memberSmsSummary, memberInfo } from 'src/app/gm/memberprofiler/memberprofiler.model';
+import { menuList } from 'src/app/shared/menu.model';
 
 @Injectable()
 export class MemberProfilerService {
   segmentsChanged = new Subject<segmentMetaDataList[]>();
-  private segments: segmentMetaDataList[] = [{
-    "count": 5,
-    "created": "09/08/2018",
-    "segmentId": 1,
-    "segmentName": "DJJSegment",
-    "successFlag": true,
-    "updated": "09/18/2018"
-  }, {
-    "count": 7,
-    "created": "09/17/2018",
-    "segmentId": 2,
-    "segmentName": "TestSegment",
-    "successFlag": true,
-    "updated": "09/20/2018"
-  }, {
-    "count": 11,
-    "created": "09/20/2018",
-    "segmentId": 3,
-    "segmentName": "test1234",
-    "successFlag": true,
-    "updated": "09/23/2018"
-  }];
 
-
-  private memberInfo: memberInfo=
-  {
-    "fullName":"Laduana Jones",
-    "emailAddress":"TERRAWALLS@AOL.COM",
+  private memberInfo: memberInfo={
+    "fullName":null,
+    "emailAddress":null,
     "mobileNumber":null,
     "joinDate":"11/20/2007",
     "ageInProgram":"10 years, 10 months, 25 days ",
@@ -49,11 +26,11 @@ export class MemberProfilerService {
     "programName":null,
     "emailOptIn":"Yes",
     "smsOptIn":"No",
-    "favoriteStore":"CA - SACRAMENTO (5120 INTERSTATE AVE)",
-    "displayAddress1":"5120 INTERSTATE AVE",
+    "favoriteStore":null,
+    "displayAddress1":null,
     "displayAddress2":null,
-    "storeCity":"SACRAMENTO",
-    "storeState":"CA"
+    "storeCity":null,
+     "storeState":null
     }
   
   ;
@@ -143,8 +120,7 @@ export class MemberProfilerService {
   
   ;
 
-
-
+  private menuList: menuList;
   private memberDemographicList: memberDemographicList=
   {
     "memberId":27917581320,
@@ -164,6 +140,7 @@ export class MemberProfilerService {
   private memberProfiler: memberProfiler=
   {
     "memberSearchList":[
+
     {
     "memberId":27917581320,
     "firstName":"Laduana",
@@ -289,6 +266,8 @@ export class MemberProfilerService {
     "matchedMember":81,
     "totalMember":10000
     }
+
+    
     };
   private memberSearchList: memberSearchList[];
   private countMap: countMap;
@@ -302,6 +281,7 @@ export class MemberProfilerService {
   memberPromotionActivityChanged = new Subject<memberPromotionList>();
   memberCampaignSummaryChanged = new Subject<memberCampaignSummary>();
   memberSmsSummaryChanged = new Subject<memberSmsSummary>();
+  menuChanges = new Subject<menuList>();
   
   memberSmsDetailChanged = new Subject<memberSmsDetail[]>();
   
@@ -321,10 +301,16 @@ export class MemberProfilerService {
 
   setMemberProfiler(memberProfiler: memberProfiler) {
     this.memberProfiler = memberProfiler;
-    // this.memberSearchList = memberProfiler["memberSearchList"];
-    // this.setMemberProfilerList(this.memberSearchList);
-    // this.countMap = memberProfiler["countMap"];
     this.memberProfilerChanged.next(this.memberProfiler);
+  }
+
+  getMenuList() {
+    return this.menuList;
+  }
+
+  setMenuList(menuList: menuList) {
+    this.menuList = menuList;
+    this.menuChanges.next(this.menuList);
   }
 
 
