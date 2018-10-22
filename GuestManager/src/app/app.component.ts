@@ -14,16 +14,15 @@ export class AppComponent {
   loading = false;
   constructor(private dataStorageService: DataStorageService,private authService: AuthService,private router: Router,) { }
   ngOnInit() {
-    this.onFetchData();
+    //this.onFetchData();
+   // alert("AppComponent ");
   }
   onFetchData() {
-   // this.authService.login("serveradmin","Password@1234");
-    // alert( ' click registered');
-
-    // this.authService.login("serveradmin","Password@1234")
-    // .pipe(first()).subscribe(
-    //   data => {this.router.navigate(["marketing/campaign"])},
-    //   error => {this.error = error; this.loading = false;}
-    // )
+    alert(" onFetchData AppComponent ");
+    this.authService.login("serveradmin","Password@1234")
+    .pipe(first()).subscribe(
+      data => {this.router.navigate(["marketing/campaign"])},
+      error => {this.error = error; this.loading = false;}
+    )
   }
 }

@@ -12,11 +12,15 @@ import { AppRoutingModule } from './app.routing.module';
 import { GmHeaderComponent } from './gm/gm-header/gm-header.component';
 import { SharedModule } from './shared/shared.module';
 import { GmModule } from './gm/gm.module';
+import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
+import { FilterProperty } from 'src/app/shared/pipes/filter.property';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GmHeaderComponent
+    GmHeaderComponent,
+    FilterPipe,
+    FilterProperty
   ],
 
   imports: [
