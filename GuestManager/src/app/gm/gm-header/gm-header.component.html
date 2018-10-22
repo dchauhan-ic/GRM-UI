@@ -10,7 +10,7 @@
           <span class="seperator"></span>
           <a href="" class="x-iconshow tar">
             <span class="userphotoOuter">
-              <img class="userphoto sfl dbi" alt="" />
+              <img class="userphoto sfl dbi" alt="" src="" />
             </span>
             <span class="sfl dbi">{{currentUserFullName}}</span>
             <div class="pop-up">
@@ -36,7 +36,7 @@
       </ul>
 
       <ul id="topmenu" class="col-lg-8 col-md-9 col-sm-8 col-xs-8 pull-left nopad level1">
-        <li *ngFor="let menu1 of topMenuList" id="{{menu1.Id}}" (mouseover)="topMenuMouseOver(menu1)">
+        <li *ngFor="let menu1 of topMenuList" id="{{menu1.Id}}" (mouseover)="topMenuMouseOver(menu1)" class="{{menu1.Label}}">
           <a (mouseover)="clickTopMenu(menu1)" (mouseout)="topMenuMouseLeave(menu1)" (click)="topMenuClicked(menu1)">{{menu1.Label}}</a>
           <div id="shadow" class="shadow">
             <table class="menu_id_{{menu1.Id}}" width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -95,3 +95,11 @@
                     </div>
 
                   </div>
+					
+				  </td>
+				  <td class="menuicon">&nbsp;</td>
+				</tr>
+			  </table>
+			  </div>
+			</li>
+		</ul>
