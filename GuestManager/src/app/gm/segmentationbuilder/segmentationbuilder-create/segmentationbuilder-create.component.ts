@@ -7,8 +7,9 @@ import { GmService } from 'src/app/gm/gm.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
+import { segmentMetaDataList, segmentStaticMapData, segmentStaticInputData } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
 import { searchMemberRequest } from 'src/app/gm/gm.model';
+import saveAs from 'file-saver';
 @Component({
     selector: 'app-segmentationbuilder-create',
     templateUrl: './segmentationbuilder-create.component.html',
@@ -31,181 +32,193 @@ export class SegmentationbuilderCreateComponent implements OnInit {
     dropdownSettings = {};
     segmentKeys = [];
     showEndDate = false;
-    staticData = [{
-        "key": "birthDay",
-        "titleMap": [{
-            "value": "01",
-            "name": "January"
-        }, {
-            "value": "02",
-            "name": "February"
-        }, {
-            "value": "03",
-            "name": "March"
-        }, {
-            "value": "04",
-            "name": "April"
-        }, {
-            "value": "05",
-            "name": "May"
-        }, {
-            "value": "06",
-            "name": "June"
-        }, {
-            "value": "07",
-            "name": "July"
-        }, {
-            "value": "08",
-            "name": "August"
-        }, {
-            "value": "09",
-            "name": "September"
-        }, {
-            "value": "10",
-            "name": "October"
-        }, {
-            "value": "11",
-            "name": "November"
-        }, {
-            "value": "12",
-            "name": "December"
-        }]
-    }, {
-        "key": "persona",
-        "titleMap": [{
-            "value": "Solo Selfies",
-            "name": "Solo Selfies"
-        }, {
-            "value": "Young Pairs",
-            "name": "Young Pairs"
-        }, {
-            "value": "Transition To Min",
-            "name": "Transition To Min"
-        }, {
-            "value": "Bursting Bunch",
-            "name": "Bursting Bunch"
-        }, {
-            "value": "Middle Aged Solos",
-            "name": "Middle Aged Solos"
-        }, {
-            "value": "Near Empty Nest",
-            "name": "Near Empty Nest"
-        }, {
-            "value": "Bucket List",
-            "name": "Bucket List"
-        }]
-    }, {
-        "key": "ethnicity",
-        "titleMap": [{
-            "value": "African American",
-            "name": "African American"
-        }, {
-            "value": "Caucasian",
-            "name": "Caucasian"
-        }, {
-            "value": "Hispanic",
-            "name": "Hispanic"
-        }, {
-            "value": "Middle Eastern",
-            "name": "Middle Eastern"
-        }, {
-            "value": "Native American",
-            "name": "Native American"
-        }]
-    }, {
-        "key": "householdSize",
-        "titleMap": [{
-            "value": "1",
-            "name": "1"
-        }, {
-            "value": "2",
-            "name": "2"
-        }, {
-            "value": "3",
-            "name": "3"
-        }, {
-            "value": "4",
-            "name": "4"
-        }, {
-            "value": "5",
-            "name": "5"
-        }, {
-            "value": "6",
-            "name": "6"
-        }, {
-            "value": "6+",
-            "name": "6+"
-        }]
-    }, {
-        "key": "favoriteLocation",
-        "titleMap": [{
-            "value": "023",
-            "name": "Boston"
-        }, {
-            "value": "134",
-            "name": "Washington"
-        }]
-    }, {
-        "key": "inputSource",
-        "titleMap": [{
-            "value": "w",
-            "name": "web"
-        }, {
-            "value": "k",
-            "name": "FISH"
-        }]
-    }, {
-        "key": "click",
-        "titleMap": [{
-            "value": "1231435134",
-            "name": "Pancake promotion"
-        }, {
-            "value": "4192381294",
-            "name": "Happy Birthday!"
-        }]
-    }, {
-        "key": "age",
-        "titleMap": [{
-            "value": "18 to 24 yo",
-            "name": "18 to 24 yo"
-        }, {
-            "value": "25 to 34 yo",
-            "name": "25 to 34 yo"
-        }, {
-            "value": "35 to 44 yo",
-            "name": "35 to 44 yo"
-        }, {
-            "value": "45 to 54 yo",
-            "name": "45 to 54 yo"
-        }, {
-            "value": "55 to 64 yo",
-            "name": "55 to 64 yo"
-        }, {
-            "value": "65 to 74 yo",
-            "name": "65 to 74 yo"
-        }, {
-            "value": "75+ yo",
-            "name": "75+ yo"
-        }]
-    }, {
-        "key": "open",
-        "titleMap": [{
-            "value": "1231435134",
-            "name": "Pancake promotion"
-        }, {
-            "value": "4192381294",
-            "name": "Happy Birthday!"
-        }]
-    }, {
-        "key": "targettted",
-        "titleMap": [{
-            "value": "1231435134",
-            "name": "Pancake promotion"
-        }, {
-            "value": "4192381294",
-            "name": "Happy Birthday!"
-        }]
-    }];
+
+    //
+    matchCount;
+    percentage;
+
+     staticData:segmentStaticInputData[] = [
+    //      {
+
+    //     "key": "birthDay",
+    //     "titleMap": [
+            
+    //         {
+    //         "value": "01",
+    //         "name": "January"
+    //     }, {
+    //         "value": "02",
+    //         "name": "February"
+    //     }, {
+    //         "value": "03",
+    //         "name": "March"
+    //     }, {
+    //         "value": "04",
+    //         "name": "April"
+    //     }, {
+    //         "value": "05",
+    //         "name": "May"
+    //     }, {
+    //         "value": "06",
+    //         "name": "June"
+    //     }, {
+    //         "value": "07",
+    //         "name": "July"
+    //     }, {
+    //         "value": "08",
+    //         "name": "August"
+    //     }, {
+    //         "value": "09",
+    //         "name": "September"
+    //     }, {
+    //         "value": "10",
+    //         "name": "October"
+    //     }, {
+    //         "value": "11",
+    //         "name": "November"
+    //     }, {
+    //         "value": "12",
+    //         "name": "December"
+    //     }]
+    // }, {
+    //     "key": "persona",
+    //     "titleMap": [{
+    //         "value": "Solo Selfies",
+    //         "name": "Solo Selfies"
+    //     }, {
+    //         "value": "Young Pairs",
+    //         "name": "Young Pairs"
+    //     }, {
+    //         "value": "Transition To Min",
+    //         "name": "Transition To Min"
+    //     }, {
+    //         "value": "Bursting Bunch",
+    //         "name": "Bursting Bunch"
+    //     }, {
+    //         "value": "Middle Aged Solos",
+    //         "name": "Middle Aged Solos"
+    //     }, {
+    //         "value": "Near Empty Nest",
+    //         "name": "Near Empty Nest"
+    //     }, {
+    //         "value": "Bucket List",
+    //         "name": "Bucket List"
+    //     }]
+    // }, {
+    //     "key": "ethnicity",
+    //     "titleMap": [{
+    //         "value": "African American",
+    //         "name": "African American"
+    //     }, {
+    //         "value": "Caucasian",
+    //         "name": "Caucasian"
+    //     }, {
+    //         "value": "Hispanic",
+    //         "name": "Hispanic"
+    //     }, {
+    //         "value": "Middle Eastern",
+    //         "name": "Middle Eastern"
+    //     }, {
+    //         "value": "Native American",
+    //         "name": "Native American"
+    //     }]
+    // }, {
+    //     "key": "householdSize",
+    //     "titleMap": [{
+    //         "value": "1",
+    //         "name": "1"
+    //     }, {
+    //         "value": "2",
+    //         "name": "2"
+    //     }, {
+    //         "value": "3",
+    //         "name": "3"
+    //     }, {
+    //         "value": "4",
+    //         "name": "4"
+    //     }, {
+    //         "value": "5",
+    //         "name": "5"
+    //     }, {
+    //         "value": "6",
+    //         "name": "6"
+    //     }, {
+    //         "value": "6+",
+    //         "name": "6+"
+    //     }]
+    // }, {
+    //     "key": "favoriteLocation",
+    //     "titleMap": [{
+    //         "value": "023",
+    //         "name": "Boston"
+    //     }, {
+    //         "value": "134",
+    //         "name": "Washington"
+    //     }]
+    // }, {
+    //     "key": "inputSource",
+    //     "titleMap": [{
+    //         "value": "w",
+    //         "name": "web"
+    //     }, {
+    //         "value": "k",
+    //         "name": "FISH"
+    //     }]
+    // }, {
+    //     "key": "click",
+    //     "titleMap": [{
+    //         "value": "1231435134",
+    //         "name": "Pancake promotion"
+    //     }, {
+    //         "value": "4192381294",
+    //         "name": "Happy Birthday!"
+    //     }]
+    // }, {
+    //     "key": "age",
+    //     "titleMap": [{
+    //         "value": "18 to 24 yo",
+    //         "name": "18 to 24 yo"
+    //     }, {
+    //         "value": "25 to 34 yo",
+    //         "name": "25 to 34 yo"
+    //     }, {
+    //         "value": "35 to 44 yo",
+    //         "name": "35 to 44 yo"
+    //     }, {
+    //         "value": "45 to 54 yo",
+    //         "name": "45 to 54 yo"
+    //     }, {
+    //         "value": "55 to 64 yo",
+    //         "name": "55 to 64 yo"
+    //     }, {
+    //         "value": "65 to 74 yo",
+    //         "name": "65 to 74 yo"
+    //     }, {
+    //         "value": "75+ yo",
+    //         "name": "75+ yo"
+    //     }]
+    // }, {
+    //     "key": "open",
+    //     "titleMap": [{
+    //         "value": "1231435134",
+    //         "name": "Pancake promotion"
+    //     }, {
+    //         "value": "4192381294",
+    //         "name": "Happy Birthday!"
+    //     }]
+    // }, {
+    //     "key": "targettted",
+    //     "titleMap": [{
+    //         "value": "1231435134",
+    //         "name": "Pancake promotion"
+    //     }, {
+    //         "value": "4192381294",
+    //         "name": "Happy Birthday!"
+    //     }]
+    // }
+
+
+];
 
     targetingChannels = [{
         "key" : "email",
@@ -986,26 +999,25 @@ segmentNavPills = [{
 }];
 
 segmentData = {   
-  "segments":[{
-      "email":{
-          "attribute": "Email",
-          "operator": "Contains",
-          "value": "Tapaswini"
-      },
-      "inputSource":{
-          "attribute": "Input Source",
-          "operator": "Is",
-         "value" : [{value: "w", name: "web"}, {value: "k", name: "FISH"}]
-         
-      },
-      "joinDate" : {
-          "attribute": "Join Date",
-          "endValue": "2018-11-01",
-          "operator": "Between",
-          "startValue": "2018-10-25"
-      }
-  }]    
-};
+    "segments":[{
+        "email":{
+            "attribute": "Email",
+            "operator": "Contains",
+            "value": "Tapaswini"
+        },
+        "inputSource":{
+            "attribute": "Input Source",
+            "operator": "Is",
+            "value": ["web","Fish"]
+        },
+        "joinDate" : {
+            "attribute": "Join Date",
+            "endValue": "2018-11-01",
+            "operator": "Between",
+            "startValue": "2018-10-25"
+        }
+    }]    
+  };
 
     constructor(private segmentbuilderService: SegmentBuilderService, private http: HttpClient, private router: Router, private route:
         ActivatedRoute) {
@@ -1014,6 +1026,7 @@ segmentData = {
 
     ngOnInit() {
        this.data = this.segmentbuilderService.getSegment();
+       this.staticData = this.segmentbuilderService.getSegmentStaticDataDetail();
         this.segmentName = "Test segment"; //this.data.segmentName;
 
         for(let i=0, dataLen = this.staticData.length;i<dataLen;i++){
@@ -1084,18 +1097,21 @@ segmentData = {
         var data = {};
         var segmentModel = [];
         segmentModel.push(this.segmentForm["value"]);
-        data["model"] ={ "segments" :  segmentModel};
+      //  data["model"] ={ "segments" :  segmentModel};
+        data["segments"] = segmentModel;
+        this.onFetchExportData(data);
       }
+
 
     segmentClose = function (key) {
         delete this.items[key];
         this.segmentKeys = Object.keys(this.items);
     }
 
-    onSubmit() {
+    // onSubmit() {
 
-        console.log(this.segmentForm);
-    }
+    //     console.log(this.segmentForm);
+    // }
 
     checkStatusValid(){
         var keys = Object.keys(this.items);
@@ -1147,6 +1163,7 @@ segmentData = {
             var segmentModel = [];
             segmentModel.push(this.segmentForm["form"].getRawValue());
             segmentModel[0]["targetingChanel"] = {"value" : this.targetingChannel};
+            // data["segments"] = segmentModel;
             data["model"] ={ "segments" :  segmentModel};
             data["SegmentName"] = this.segmentName;
             data["SegmentId"] = this.editSegmentId;
@@ -1175,18 +1192,38 @@ segmentData = {
     
    
 
-    onFetchExportData() {
+    onFetchExportData(data: any) {
 
-        this.getExportSegment(this.model);
+        this.getExportSegment(data);
     }
 
     getExportSegment(data: any): void {
+        let today: any = new Date();
+        let dd: any = today.getDate();
+        let mm: any = today.getMonth() + 1;
+        let yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        today = mm + '-' + dd + '-' + yyyy;
+
+        var exportFileName = today + " " + "-" + "segmentation List";
+        var params = ""
         this.onFetchExportSegment(data)
             .subscribe(
             Results => {
+                alert('Segment Export Succesfully'+Results);
+                var blob =Results;
+			    saveAs(blob,exportFileName);
                 }
             )
     }
+
+
+    
 
     onFetchExportSegment(data: searchMemberRequest) {
         let today: any = new Date();
@@ -1204,7 +1241,10 @@ segmentData = {
         var exportFileName = today + " " + "-" + "segmentation List";
         var params = ""
         return this.http
-            .post(this.restExportItemsUrl, data, )
+            .post(this.restExportItemsUrl, data,{
+                observe: 'body',
+                responseType: 'blob',
+              } )
             .pipe(map(Results => Results));
 
     }

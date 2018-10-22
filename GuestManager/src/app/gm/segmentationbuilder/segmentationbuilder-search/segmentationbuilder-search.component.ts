@@ -24,12 +24,20 @@ export class SegmentationbuilderSearchComponent implements OnInit {
   editSegmentId = undefined;
   newSegment = "New Segment";
 
+  //
+  searchKey;
+  isSearchStarted = false;;
+
   @ViewChild('f') segmentForm:NgForm;
 
   constructor(private segmentBuilderService: SegmentBuilderService, private router: Router, private route: ActivatedRoute) {
   }
  
   ngOnInit() {
+    this.segmentBuilderService.dataIsLoading.subscribe(
+      (isLoading: boolean) => this.isSearchStarted = isLoading
+    );
+
     this.subscription = this.segmentBuilderService.segmentsChanged
       .subscribe(
       (segmentMetaDataList: segmentMetaDataList[]) => {
@@ -61,7 +69,8 @@ export class SegmentationbuilderSearchComponent implements OnInit {
     this.segmentName=this.segmentForm.value.myInput;
     let segmentMetaData = new segmentMetaDataList(true,199,this.segmentName,"","",0); 
     this.segmentBuilderService.setSegment(segmentMetaData);
-    this.router.navigate(['SegmentationBuilder/buildSegment']);
+    this.segmentBuilderService.getCreateSegmentStaticData(); 
+   // this.router.navigate(['SegmentationBuilder/buildSegment']);
   }
 
   searchQuery(searchText){

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { countMap,memberProfiler, memberSearchList } from 'src/app/gm/memberprofiler/memberprofiler.model';
-import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
+import { segmentMetaDataList, segmentStaticInputData } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
 
 @Injectable()
 export class SegmentBuilderService {
@@ -19,32 +19,13 @@ export class SegmentBuilderService {
   private memberSearchList: memberSearchList[];
   dataEdited = new BehaviorSubject<boolean>(false);
   dataIsLoading = new BehaviorSubject<boolean>(false);
+  
   dataLoadFailed = new Subject<boolean>();
   MemberSearchChanged = new Subject<memberSearchList[]>();
   memberProfilerChanged = new Subject<memberProfiler[]>();
 
-  private segments: segmentMetaDataList[] = [{
-    "count": 5,
-    "created": "09/08/2018",
-    "segmentId": 1,
-    "segmentName": "DJJSegment",
-    "successFlag": true,
-    "updated": "09/18/2018"
-  }, {
-    "count": 7,
-    "created": "09/17/2018",
-    "segmentId": 2,
-    "segmentName": "TestSegment",
-    "successFlag": true,
-    "updated": "09/20/2018"
-  }, {
-    "count": 11,
-    "created": "09/20/2018",
-    "segmentId": 3,
-    "segmentName": "test1234",
-    "successFlag": true,
-    "updated": "09/23/2018"
-  }];
+  private segments: segmentMetaDataList[] = [
+];
 
   segmentData = {   
     "segments":[{
@@ -67,6 +48,7 @@ export class SegmentBuilderService {
     }]    
   };
 
+  private segmentStaticInputData:segmentStaticInputData[];
 
 
   constructor(private httpClient: HttpClient, private http: Http, private router: Router, private route: ActivatedRoute) 
@@ -74,21 +56,74 @@ export class SegmentBuilderService {
   }
    
   getSegmentDetails(segmentId):any {
+    this.dataIsLoading.next(true);
     this.httpClient.get('GRM/segment/segmentInfo/id/'+segmentId, {
        observe: 'body',
        responseType: 'json',
      })
        .subscribe(
        (Results) => {
-       // this.segmentData=Results["model"];
-         console.log('Intercepted!', this.segmentData);
-        // this.router.navigate(['/SegmentationBuilder', segmentId, 'edit']);
+        this.segmentData=Results["model"];
+         
+         this.getSegmentStaticData(segmentId);
       return this.segmentData;
       
        },
        (error) => console.log(error)
      );
    }
+
+   getSegmentStaticData(segmentId) {
+   
+    this.httpClient.get('GRM/segment/segmentStatic/list', {
+       observe: 'body',
+       responseType: 'json',
+     })
+       .subscribe(
+       (Results: segmentStaticInputData[]) => {
+        this.segmentStaticInputData=Results;
+        this.dataIsLoading.next(false);
+       
+        
+         this.router.navigate(['/SegmentationBuilder', segmentId, 'edit']);
+      return this.segmentStaticInputData;
+      
+       },
+       (error) => 
+       {
+        this.dataIsLoading.next(false);
+        console.log(error)
+      }
+     );
+   }
+
+
+   getCreateSegmentStaticData() {
+    this.dataIsLoading.next(true);
+    this.httpClient.get('GRM/segment/segmentStatic/list', {
+       observe: 'body',
+       responseType: 'json',
+     })
+       .subscribe(
+       (Results: segmentStaticInputData[]) => {
+        this.segmentStaticInputData=Results;
+        this.dataIsLoading.next(false);
+        
+         this.router.navigate(['SegmentationBuilder/buildSegment']);
+      return this.segmentStaticInputData;
+      
+       },
+       (error) => {
+        this.dataIsLoading.next(false);
+        console.log(error)
+      }
+     );
+   }
+
+
+   getSegmentStaticDataDetail() {
+    return this.segmentStaticInputData;
+  }
 
 
    setSegmentDetail(segmentMetaDataList: segmentMetaDataList[]) {

@@ -31,7 +31,7 @@
                 </div>
                 <div class="text-click-drag" *ngIf="noneSelected">Click elements from the panel on the right</div>
                 <div id="page" class="clearfix pb20">
-                  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                  <form  #f="ngForm">
                     <ol class="list-group">
                       <li class="list-group-item" *ngFor="let itemArray of segmentKeys" [ngClass]="items[itemArray][0].section">
                         <div  class="ind-segment">
