@@ -51,7 +51,6 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     SegmentationbuilderCreateComponent,
     SegmentationbuilderEditComponent,
     SegmentationbuilderDynamicviewComponent,
-    FilterPipe,
     FilterCustomPipe,
     KeysPipe,
     KeysValuesPipe
