@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private cookieService: CookieService) { }
   loggedIn = false;
 
   isAuthenticated() {
@@ -20,13 +22,15 @@ export class AuthService {
     return promise;
   }
 
+  
+
   login(username: string, password: string) {
     return this.http.post<any>('/api/oauth2/token', "grant_type=password&username=" + username + "&password=" + password, {
-      headers: {
-        Authorization: 'Basic MjAxOTY5RTFCRkQyNDJFMTg5RkU3QjYyOTdCMUI1QTQ6QzY1QTBEQzBGMjhDNDY5RkI3Mzc2Rjk3MkRFRkJDQjk='
-      }
+     observe: 'body',
+      responseType: 'json'
     }).pipe(map(resp => {
       if (resp && resp.UserName) {
+        console.log(resp);
         this.loggedIn = true;
         localStorage.setItem('currentUser', JSON.stringify(resp));
         localStorage.setItem('TenantId', resp.TenantId);

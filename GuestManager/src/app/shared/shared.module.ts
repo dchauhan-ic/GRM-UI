@@ -5,7 +5,7 @@ import { ShortenPipe } from './pipes/shorten.pipe';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AuthGuardService } from 'src/app/shared/auth/auth-guard.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-
+import { CookieService } from 'ngx-cookie-service'
 
 @NgModule({
   declarations: [
@@ -19,6 +19,6 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
     DropdownDirective
   ],
   
-  providers: [ AuthService, AuthGuardService],
+  providers: [ CookieService,AuthService, AuthGuardService],
 })
 export class SharedModule {}

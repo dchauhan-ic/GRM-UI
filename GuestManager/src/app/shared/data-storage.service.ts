@@ -3,16 +3,55 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';;
 import 'rxjs/Rx';
 import {   searchMemberRequest } from '../gm/gm.model';
 import { GmService } from '../gm/gm.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { segmentMetaDataList } from 'src/app/gm/segmentationbuilder/segmentationbuilder.model';
 import { SegmentBuilderService } from 'src/app/gm/segmentationbuilder/segmentationbuilder.service';
 import { countMap, memberSearchList, memberProfiler, memberDemographicList, memberPromotionList, memberCampaignSummary, memberSmsDetail, memberSmsSummary, memberInfo } from 'src/app/gm/memberprofiler/memberprofiler.model';
-
+import { first, map } from 'rxjs/operators';
 import { MemberProfilerService } from 'src/app/gm/memberprofiler/memberprofiler.service';
+import { menuList } from 'src/app/shared/menu.model';
 
 @Injectable()
 export class DataStorageService {
+  dataIsLoading = new BehaviorSubject<boolean>(false);
 
   constructor(private httpClient: HttpClient, private appTemplateService: GmService, private segmentBuilderService: SegmentBuilderService,private MemberProfilerService: MemberProfilerService) {
+  }
+
+  // onFetchMenuTest(memberId) {
+  //   this.httpClient.get('api/odata/NavigationMenus/Default.GetLoginMenuItems?$orderby=SortOrder', {
+  //     observe: 'body',
+  //     responseType: 'json',
+  //   })
+  //     .subscribe(
+  //     (Results => Results) => {
+
+      
+       
+  //     },
+  //     (error) => console.log(error)
+  //     );
+  //   }
+
+  // onFetchMenuTest() { 
+  //   return this.httpClient
+  //     .get('api/odata/NavigationMenus/Default.GetLoginMenuItems?$orderby=SortOrder',)
+  //     .pipe(map(Results => Results));
+  
+  //  }
+
+
+   onFetchMenuTest() {
+    this.httpClient.get('api/odata/NavigationMenus/Default.GetLoginMenuItems?$orderby=SortOrder', {
+      observe: 'body',
+      responseType: 'json',
+    })
+      .subscribe(
+      (response: menuList) => {
+        this.MemberProfilerService.setMenuList(response);
+      },
+      (error) => console.log(error)
+      );
   }
 
   getMemberProfilerList(data: searchMemberRequest) {
@@ -70,17 +109,25 @@ export class DataStorageService {
   }
 
   onFetchMemberTest(data: searchMemberRequest) {
+    this.dataIsLoading.next(true);
     this.httpClient.post('GRM/member/search', data, {
       observe: 'body',
       responseType: 'json',
     })
       .subscribe(
       (response: memberProfiler) => {
+        this.dataIsLoading.next(false);
         this.MemberProfilerService.setMemberProfiler(response);
       },
-      (error) => console.log(error)
+      (error) => {
+        this.dataIsLoading.next(false);
+        console.log(error)
+      }
       );
   }
+
+
+  
 
   // onFetchMemberInfo(memberId) {
   //   return this.httpClient
@@ -213,5 +260,34 @@ export class DataStorageService {
   //     .pipe(map(Results => Results));
   
   //  }
-  
+
+
+  // logout(){
+     	 
+  //   resetCache($cookies);        	         	
+  //   $location.path("/login");
+  // },function(){
+  //   hideLoader();
+  //   resetCache($cookies);  //To clean the desired localstorage.
+  //     $location.path("/login");
+  // });
+
+
+ CleanLocalStorage()
+{
+localStorage.removeItem(location.hostname+"");
+localStorage.removeItem(location.hostname+"");   
+localStorage.removeItem('currentGame'); 	
+}
+
+
+ getAccessToken(token){
+if (token == "undefined" || token == "null" || token == null ) {
+
+} else {
+    //getALLMenu(UserName);
+
+}
+ }
+
 }
