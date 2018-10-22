@@ -446,6 +446,7 @@ h2.x-title div{ font-size:18px}
 
 .Fixed_popcloseButton{ padding:0 10px 0 0;float:right;cursor:pointer}
 .Fixed_popcloseButton{position:absolute;z-index:10;right:10px;top:15px}
+//dj
 .Fixed_popcloseButton i.fa:before,.blur.abs i.fa-times:before,.icon-close .fa.fa-times:before{ font-size:0}
 .blur.vertical{top:30%;-webkit-transform:translateY(-40%);-ms-transform:translateY(-40%);transform:translateY(-40%)}
 .Fixed_popcloseButton i.fa,.blur.abs i.fa-times, .icon-close .fa.fa-times { cursor:pointer; background:url(../imgs/sprite-3.png) no-repeat -7px -104px;background-size:320px auto !important;width: 17px;height: 17px}
@@ -597,3 +598,299 @@ h2.x-title div{ font-size:18px}
 }
 /* LOADER : ENDS */
 .navbar { margin-bottom: 0 !important; }
+/*DJ ADded Some Menu Class please check and verify  */
+#rp.header {
+	background: #DE333C;
+	height: auto;
+	display: inline-block;
+	box-shadow: 0 -0.25em 0.5em rgba(0,0,0,0.1) inset;
+	width:100%;
+}
+
+#rp #mainlogo {
+	background: transparent;
+	max-width: 100%;
+	height: auto;
+	width: auto;
+}
+
+#rp #mainlogo .logo_small {
+	height: 52px;
+	width: auto;
+	margin: 0.5em 0;
+	float: left;
+}
+
+.x-iconshow span {
+	font-weight: 420;
+}
+
+#topmenu.level1 {
+	display: flex;
+	width: 100%;
+	margin-top: 0.5em;
+}
+
+#topmenu.level1 li {
+	flex: 1;
+	position: relative;
+}
+
+#topmenu.level1 li a {
+	font-weight: 420;
+	font-size: 1.175em;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+}
+
+#topmenu.level1 li:hover a {
+	background-color: #ca252d;
+}
+
+#topmenu.level1 li.partialActive a {
+	background-color: #B61B22 ;
+}
+
+#topmenu.level1 li .shadow {
+	left: 0;
+	right: auto;
+	overflow: visible;
+}
+
+#topmenu.level1 li:nth-child(1) .shadow, #topmenu.level1 li:nth-child(2) .shadow, #topmenu.level1 li:nth-child(3) .shadow, #topmenu.level1 li:nth-child(4) .shadow {
+	left: 0;
+	right: auto;
+}
+
+#topmenu.level1 li:nth-child(5) .shadow, #topmenu.level1 li:nth-child(6) .shadow, #topmenu.level1 li:nth-child(7) .shadow, #topmenu.level1 li:nth-child(8) .shadow {
+	left: auto;
+	right: 0;
+}
+
+/*** Special position for settings cause its super wide ***/
+#topmenu.level1 li:nth-child(6) .shadow {
+	left: auto;
+	right: -15vw;
+}
+
+#topmenu.level1 li:last-child .shadow {
+	left: auto;
+	right: 0;
+}
+
+#topmenu.level1 li table a {
+	text-align: left;
+}
+.navbar { margin-bottom: 0 !important; }
+
+
+#lp.sidebar{width:100%;clear:both;height:0}
+
+.footer_popup{clear:both;border-top:1px solid #ddd;padding:10px 10px 0;overflow:hidden; margin:10px 0 0}
+.footer_popup div{ text-align:right !important; padding:0}
+#topmenu.level1{list-style:none;margin:0;padding:0;position:relative}
+#topmenu.level1 li{float:left;display:inline-block}
+#topmenu.level1 li a{display:inline-block;padding:0 9px;text-align:left;color:#fff;font-size:14px;text-transform:capitalize;line-height:60px;vertical-align:middle}
+#topmenu.level1 > li:hover > a{background-color:#034c94}
+#topmenu.level1 li.partialActive a{background:#0872dc}
+#topmenu.level1 li.active a{background:#325a83}
+#topmenu.level1 li .shadow{background:rgba(255,255,255,0.97);list-style:none;margin:0;padding:10px 15px;border:1px solid #c3ccd6;position:absolute;z-index:9999999999;display:none;left:20px;-webkit-box-shadow:0px 0px 5px 3px rgba(0,0,0,0.15);-moz-box-shadow:0px 0px 5px 3px rgba(0,0,0,0.15);box-shadow:0px 0px 5px 3px rgba(0,0,0,0.15);border-top:0;/*width:194%;max-width:750px;*/border-radius:0 0 5px 5px;overflow:hidden}
+#topmenu.level1 li:hover .shadow{display:block;min-height:200px}
+#topmenu.level1 li.Loyalty .shadow{min-height:200px}
+#topmenu.level1 li.Analytics .shadow{min-height:150px}
+#topmenu.level1 li ul.level2{list-style:none;margin:0;padding:0;min-height:200px}
+#topmenu.level1 li.Loyalty ul.level2{min-height:150px}
+#topmenu.level1 li ul.level2 li{display:block;width:190px;border-bottom:1px solid #ccc;margin:0;clear:both;position:relative}
+#topmenu.level1 li ul.level2 li img{display:none;visibility:hidden}
+#topmenu.level1 li ul.level2 li a{line-height:normal;background:none;color:#000;padding:10px 0}
+#topmenu.level1 li ul.level2 li span{color:#4F9DFB;display:block;text-align:left;text-transform:capitalize;font-weight:500;font-size:14px}
+#topmenu.level1 ul.level2 li ul li *{color:#666}
+#topmenu.level1 ul.level2 li ul li *:hover{color:#4F9DFB}
+#topmenu.level1 ul.level2 li *{border:0 !important}
+#topmenu.level1 li table{height:100%;min-height:100%;display:block}
+#topmenu.level1 li table td{padding:0 30px 0 0;height:100%;min-height:100%;min-width:190px}
+#topmenu.level1 li.Marketing_bottom_icon > div { max-width: 680px !important }
+
+/* icon */
+#topmenu.level1 li.Analytics table td.menuicon{background:#fff url(../imgs/menu-icons/analytics.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Marketing_bottom_icon table td.menuicon {background: #fff url(../imgs/menu-icons/marketing.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Marketing table td.menuicon{background:#fff url(../imgs/menu-icons/marketing.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Loyalty table td.menuicon{background:#fff url(../imgs/menu-icons/loyalty.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Mobile table td.menuicon{background:#fff url(../imgs/menu-icons/mobile.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Stores table td.menuicon{background:#fff url(../imgs/menu-icons/stores.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Settings table td.menuicon{background:#fff url(../imgs/menu-icons/setting.png) no-repeat center top; background-size:70% auto}
+#topmenu.level1 li.Settings_bottom_icon table td.menuicon{ background: #fff url(../imgs/menu-icons/setting.png) center top; background-size:70% auto}
+/* icon */
+
+#topmenu.level1 li:nth-child(2) .shadow{left:15px}
+#topmenu.level1 li:nth-child(3) .shadow{left:115px}
+#topmenu.level1 li:nth-child(4) .shadow{left:202px}
+#topmenu.level1 li:nth-child(5) .shadow{left:268px}
+#topmenu.level1 li:nth-child(6) .shadow{left:331px}
+#topmenu.level1 li:nth-child(7) .shadow{left:331px}
+#topmenu.level1 li:nth-child(8) .shadow{left:331px}
+#topmenu.level1 li ul.level3 li ul.level4{display:none;margin:0;overflow:hidden;position:absolute;z-index:9999999999999999;left:auto;right:-70%;top:-10px;background:#fff;border:3px solid rgba(0,167,226,0.75) !important;border-radius:5px;-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);padding:10px 0 0}
+#topmenu.level1 li ul.level3 li .arrowright{width: 0;height: 0;border-style: solid;border-width: 7.5px 10px 7.5px 0;border-color: transparent #00a6e2 transparent transparent;position:absolute;top:10px;left:-14px}
+#topmenu.level1 li ul.level3 li.grosssales-hidden ul.level4{top:-100px}
+#topmenu.level1 li ul.level3 li:hover ul.level4{display:block}
+#topmenu.level1 li ul.level3 li ul.level4 *{font-style:italic}
+#topmenu.level1 li ul.level3 li a{padding:10px 0;margin:-5px 0 0}
+
+#topmenu.level1 ul.level2 li ul li.managetemplates-hidden{visibility:hidden;display:none}
+#lp .x-collapse{position:absolute;bottom:50px;padding:0;text-align:center;border-top:1px solid #222;width:100%;display:none;visibility:hidden}
+#lp .x-collapse button{border:0;/*background:transparent url(../imgs/sprite.png) no-repeat -127px -617px;*/color:#fff;border-top:1px solid #444;padding:20px 1px;display:block;width:100%;background-size:550% auto;max-width:50px;margin:0 auto}
+#lp .x-collapse button.collapse{/*background:transparent url(../imgs/sprite.png) no-repeat -47px -617px;*/color:#fff;border-top:1px solid #444;padding:20px 1px;display:block;width:100%;background-size:550% auto;max-width:50px;margin:0 auto}
+#lp .x-collapse button.nocollapse{/*background:transparent url(../imgs/sprite.png) no-repeat -127px -617px;*/color:#fff;border-top:1px solid #444;padding:20px 1px;display:block;width:100%;background-size:550% auto;max-width:50px;margin:0 auto}
+table{width:100%;margin:0;padding:0;border-collapse:collapse;border-spacing:0}
+table.table-resp {border:1px solid #ccc;margin:20px 0 0}
+table.table-resp tr {border:1px solid #ccc;padding:5px;background:#fff}
+table.table-resp tr:nth-child(2n),table.table-resp tr:nth-child(2n) td{background:#f9f9f9}
+table.table-resp th,table.table-resp td {padding:5px 10px;text-align:left;font-size:10px}
+table.table-resp th {text-transform:capitalize;font-size:10px;letter-spacing:1px;background:#eee;color:#3d424c;text-shadow:1px 1px 0 rgba(255,255,255,0.5);padding:17px 10px 13px}
+table.table-resp tr .table-maxheight{max-height:12px;overflow:hidden}
+table.table-resp tbody tr td *{font-size:12px;color:#555}
+@media screen and (max-width:800px) {table.table-resp {border:0}
+table.table-resp thead {display:none}
+table.table-resp tr {margin-bottom:10px;display:block}
+table.table-resp tr:after {content:"";display:table;clear:both}
+table.table-resp tr:before {display:block;border-bottom:1px solid #ccc}
+table.table-resp td {box-sizing:border-box;display:block;float:left;clear:left;width:100%;text-align:right;font-size:13px;border-bottom:1px solid #ccc}
+table.table-resp td:last-child {border-bottom:0}
+table.table-resp td:before {content:attr(data-label);float:left}
+}
+.table-resp.reverse th{background:#fff}
+.table-resp.reverse tr,.table-resp.reverse tr td{background:#f9f9f9}
+.table-resp.reverse tr:nth-child(2n),.table-resp.reverse  tr:nth-child(2n) td{background:#fff}
+.overflowscroll{height:500px; overflow:hidden; overflow-y:scroll}
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&                                                                    SPRITE CSS&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/img.icons{/*background:url(../imgs/sprite.png) no-repeat 0 0;*/margin:0}
+#settings_btn.themes{width:26px; height:26px; display: inline-block}
+#settings_btn.themes img{width:100%; height:100%}
+.icons.left{width:26px;height:26px}
+.icons.dash{background-position:0 -26px}
+.icons.email{background-position:-36px -26px}
+.icons.sms{background-position:-70px -26px}
+.icons.push{background-position:-110px -26px}
+.icons.pass{background-position:-140px -26px}
+a.x-iconshow{display:block;text-align:center;line-height:60px;vertical-align:middle;margin:0}
+.profile a.x-iconshow{margin:0}
+.x-iconshow span{color:#fff;font-size:12px;padding:25px 0 0}
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+* {
+	font-family: "Roboto", sans-serif !important;
+}
+
+#rp.header {
+	background: #DE333C;
+	height: auto;
+	display: inline-block;
+	box-shadow: 0 -0.25em 0.5em rgba(0,0,0,0.1) inset;
+}
+
+#rp #mainlogo {
+	background: transparent;
+	max-width: 100%;
+	height: auto;
+	width: auto;
+}
+
+#rp #mainlogo .logo_small {
+	height: 52px;
+	width: auto;
+	margin: 0.5em 0;
+	float: left;
+}
+
+.x-iconshow span {
+	font-weight: 420;
+}
+
+#topmenu.level1 {
+	display: flex;
+	width: 100%;
+	margin-top: 0.5em;
+}
+
+#topmenu.level1 li {
+	flex: 1;
+	position: relative;
+}
+
+#topmenu.level1 li a {
+	font-weight: 420;
+	font-size: 1.175em;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+}
+
+#topmenu.level1 li:hover a {
+	background-color: #ca252d;
+}
+
+#topmenu.level1 li.partialActive a {
+	background-color: #B61B22 ;
+}
+
+#topmenu.level1 li .shadow {
+	left: 0;
+	right: auto;
+	overflow: visible;
+}
+
+#topmenu.level1 li:nth-child(1) .shadow, #topmenu.level1 li:nth-child(2) .shadow, #topmenu.level1 li:nth-child(3) .shadow, #topmenu.level1 li:nth-child(4) .shadow {
+	left: 0;
+	right: auto;
+}
+
+#topmenu.level1 li:nth-child(5) .shadow, #topmenu.level1 li:nth-child(6) .shadow, #topmenu.level1 li:nth-child(7) .shadow, #topmenu.level1 li:nth-child(8) .shadow {
+	left: auto;
+	right: 0;
+}
+
+/*** Special position for settings cause its super wide ***/
+#topmenu.level1 li:nth-child(6) .shadow {
+	left: auto;
+	right: -15vw;
+}
+
+#topmenu.level1 li:last-child .shadow {
+	left: auto;
+	right: 0;
+}
+
+#topmenu.level1 li table a {
+	text-align: left;
+}
+
+.mt5 {
+	margin-top: 9px !important;
+	padding-left: 0.75em !important;
+}
+
+h1.x-title ul.filter_icon {
+	margin-top: 0 !important;
+}
+
+.box {
+	border: 0 none;
+	box-shadow: 0 0.0925em 0.2em rgba(0,0,0,0.15);
+	border-radius: 0.25em;
+}
+.container .cockpit .x-search-out {
+	margin-top: 70px;
+}
+@media (min-width: 992px) and (max-width: 1200px){
+	.col-md-4_5,.col-md-3_5{
+		float: left;
+	}
+	.col-md-4_5{
+		width: 38%;
+	}
+	.col-md-3_5{
+		width: 24%;
+	}
+}
