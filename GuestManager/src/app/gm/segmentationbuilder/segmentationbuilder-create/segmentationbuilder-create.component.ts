@@ -1092,16 +1092,16 @@ segmentData = {
         this.segmentKeys = Object.keys(this.items);
     }
 
-    
-    exportSegment(){
+
+      exportSegment = function () {
         var data = {};
         var segmentModel = [];
-        segmentModel.push(this.segmentForm["value"]);
-      //  data["model"] ={ "segments" :  segmentModel};
+        segmentModel.push(this.segmentForm["form"].getRawValue());
+        //  data["model"] ={ "segments" :  segmentModel};
         data["segments"] = segmentModel;
         this.onFetchExportData(data);
-      }
-
+    }
+    
 
     segmentClose = function (key) {
         delete this.items[key];
