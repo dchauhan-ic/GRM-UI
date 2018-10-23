@@ -1101,7 +1101,7 @@ segmentData = {
         data["segments"] = segmentModel;
         this.onFetchExportData(data);
     }
-    
+
 
     segmentClose = function (key) {
         delete this.items[key];
@@ -1161,14 +1161,38 @@ segmentData = {
         else{
             var data = {};
             var segmentModel = [];
-            segmentModel.push(this.segmentForm["form"].getRawValue());
+            let segmentData = this.getProperData();
+            segmentModel.push(segmentData);
             segmentModel[0]["targetingChanel"] = {"value" : this.targetingChannel};
-            // data["segments"] = segmentModel;
+             // data["segments"] = segmentModel;
             data["model"] ={ "segments" :  segmentModel};
             data["SegmentName"] = this.segmentName;
             data["SegmentId"] = this.editSegmentId;
            // this.onStoreSegment(data);
         }
+    }
+
+    getProperData(){
+
+        let segmentData = this.segmentForm["form"].getRawValue();
+        let keys = Object.keys(segmentData);
+        var j:any;
+        var k:any;
+        for(j in keys) {
+            let key = keys[j];
+            var items = segmentData[key].value;
+            if(typeof(items) == "object"){
+                if(typeof(items[0]) == "object"){
+                    let newValues = [];
+                    for(k in items) {
+                        newValues.push(items[k].value);
+                    }
+                    segmentData[key].value = newValues;
+                }
+            }
+        
+        }
+        return segmentData; 
     }
 
     
