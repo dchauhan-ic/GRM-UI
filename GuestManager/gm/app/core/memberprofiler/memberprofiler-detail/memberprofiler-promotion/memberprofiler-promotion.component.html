@@ -1,0 +1,239 @@
+  <div class="panel-body">
+    <div class="container-fluid">
+      <div class="row"  *ngIf="promotionActivityData && ( !promotionActivityData.memberId || promotionActivityData.memberId == 0)" >
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="row" *ngIf="promotionActivityData && promotionActivityData.memberId">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Promotions Issued:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.promotionIssued === '' || promotionActivityData.promotionIssued === null">No data</span>
+              {{promotionActivityData.promotionIssued}}</dd>
+
+            <dt>Promotions Redeemed:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.promotionRedemmed === '' || promotionActivityData.promotionRedemmed === null">No data</span>
+              {{promotionActivityData.promotionRedemmed}}</dd>
+
+            <dt>Promotions Expired:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.promotionExpired === '' || promotionActivityData.promotionExpired === null">No data</span>
+              {{promotionActivityData.promotionExpired}}</dd>
+          </dl>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Promotions Rejected:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.promotionRejeted === '' || promotionActivityData.promotionRejeted === null">No data</span>
+              {{promotionActivityData.promotionRejeted}}</dd>
+
+            <dt>Net Sales:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.netSales === '' || promotionActivityData.netSales === null">No data</span>
+              <span class="data" *ngIf="promotionActivityData.netSales === 0">{{promotionActivityData.netSales| currency : "$" : 0}}</span>
+              <span class="data" *ngIf="promotionActivityData.netSales !== 0">{{promotionActivityData.netSales | currency}}</span>
+            </dd>
+
+            <dt>Average Check Size:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.averageCheckSize === '' || promotionActivityData.averageCheckSize === null || promotionActivityData.averageCheckSize === 'NaN'">No data</span>
+              <span class="data" *ngIf="promotionActivityData.averageCheckSize === 0">{{promotionActivityData.netSales| currency : "$" : 0}}</span>
+              <span class="data" *ngIf="promotionActivityData.averageCheckSize !== 'NaN' && promotionActivityData.averageCheckSize !== 0">{{promotionActivityData.averageCheckSize | currency}}</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Discount Average:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.discountAverage === '' || promotionActivityData.discountAverage === null || promotionActivityData.discountAverage === 'NaN'">No data</span>
+              <span class="data" *ngIf="promotionActivityData.discountAverage === 0">{{promotionActivityData.discountAverage| currency : "$" : 0}}</span>
+              <span class="data" *ngIf="promotionActivityData.discountAverage !== 'NaN' && promotionActivityData.discountAverage !== 0">{{promotionActivityData.discountAverage | currency}}</span>
+            </dd>
+
+            <dt>Discount %:</dt>
+            <dd>
+              <span class="no-data" *ngIf="promotionActivityData.discountPercentage === '' || promotionActivityData.discountPercentage === null || promotionActivityData.discountPercentage === 'NaN'">No data</span>
+              <span class="data" *ngIf="promotionActivityData.discountPercentage === 0">{{promotionActivityData.discountPercentage}}%</span>
+              <span class="data" *ngIf="promotionActivityData.discountPercentage !== 'NaN' && promotionActivityData.discountPercentage !== 0 && promotionActivityData.discountPercentage !== null">{{promotionActivityData.discountPercentage }}%</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-12">
+          <h6>Last Successful Redemption</h6>
+        </div>
+      </div>
+      <div class="row" *ngIf = "promotionActivityData && promotionActivityData.memberId">
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Offer Name:</dt>
+            <dd>
+              <span class="no-data" *ngIf="!promotionActivityData.lastSuccessfulRedemption || promotionActivityData.lastSuccessfulRedemption.offerName === '' || promotionActivityData.lastSuccessfulRedemption.offerName === null">No data</span>
+              {{promotionActivityData.lastSuccessfulRedemption.offerName}}</dd>
+
+            <dt>Discount Amount:</dt>
+            <dd>
+              <span class="no-data" *ngIf="!promotionActivityData.lastSuccessfulRedemption || promotionActivityData.lastSuccessfulRedemption.discountAmount === '' || promotionActivityData.lastSuccessfulRedemption.discountAmount === null">No data</span>
+              {{promotionActivityData.lastSuccessfulRedemption.discountAmount | currency}}</dd>
+          </dl>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Date:</dt>
+            <dd>
+              <span class="no-data" *ngIf="!promotionActivityData.lastSuccessfulRedemption || promotionActivityData.lastSuccessfulRedemption.date === '' || promotionActivityData.lastSuccessfulRedemption.date === null">No data</span>
+              {{promotionActivityData.lastSuccessfulRedemption.date}}</dd>
+          </dl>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Location:</dt>
+            <dd>
+              <span class="no-data" *ngIf="!promotionActivityData.lastSuccessfulRedemption || promotionActivityData.lastSuccessfulRedemption.location === '' || promotionActivityData.lastSuccessfulRedemption.location === null">No data</span>
+              {{promotionActivityData.lastSuccessfulRedemption.location}}</dd>
+          </dl>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>Amount:</dt>
+            <dd>
+              <span class="no-data" *ngIf="!promotionActivityData.lastSuccessfulRedemption || promotionActivityData.lastSuccessfulRedemption.amount === '' || promotionActivityData.lastSuccessfulRedemption.amount === null">No data</span>
+              {{promotionActivityData.lastSuccessfulRedemption.amount | currency}}</dd>
+          </dl>
+        </div>
+      </div>
+      <!-- <div class="row mt-4">
+          <div class="col-lg-12">
+            <h6>Last Rejected Redemption</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Offer Name:</dt>
+              <dd><span class="no-data" *ngIf="promotionActivityData.lastRejectedRedemption.offerName === '' || promotionActivityData.promotionsIssued === null">No data</span>
+              {{promotionActivityData.lastRejectedRedemption.offerName}}</dd>
+  
+              <dt>Reason:</dt>
+              <dd><span class="no-data" *ngIf="promotionActivityData.lastRejectedRedemption.reason === '' || promotionActivityData.lastRejectedRedemption.reason === null">No data</span>
+                {{promotionActivityData.lastRejectedRedemption.reason}}</dd>
+            </dl>
+          </div>
+  
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Date:</dt>
+              <dd><span class="no-data" *ngIf="promotionActivityData.lastRejectedRedemption.date === '' || promotionActivityData.lastRejectedRedemption.date === null">No data</span>
+                {{promotionActivityData.lastRejectedRedemption.date}}</dd>
+            </dl>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Location:</dt>
+              <dd><span class="no-data" *ngIf="promotionActivityData.lastRejectedRedemption.location === '' || promotionActivityData.lastRejectedRedemption.location === null">No data</span>
+                {{promotionActivityData.lastRejectedRedemption.location}}</dd>
+            </dl>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            &nbsp;
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-12">
+            <h6>Offers Issued But Not Redeemed or Expired</h6>
+          </div>
+        </div>
+        <div class="tablegrid-wrap mt-0">
+          <div class="table-wrap table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Issue Date</th>
+                  <th>Exp Date</th>
+                  <th>Offer Id</th>
+                  <th width="300">Offer Name</th>
+                  <th>Promo Code</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr dir-paginate="userDetail in promotionDetails |orderBy:sortKey:reverse|filter:search|itemsPerPage:6">
+                  <td>{{userDetail.issueDate}}</td>
+                  <td>{{userDetail.expDate}}</td>
+                  <td>{{userDetail.offerId}}</td>
+                  <td width="300">{{userDetail.offerName}}</td>
+                  <td>{{userDetail.promoCode}}</td>
+                  <td>{{userDetail.type}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination-wrap">
+            <dir-pagination-controls max-size="6" direction-links="true" boundary-links="true"  class="">
+            </dir-pagination-controls>
+          </div>
+        </div> -->
+      <!-- /grid table wrapper -->
+    </div>
+  </div>

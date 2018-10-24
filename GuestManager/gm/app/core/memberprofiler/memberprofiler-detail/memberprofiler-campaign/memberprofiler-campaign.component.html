@@ -1,0 +1,401 @@
+<div class="panel-body">
+    <div class="container-fluid">
+      <div class="row" *ngIf="campaignSummary && !campaignSummary.subscriptionStatus">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div *ngIf="campaignSummary && campaignSummary.subscriptionStatus">
+        <div class="row">
+          <div class="col-lg-12">
+            <h6>Email</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Subscription Status:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.subscriptionStatus === '' || campaignSummary.subscriptionStatus === null">No data</span>
+                {{campaignSummary.subscriptionStatus}}</dd>
+
+              <dt>Status Change Date:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.statusChangeDate === '' || campaignSummary.statusChangeDate === null">No data</span>
+                {{campaignSummary.statusChangeDate}}</dd>
+
+              <dt>Emails Sent:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.campaignsSent === '' || campaignSummary.campaignsSent === null">No data</span>
+                {{campaignSummary.campaignsSent}}</dd>
+            </dl>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Open Rate:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.openRate === '' || campaignSummary.openRate === null || campaignSummary.openRate === 'NaN'">No data</span>
+                <span class="data" *ngIf="campaignSummary.openRate === 0">{{campaignSummary.openRate}}%</span>
+                <span class="data" *ngIf="campaignSummary.openRate !== 'NaN' && campaignSummary.openRate !== 0">{{campaignSummary.openRate }}%</span>
+              </dd>
+
+              <dt>Click:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.click === '' || campaignSummary.click === null">No data</span>
+                {{campaignSummary.click}}</dd>
+
+              <dt>Click Rate:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.clickRate === '' || campaignSummary.clickRate === null || campaignSummary.clickRate === 'NaN'">No data</span>
+                <span class="data" *ngIf="campaignSummary.clickRate === 0">{{campaignSummary.clickRate}}%</span>
+                <span class="data" *ngIf="campaignSummary.clickRate !== 'NaN' && campaignSummary.clickRate !== 0">{{campaignSummary.clickRate }}%</span>
+              </dd>
+            </dl>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Number of Bounced Email:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.numberOfBouncedMail === '' || campaignSummary.numberOfBouncedMail === null">No data</span>
+                {{campaignSummary.numberOfBouncedMail}}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <dl class="dl-horizontal">
+              <dt>Open:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.open === '' || campaignSummary.open === null">No data</span>
+                {{campaignSummary.open}}
+              </dd>
+
+              <dt>First Email Received:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.firstEmailReceived === '' || campaignSummary.firstEmailReceived === null">No data</span>
+                {{campaignSummary.firstEmailReceived}}</dd>
+
+              <dt>Last Email Received:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.lastEmailReceived === '' || campaignSummary.lastEmailReceived === null">No data</span>
+                {{campaignSummary.lastEmailReceived}}</dd>
+
+              <dt>Last Email Opened:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.lastEmailOpened === '' || campaignSummary.lastEmailOpened === null">No data</span>
+                {{campaignSummary.lastEmailOpened}}</dd>
+
+              <dt>Last Email Clicked:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSummary.lastEmailClicked === '' || campaignSummary.lastEmailClicked === null">No data</span>
+                {{campaignSummary.lastEmailClicked}}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <!-- grid table wrapper -->
+      <div class="tablegrid-wrap" *ngIf="campaignDetails">
+        <!-- <div class="table-controls">
+                <form class="form-inline">
+                  <div class="form-group">
+                    <label for="exampleInputName2">Name</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail2">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                  </div>
+                  <button type="submit" class="btn btn-default">Send invitation</button>
+                </form>
+                    
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div class="form-in-line custom">
+                      <div class="form-group">
+                        <label for="">Send Email:</label>
+                        <input type="text" ng-model="search" class="form-input" placeholder="Search by Id, Currency, Amount or Date" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
+                </div>
+              </div> -->
+
+
+        <!-- <div class="table-controls row">
+                <div class="form-input-wrap inline">
+                  <input type="text" ng-model="search" class="form-input" placeholder="Search by Id, Currency, Amount or Date" />
+                </div>
+              </div> -->
+
+        <div class="table-wrap table-responsive">
+          <table class="table table-striped">
+            <!--ng-show="showResults"-->
+            <thead>
+              <tr>
+                <th width="120">Date Sent</th>
+                <th width="500">Subject</th>
+                <th>Type</th>
+                <th>Opened</th>
+                <!-- <th>Clicked</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="campaignDetails.length === 0">
+                <td colspan="5" class="text-center no-data">No records exist</td>
+              </tr>
+              <tr *ngIf="campaignDetails.length > 0" dir-paginate="campaignDetail in campaignDetails|orderBy:orderByDate|filter:search|itemsPerPage:6" pagination-id="campaignEmailDetails">
+                <td width="120">{{campaignDetail.dateSent}}</td>
+                <td width="500">{{campaignDetail.mailSubject}}</td>
+                <td>{{campaignDetail.type}}</td>
+                <td>
+                  {{campaignDetail.mailOpened}}
+                  <span *ngIf="campaignDetail && campaignDetail.mailOpenDate !== null">
+                    - {{campaignDetail.mailOpenDate}}
+                  </span>
+                </td>
+                <!-- <td>
+                        <span class="no-data" *ngIf="campaignDetail.clicked === '' && campaignDetail.clickedDate === '' || campaignDetail.clicked === null && campaignDetail.clickedDate === null" pagination-id="campaignEmailDetails">
+                          No data
+                        </span>
+                        <span class="data" *ngIf="campaignDetail.clicked === null && campaignDetail.clickedDate === null">
+                          {{campaignDetail.clicked}}
+                          <span *ngIf="campaignDetail.clickedDate !== null">
+                            - {{campaignDetail.clickedDate}}
+                          </span>
+                        </span>
+                      </td> -->
+                <!-- <td>{{campaignDetail.redeemed}}</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-wrap">
+
+        </div>
+      </div>
+      <!-- /grid table wrapper -->
+
+      <div class="divider">
+        <hr />
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>SMS</h6>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-lg-12">
+          &nbsp;
+        </div>
+      </div>
+      <div class="row" *ngIf="campaignSmsSummary && !campaignSmsSummary.memberId">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <dl class="dl-horizontal">
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+            <dt>
+              <div class='text-input__loading--line'></div>
+            </dt>
+            <dd>
+              <div class='text-input__loading--line'></div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="" *ngIf="campaignSmsSummary && ( campaignSmsSummary.memberId || campaignSmsSummary.memberId == 0) ">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Subscription Status:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSmsSummary.subscriptionStatus === '' || campaignSmsSummary.subscriptionStatus === null">No data</span>
+                {{campaignSmsSummary.subscriptionStatus}}</dd>
+            </dl>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Status Change Date:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSmsSummary.statusChangeDate === '' || campaignSmsSummary.statusChangeDate === null">No data</span>
+                {{campaignSmsSummary.statusChangeDate}}</dd>
+            </dl>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>SMS Sent:</dt>
+              <dd>
+                <span class="no-data" *ngIf="campaignSmsSummary.smsSent === '' || campaignSmsSummary.smsSent === null">No data</span>
+                {{campaignSmsSummary.smsSent}}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <dl class="dl-horizontal">
+              <dt>First SMS Sent:</dt>
+              <dd>
+                {{campaignSmsSummary.firstSmsSent}}
+                <span class="data" *ngIf="campaignSmsSummary.firstCampaignName !== null">
+                  - {{campaignSmsSummary.firstCampaignName}}
+                </span>
+
+                <span class="no-data" *ngIf="campaignSmsSummary.firstSmsSent === '' && campaignSmsSummary.firstCampaignName === '' || campaignSmsSummary.firstSmsSent === null && campaignSmsSummary.firstCampaignName === null">
+                  No data
+                </span>
+              </dd>
+
+              <dt>Last SMS Sent:</dt>
+              <dd>
+                {{campaignSmsSummary.lastSmsSent}}
+                <span class="data" *ngIf="campaignSmsSummary.lastCampaignName !== null">
+                  - {{campaignSmsSummary.lastCampaignName}}
+                </span>
+                <span class="no-data" *ngIf="campaignSmsSummary.lastSmsSent === '' && campaignSmsSummary.lastCampaignName === '' || campaignSmsSummary.lastSmsSent === null && campaignSmsSummary.lastCampaignName === null">
+                  No data
+                </span>
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- grid table wrapper -->
+        <div class="tablegrid-wrap">
+          <div class="table-wrap table-responsive">
+            <table class="table table-striped">
+              <!--ng-show="showResults"-->
+              <thead>
+                <tr>
+                  <th>Date Sent</th>
+                  <th>Campaign</th>
+                  <th>Campaign Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="campaignSmsDetails.length === 0">
+                  <td colspan="3" class="text-center no-data">No records exist</td>
+                </tr>
+                <tr *ngFor="let userDetail of campaignSmsDetails" >
+                  <td>{{userDetail.dateSent}}</td>
+                  <td>{{userDetail.campaignName}}</td>
+                  <td>{{userDetail.campaignType}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination-wrap">
+
+          </div>
+        </div>
+        <!-- /grid table wrapper -->
+      </div>
+
+    </div>
+  </div>
+  <!-- /panel body -->
