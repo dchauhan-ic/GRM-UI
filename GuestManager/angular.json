@@ -23,7 +23,7 @@
             "polyfills": "gm/polyfills.ts",
             "tsConfig": "gm/tsconfig.app.json",
             "assets": [
-              "gm/favicon.ico",
+              "gm/fb-favicon.ico",
               "gm/assets"
             ],
             "styles": [
