@@ -7,8 +7,8 @@ import { GmComponent } from 'gm/app/core/gm.component';
 
 const appRoutes: Routes = [
   { path: ' ', component: GmComponent},
-  { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
-  { path: '**', redirectTo: '/not-found' }
+  // { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
+  // { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({

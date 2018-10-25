@@ -50,11 +50,11 @@
                       </a>
                       <ul class="level3" ng-hide="menu2.childSubMenuListArray.length===0">
                         <li *ngFor="let menu3 of menu2.childSubMenuListArray" id={{menu3.Id}} class="col-lg-12 col-md-12 col-xs-12 col-sm-12 {{menu3.Label|lowercase}}-hidden">
-                          <a ng-hide="menu3.childSubMenuListArray.length>0" class={{menu3.Label|lowercase}} (click)="clickTopMenu3(menu3)" href="{{getUlr(menu3.URLPath)}}">{{menu3.Label}} </a>
+                          <a ng-hide="menu3.childSubMenuListArray.length>0" class={{menu3.Label|lowercase}} (click)="clickTopMenu3(menu3)" >{{menu3.Label}} </a>
                           <!-- <a ng-hide="menu3.childSubMenuListArray.length===0" class={{menu3.Label|lowercase}} href="javascript:void(0)" style='cursor:default !important'>{{menu3.Label}} </a> -->
                           <ul class="level4 animate fadeIn one" ng-hide="menu3.childSubMenuListArray.length===0">
                             <li class="col-lg-12 col-md-12 col-xs-12 col-sm-12" *ngFor="let menu4 of menu3.childSubMenuListArray">
-                              <a class="{{menu4.Label}}" (click)="clickTopMenu3(menu4)" href="{{getUlr(menu4.URLPath)}}">{{menu4.Label}}</a>
+                              <a class="{{menu4.Label}}" (click)="clickTopMenu3(menu4)" >{{menu4.Label}}</a>
                             </li>
                           </ul>
                         </li>

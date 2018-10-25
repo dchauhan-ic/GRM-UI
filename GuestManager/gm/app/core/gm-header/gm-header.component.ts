@@ -37,19 +37,21 @@ export class GmHeaderComponent implements OnInit {
   subscription: Subscription;
   filteredStatus = '';
   currentUserFullName;
+  location:string;
 
   ngOnInit() {
     this.onFetchData();
+    this.currentUserFullName = this.getCurrentUserFullName();
   }
 
 
 
   onFetchData() {
-    this.authService.login("serveradmin", "Password@1234")
-      .pipe(first()).subscribe(
-      
-      )
-      this.getMenu();
+    // this.authService.login("serveradmin", "Password@1234")
+    //   .pipe(first()).subscribe(
+
+    //   )
+    this.getMenu();
 
   }
 
@@ -243,7 +245,7 @@ export class GmHeaderComponent implements OnInit {
 
   }
   clickSubMenu = function (menu) {
-
+   // var host=getHost(this,location.hash.substring(location.hash.indexOf("#")+1));
     this.subMenu = menu.URLPath;
     if (this.subMenu == "/MemberProfiler/") {
       // this.onFetchMemberList();
@@ -253,13 +255,37 @@ export class GmHeaderComponent implements OnInit {
       this.onFetchSegmentList();
       this.router.navigate(['/SegmentationBuilder']);
     }
+    // else if( this.subMenu.indexOf("/login"))
+    // {
+    //   this.router.navigate([this.subMenu]);
+    // }
+    else if(this.subMenu!=null)
+    {
+      //this.router.navigate([this.subMenu]);
+      location.href=location.origin+"/#"+this.subMenu;
+    }
     else {
-      this.router.navigate(['']);
+      location.href=location.origin+"/#";
+     // alert(location.href);
+      //this.location = location.origin + "/" + location.hash;
+      //this.router.navigate([this.subMenu]);
     }
 
   }
   clickTopMenu3 = function (menu3) {
-    this.router.navigate(['']);
+    this.submenu3 = menu3.URLPath;
+     if(this.submenu3!=null)
+    {
+      //this.router.navigate([this.subMenu]);
+      location.href=location.origin+"/#"+this.submenu3;
+    }
+    else {
+      location.href=location.origin+"/#";
+     // alert(location.href);
+      //this.location = location.origin + "/" + location.hash;
+      //this.router.navigate([this.subMenu]);
+    }
+    //this.router.navigate(['']);
   }
 
   getUlr = function (URLPath) {
@@ -324,7 +350,11 @@ export class GmHeaderComponent implements OnInit {
   }
 
   logout = function () {
-    // alert("Dj");
+    const data: Object = {
+          
+        };
+   
+     this.dataStorageService.onLogout(data);
   }
 
   searchPopUp = function () {
@@ -335,5 +365,26 @@ export class GmHeaderComponent implements OnInit {
     // alert("Dj");
   }
 
+
+  getCurrentUserFullName() {
+    return localStorage.getItem(location.hostname + "currentUserFullName");
+  }
+
+
+//    getHostUrl() {
+//     var hostName = location.protocol + "://" + location.host;
+
+//     var port = location.port;
+//     if (port) {
+//         hostName += ":" + port;
+//     }
+    
+//     if(hostName.indexOf('localhost') != -1)
+//   {
+//       //hostName = "https://dev-jamba.fishbowlcloud.com"
+//   }
+    
+//     return hostName;
+// }
 }
 

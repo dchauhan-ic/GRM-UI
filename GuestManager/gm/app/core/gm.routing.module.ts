@@ -21,6 +21,8 @@ const gmRoutes: Routes = [
     { path: '', component: GmComponent, children: [
       //canActivate: [AuthGuardService]
       //resolve: {server: SegmentBuilderResolver}
+      
+    { path: 'MemberProfiler',component: MemberprofilerSearchComponent },
     { path: 'MemberProfiler/search',component: MemberprofilerSearchComponent },
     { path: 'MemberProfiler/:id', component: MemberprofilerDetailComponent },
     { path: 'SegmentationBuilder',component: SegmentationbuilderComponent },

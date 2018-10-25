@@ -1,7 +1,8 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private cookieService: CookieService ){}
@@ -16,22 +17,40 @@ export class AuthInterceptor implements HttpInterceptor {
     //   request.headers.Authorization = request.headers.Authorization.indexOf('Bearer ')>-1?('Bearer ' + getAccessToken()):request.headers.Authorization;
     // }
 
-  if(request.url == "/api/oauth2/token")
+  // if(request.url == "/api/oauth2/token")
+  // {
+  //   request = request.clone({
+  //     setHeaders: {
+  //       'Content-Type': 'text/plain',
+  //       //'Accept': 'application/json',
+  //       'Authorization':'Basic MjAxOTY5RTFCRkQyNDJFMTg5RkU3QjYyOTdCMUI1QTQ6QzY1QTBEQzBGMjhDNDY5RkI3Mzc2Rjk3MkRFRkJDQjk='
+  //     }
+  //   })
+  // }
+  if(request.url.indexOf('clpapi/') >= 0)
   {
     request = request.clone({
       setHeaders: {
-        'Content-Type': 'text/plain',
-        //'Accept': 'application/json',
-        'Authorization':'Basic MjAxOTY5RTFCRkQyNDJFMTg5RkU3QjYyOTdCMUI1QTQ6QzY1QTBEQzBGMjhDNDY5RkI3Mzc2Rjk3MkRFRkJDQjk='
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Accept': 'application/json, text/plain, /',
+        'X-XSRF-TOKEN': this.cookieService.get('XSRF-TOKEN'),
+        'Application': 'web',
+        'REDIS' :'true',
+        'client_id': this.getAccountId(),
+        'access_token': this.getAccessToken(),
+        'Access-Control-Allow-Methods': 'POST,OPTIONS, GET, PUT',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Headers':'content-type, if-none-match' 
       }
     })
   }
+
   else if(request.url == "/api/odata/NavigationMenus/Default.GetLoginMenuItems?$orderby=SortOrder")
   {
     request = request.clone({
       setHeaders: {
         'Content-Type': 'application/json, text/plain, /',
-        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        'Authorization': 'Bearer ' + this.getAccessToken(),
         'Accept': 'application/json',
         'X-XSRF-TOKEN': this.cookieService.get('XSRF-TOKEN')
       }
@@ -41,7 +60,7 @@ export class AuthInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           'Content-Type':  'application/json;charset=UTF-8',
-          'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+          'Authorization': 'Bearer ' + this.getAccessToken(),
           'Accept': 'application/json',
          'X-XSRF-TOKEN': this.cookieService.get('XSRF-TOKEN')
         }
@@ -49,19 +68,20 @@ export class AuthInterceptor implements HttpInterceptor {
 
     }
 
-
-    return next.handle(request);
+   return next.handle(request).do(event => {}, err => {
+      if (err instanceof HttpErrorResponse && err.status == 401) {
+          // handle 401 errors
+      }
+  })
   }
 
 
-  getAccessToken(token){
-    if (token == "undefined" || token == "null" || token == null ) {
-    
-    } else {
-        //getALLMenu(UserName);
-    
-    }
+  getAccessToken(){
+    return localStorage.getItem(location.hostname+"access_token");
   }
+
+
+
 
 //    //if ($location.absUrl())
 //    var absUrl = $location.absUrl();
@@ -88,4 +108,11 @@ export class AuthInterceptor implements HttpInterceptor {
 //     .set('Access-Control-Allow-Origin','*')});
 
 
+getAccountId(){
+	return localStorage.getItem(location.hostname+"ClientId");
+}
+
+getRedis(){
+	return true;
+}
 }

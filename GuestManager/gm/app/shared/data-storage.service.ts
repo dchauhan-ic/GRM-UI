@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';;
 import 'rxjs/Rx';
-import {   searchMemberRequest } from '../core/gm.model';
+import { searchMemberRequest } from '../core/gm.model';
 import { GmService } from '../core/gm.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { segmentMetaDataList } from 'gm/app/core/segmentationbuilder/segmentationbuilder.model';
@@ -15,7 +15,7 @@ import { menuList } from 'gm/app/shared/menu.model';
 export class DataStorageService {
   dataIsLoading = new BehaviorSubject<boolean>(false);
 
-  constructor(private httpClient: HttpClient, private appTemplateService: GmService, private segmentBuilderService: SegmentBuilderService,private MemberProfilerService: MemberProfilerService) {
+  constructor(private httpClient: HttpClient, private appTemplateService: GmService, private segmentBuilderService: SegmentBuilderService, private MemberProfilerService: MemberProfilerService) {
   }
 
   // onFetchMenuTest(memberId) {
@@ -26,8 +26,8 @@ export class DataStorageService {
   //     .subscribe(
   //     (Results => Results) => {
 
-      
-       
+
+
   //     },
   //     (error) => console.log(error)
   //     );
@@ -37,11 +37,29 @@ export class DataStorageService {
   //   return this.httpClient
   //     .get('api/odata/NavigationMenus/Default.GetLoginMenuItems?$orderby=SortOrder',)
   //     .pipe(map(Results => Results));
-  
+
   //  }
 
+  onLogout(data) {
+    
+    this.httpClient.post('/clpapi/member/logout', data,{
+      observe: 'body',
+      responseType: 'json',
+    })
+      .subscribe(
+      (response: Response) => {
+        console.log(response);
+        location.href=location.origin+"/#"+"/login";
+       // this.MemberProfilerService.setMenuList(response);
+      },
+      (error) => {
+        location.href=location.origin+"/#"+"/login";
+        console.log(error)
+      }
+      );
+  }
 
-   onFetchMenuTest() {
+  onFetchMenuTest() {
     this.httpClient.get('/api/odata/NavigationMenus/Default.GetLoginMenuItems?$orderby=SortOrder', {
       observe: 'body',
       responseType: 'json',
@@ -89,7 +107,7 @@ export class DataStorageService {
       );
   }
   getSegmentList() {
-    this.httpClient.get('GRM/segment/segmentInfo/list', {
+    this.httpClient.get('/GRM/segment/segmentInfo/list', {
       observe: 'body',
       responseType: 'json',
     })
@@ -110,7 +128,7 @@ export class DataStorageService {
 
   onFetchMemberTest(data: searchMemberRequest) {
     this.dataIsLoading.next(true);
-    this.httpClient.post('GRM/member/search', data, {
+    this.httpClient.post('/GRM/member/search', data, {
       observe: 'body',
       responseType: 'json',
     })
@@ -127,7 +145,7 @@ export class DataStorageService {
   }
 
 
-  
+
 
   // onFetchMemberInfo(memberId) {
   //   return this.httpClient
@@ -137,7 +155,7 @@ export class DataStorageService {
   // }
 
   onFetchMemberInfoTest(memberId) {
-    this.httpClient.get('GRM/member/memberInfo/id/' + memberId, {
+    this.httpClient.get('/GRM/member/memberInfo/id/' + memberId, {
       observe: 'body',
       responseType: 'json',
     })
@@ -152,7 +170,7 @@ export class DataStorageService {
 
 
   onFetchDemographicInformationTest(memberId) {
-    this.httpClient.get('GRM/member/memberId/'+ memberId + '/demographic', {
+    this.httpClient.get('/GRM/member/memberId/' + memberId + '/demographic', {
       observe: 'body',
       responseType: 'json',
     })
@@ -165,7 +183,7 @@ export class DataStorageService {
   }
 
   onFetchPromotionActivityDataTest(memberId) {
-    this.httpClient.get('GRM/member/memberId/'+ memberId + '/promotion', {
+    this.httpClient.get('/GRM/member/memberId/' + memberId + '/promotion', {
       observe: 'body',
       responseType: 'json',
     })
@@ -178,7 +196,7 @@ export class DataStorageService {
   }
 
   onFetchCampaignSummaryTest(memberId) {
-    this.httpClient.get('GRM/member/memberId/' + memberId + '/campaignSummary', {
+    this.httpClient.get('/GRM/member/memberId/' + memberId + '/campaignSummary', {
       observe: 'body',
       responseType: 'json',
     })
@@ -194,11 +212,11 @@ export class DataStorageService {
   //   return this.httpClient
   //     .get('GRM/member/memberId/' + memberId + '/campaignSummary',)
   //     .pipe(map(Results => Results));
-  
+
   //  }
 
   OnFetchCampaignDetailsTest(memberId) {
-    this.httpClient.get('GRM/member/memberId/' + memberId + '/campaignDetail', {
+    this.httpClient.get('/GRM/member/memberId/' + memberId + '/campaignDetail', {
       observe: 'body',
       responseType: 'json',
     })
@@ -215,11 +233,11 @@ export class DataStorageService {
   //   return this.httpClient
   //     .get('GRM/member/memberId/' + memberId + '/campaignDetail',)
   //     .pipe(map(Results => Results));
-  
+
   //  }
 
   OnFetchSmsDetailTest(memberId) {
-    this.httpClient.get('GRM/member/memberId/' + memberId + '/smsDetail', {
+    this.httpClient.get('/GRM/member/memberId/' + memberId + '/smsDetail', {
       observe: 'body',
       responseType: 'json',
     })
@@ -233,7 +251,7 @@ export class DataStorageService {
 
 
   OnFetchSmsSummaryTest(memberId) {
-    this.httpClient.get('GRM/member/memberId/' + memberId + '/smsSummary', {
+    this.httpClient.get('/GRM/member/memberId/' + memberId + '/smsSummary', {
       observe: 'body',
       responseType: 'json',
     })
@@ -249,21 +267,21 @@ export class DataStorageService {
   //   return this.httpClient
   //     .get('GRM/member/memberId/' + memberId + '/smsSummary',)
   //     .pipe(map(Results => Results));
-  
+
   //  }
 
-  
+
 
   //  OnFetchSmsDetail(memberId) { 
   //   return this.httpClient
   //     .get('GRM/member/memberId/' + memberId + '/smsDetail',)
   //     .pipe(map(Results => Results));
-  
+
   //  }
 
 
   // logout(){
-     	 
+
   //   resetCache($cookies);        	         	
   //   $location.path("/login");
   // },function(){
@@ -273,21 +291,29 @@ export class DataStorageService {
   // });
 
 
- CleanLocalStorage()
-{
-localStorage.removeItem(location.hostname+"");
-localStorage.removeItem(location.hostname+"");   
-localStorage.removeItem('currentGame'); 	
+
+
+
+
+  CleanLocalStorage() {
+    localStorage.removeItem(location.hostname + "");
+    localStorage.removeItem(location.hostname + "");
+    localStorage.removeItem('currentGame');
+  }
+
+
+  getAccessToken(token) {
+    if (token == "undefined" || token == "null" || token == null) {
+
+    } else {
+      //getALLMenu(UserName);
+
+    }
 }
 
 
- getAccessToken(token){
-if (token == "undefined" || token == "null" || token == null ) {
-
-} else {
-    //getALLMenu(UserName);
-
+ getAccountId(){
+	return localStorage.getItem(location.hostname+"ClientId");
 }
- }
 
 }
